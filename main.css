@@ -1,3 +1,139 @@
+/* ---------------------------------
+
+                general
+
+------------------------------------ */
+
+body {
+  background-color: #fff;
+  color: #282828;
+  font-family: 'Raleway', sans-serif; 
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Open Sans', sans-serif; 
+}
+
 h1 {
-  color: red;
+  font-size: 4.5em;
+}
+
+h2 {
+  font-size: 2.5em;
+}
+
+h3 {
+  font-size: 2.1em;
+}
+
+h4 {
+  font-size: 1.8em;
+}
+
+figcaption {
+  font-size: 1em;
+}
+
+blockquote {
+  background: #f9f9f9;
+  border-left: 10px solid #ccc;
+  color: #999;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+}
+
+blockquote:before {
+  color: #ccc;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+
+/* ---------------------------------
+
+                intro
+
+------------------------------------ */
+
+header {
+  background-color: #282828;
+  color: white;
+  height: 100vh;
+}
+
+header h1 {
+ font-style: italic;
+ padding: 30px 40px;
+}
+
+header img {
+  cursor: pointer;
+  width: 85px;
+  position: fixed;
+  top: 40px;
+  right: 40px;
+}
+
+header p {
+  font-family: 'Open Sans', sans-serif; 
+  font-size: 4.5em;
+  letter-spacing: 0.08em;
+  margin: 25vh 100px;
+  text-align: center;
+}
+
+header span {
+  color: #c3e634;
+}
+
+/* ---------------------------------
+
+            case study
+
+------------------------------------ */
+
+section.case-study {
+  height: 2000px;
+  margin: 80px 350px 100px 350px;
+}
+
+.case-study h1 {
+  border-bottom: 8px solid #9eba2a;
+  display: inline-block;
+  margin-bottom: 30px;
+}
+
+.case-study h2,
+.case-study h3,
+.case-study h4,
+.case-study p,
+.case-study figure {
+  margin-bottom: 20px;
+}
+
+
+.case-study h2, h3 {
+  letter-spacing: 0.02em;
+}
+
+.case-study h2 {
+  color: #9eba2a;
+}
+
+.case-study h3,
+.case-study h4 {
+  color: #6a8015;
+}
+
+.case-study p {
+  font-size: 1.5em;
+}
+
+.case-study blockquote p {
+  font-size: 1.3em;
+}
+
+.case-study blockquote p:first-of-type {
+  font-style: italic;
 }

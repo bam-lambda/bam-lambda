@@ -3,10 +3,128 @@
   <head>
     <meta charset="UTF-8" />
     <title>BAM!</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="https://bit.ly/bamFavicon">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:800|Raleway" rel="stylesheet">
+    <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="main.css" />
     <script src="application.js"></script>
   </head>
   <body>
-    <h1>Hello</h1>
+    <header class="intro">
+      <h1>BAM!</h1>
+      <img src="https://bit.ly/bam-logo" alt="BAM! logo"/>
+      <p>a lightweight serverless framework for <span>humans</span></p>
+    </header>
+    <section class="case-study">
+      <h1>Case Study</h1>
+
+      <h2>1 Introduction</h2>
+
+      <h3>1.0 What is BAM!?</h3>
+
+      <p>BAM! is a serverless framework that makes it quick (hence, the name)
+      and easy to get small applications up & running using Node.js and Amazon
+      Web Services (AWS). It is optimized for the deployment of AWS Lambda
+      functions integrated with AWS API Gateway endpoints, but also allows for
+      the creation of DynamoDB tables, which can be used to persist data between
+      lambda invocations.</p>
+
+      <p>In comparison to other technologies, the biggest benefits of serverless
+      are, arguably, the rapidity of iteration and the abstraction of
+      infrastructure management. The irony is that the experience of working
+      with serverless technologies often lacks the very simplicity that the idea
+      of serverless computing promises to deliver. This led to our focus on
+      speed and convenience for the developer as our guiding principles.</p>
+
+      <p>This article will examine the design decisions we made while building
+      the BAM!  framework, as well as our solutions to a variety of challenges
+      we faced.</p>
+
+      <h3>1.1 What is Serverless?</h3>
+
+      <p>The essential idea behind serverless is about where application code
+      lives. It is easy to assume that with serverless there are no servers;
+      however, this is a false assumption as “serverless” is a misnomer. There
+      are physical servers somewhere in the world; they have been abstracted
+      away so the developer does not have to manage them. Instead, the code is
+      hosted by a third party service, which takes care of all server
+      maintenance. For this reason, serverless has become an attractive choice
+      for application development.</p>
+
+      <p>There is, however, a tradeoff when using serverless technologies. While
+      the developer does not need to worry about managing servers, they do give
+      up control over how their code is handled and, to some extent, how it is
+      structured. It is important to recognize that serverless, although new and
+      popular, is just one option among a variety of server management choices,
+      each with their own advantages and disadvantages.</p>
+
+      <figure>
+        <img src="https://via.placeholder.com/800x400" alt=""/>
+        <figcaption>comparison of server management choices</figcaption>
+      </figure>
+
+      <p>Looking at the table above, note that the amount of control decreases
+      as the level of abstraction increases.</p>
+
+      <p>To start, there are “bare metal” or physical, on-premises servers. With
+      this option, the developer has the most control with the least amount of
+      abstraction. Next, there is IaaS, “Infrastructure as a Service”, where the
+      developer does not have to pay the upfront cost of owning and managing
+      physical equipment, but is still required to manage the operating system,
+      networking, firewalls, and security of a virtual machine. Alternatively,
+      there is CaaS, “Containers as a Service”, with which the developer
+      maintains a certain level of flexibility through orchestration of
+      encapsulated containers without having to manage the operating system.
+      Depending on the situation, it may make sense to abstract away even more
+      server responsibility. In this case, the developer could use PaaS, or
+      “Platform as a Service”. With PaaS, the web application lifecycle is
+      handled by the platform so the developer only has to be concerned with the
+      application code.</p>
+
+      <p>These options offer quite a range of choice, with serverless offering
+      the least amount of control, while being easiest to manage. Serverless is
+      actually a broad category that encapsulates two others: BaaS (Backend as a
+      Service) and FaaS (Functions as a Service).</p>
+
+      <h4>1.1.1 Backend as a Service</h4>
+
+      <p>BaaS involves multiple components pivotal to the operation of the back
+      end. There are many different types of BaaS used to accomplish a variety
+      of backend tasks, such as storage (e.g. AWS S3) and authorization (e.g.
+      AuthO).</p>
+
+      <blockquote>
+        <p>I want to outsource backend services so I can focus on the
+        main functionality of my application.</p>
+        <p>- BaaS user</p>
+      </blockquote>
+
+      <h4>1.1.2 Functions as a Service</h4>
+
+      <p>FaaS are small bits of code that live on ephemeral containers usually
+      written by the person or organization deploying them. AWS supports FaaS
+      with AWS Lambda.<p>
+
+      <blockquote>
+        <p>I want to write code that accomplishes a small task and can be run
+        without worrying about scale or infrastructure.</p>
+        <p>- FaaS user</p>
+      </blockquote>
+
+      <p>Being a type of serverless technology, FaaS requires no maintenance,
+      which in and of itself is a huge advantage; however, this is not its only
+      benefit. Because individual modules of code can be swapped out for other
+      modules, iterated upon, and re-deployed, using FaaS allows for
+      experimentation and rapid development. Additionally, FaaS is ideal for
+      variations in traffic due to its automatic provisioning of resources.</p>
+
+      <h4>Why AWS?</h4>
+
+      <p>Developers can enjoy all of the above benefits by using AWS, but Amazon
+      is by no means the only provider of serverless technologies. There are
+      many others such as Microsoft, Google, and IBM; however, with over 1
+      million active customers, AWS currently enjoys prominence among engineers
+      working with the cloud(1). We therefore built BAM! for use with AWS.<p>
+    </section>
   </body>
 </html>
