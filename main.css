@@ -7,11 +7,11 @@
 body {
   background-color: #fff;
   color: #282828;
-  font-family: 'Raleway', sans-serif; 
+  font-family: 'Raleway', sans-serif;
 }
 
 h1, h2, h3, h4 {
-  font-family: 'Open Sans', sans-serif; 
+  font-family: 'Open Sans', sans-serif;
 }
 
 h1 {
@@ -52,6 +52,117 @@ blockquote:before {
 
 /* ---------------------------------
 
+               images
+
+------------------------------------ */
+
+#bam-logo {
+  cursor: pointer;
+  width: 85px;
+  position: fixed;
+  top: 40px;
+  right: 40px;
+}
+
+/* ---------------------------------
+
+               nav
+
+------------------------------------ */
+
+nav {
+  background-color: #282828;
+  color: white;
+  display: none;
+  height: 100vh;
+  text-align: center;
+  width: 100vw;
+  z-index: 2;
+}
+
+nav ul {
+  border-bottom: 4px solid #9eba2a;
+  display: inline-block;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 4.5em;
+  margin-top: 12%;
+  margin-bottom: 70px;
+  padding-bottom: 50px;
+}
+
+nav ul li {
+  margin: auto;
+  text-align: left;
+}
+
+nav p {
+  color: #fff;
+  font-size: 1.2em;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: #9eba2a;
+}
+
+nav p a:not(#close) {
+  font-weight: bold;
+  border-bottom: 2px solid #fff;
+  padding-bottom: 4px;
+}
+
+nav p a:not(#close):hover {
+  border-bottom: 2px solid #9eba2a;
+}
+
+#close-nav {
+  cursor: pointer;
+  font-size: 4em;
+  font-weight: 200;
+  left: 45px;
+  position: absolute;
+  top: 30px;
+  transform: rotate(90deg);
+  -ms-transform: rotate(90deg); [> IE 9 <]
+  -webkit-transform: rotate(90deg); /* Safari and Chrome */
+}
+
+nav.alt {
+  background-color: #9eba2a;
+  color: #282828;
+}
+
+nav.alt ul {
+  border-bottom: 4px solid #282828;
+}
+
+nav.alt p,
+nav.alt a {
+  color: #282828;
+}
+
+nav.alt p a:not(#close) {
+  border-bottom: 2px solid #282828;
+}
+
+nav.alt p a:not(#close):hover {
+  color: #fff;
+  border-bottom: 2px solid #fff;
+}
+
+nav.alt #bam-logo-alt {
+  width: 85px;
+  position: fixed;
+  top: 40px;
+  right: 40px;
+}
+
+/* ---------------------------------
+
                 intro
 
 ------------------------------------ */
@@ -67,16 +178,8 @@ header h1 {
  padding: 30px 40px;
 }
 
-header img {
-  cursor: pointer;
-  width: 85px;
-  position: fixed;
-  top: 40px;
-  right: 40px;
-}
-
 header p {
-  font-family: 'Open Sans', sans-serif; 
+  font-family: 'Open Sans', sans-serif;
   font-size: 4.5em;
   letter-spacing: 0.08em;
   margin: 25vh 100px;
@@ -93,47 +196,47 @@ header span {
 
 ------------------------------------ */
 
-section.case-study {
+section#case-study {
   height: 2000px;
   margin: 80px 350px 100px 350px;
 }
 
-.case-study h1 {
+#case-study h1 {
   border-bottom: 8px solid #9eba2a;
   display: inline-block;
   margin-bottom: 30px;
 }
 
-.case-study h2,
-.case-study h3,
-.case-study h4,
-.case-study p,
-.case-study figure {
+#case-study h2,
+#case-study h3,
+#case-study h4,
+#case-study p,
+#case-study figure {
   margin-bottom: 20px;
 }
 
 
-.case-study h2, h3 {
+#case-study h2, h3 {
   letter-spacing: 0.02em;
 }
 
-.case-study h2 {
+#case-study h2 {
   color: #9eba2a;
 }
 
-.case-study h3,
-.case-study h4 {
+#case-study h3,
+#case-study h4 {
   color: #6a8015;
 }
 
-.case-study p {
+#case-study p {
   font-size: 1.5em;
 }
 
-.case-study blockquote p {
+#case-study blockquote p {
   font-size: 1.3em;
 }
 
-.case-study blockquote p:first-of-type {
+#case-study blockquote p:first-of-type {
   font-style: italic;
 }
