@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeNav = document.querySelector('#close-nav');
   const homeLink = document.querySelector('#home-link');
   const caseStudyLink = document.querySelector('#case-study-link');
+  const githubLogo = document.querySelector('#github-logo');
+  const mediumLogo = document.querySelector('#medium-logo');
   // const ourTeamLink = document.querySelector('#our-team-link');
   let navVisible = false;
   const getScrollPosition = () => window.scrollY;
@@ -21,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     githubBlack: 'https://i.imgur.com/uS9im3Z.png',
     mediumWhite: 'https://i.imgur.com/iAreLP9.png',
     mediumBlack: 'https://i.imgur.com/IPiAMRb.png',
+    mediumWhiteAlt: 'https://i.imgur.com/DP4t04E.png',
   };
 
   const changeLogoColors = (logo, location) => {
@@ -39,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
     nav.style.display = 'block';
     main.style.display = 'none';
     ['github', 'medium'].forEach(logo => changeImgSrc(`${logo}-logo`, logoUrls[`${logo}Black`]));
+    // ['github', 'medium'].forEach(logo => changeImgSrc(`${logo}-logo`, logoUrls[`${logo}White`]));
   };
 
   const hideNav = () => {
@@ -61,6 +65,31 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!navVisible) {
       changeLogoColors('github', 130);
       changeLogoColors('medium', 90);
+    }
+  });
+
+  // TODO: DRY
+  githubLogo.addEventListener('mouseover', () => {
+    if (navVisible) {
+      changeImgSrc('github-logo', logoUrls.githubWhite);
+    }
+  });
+
+  githubLogo.addEventListener('mouseout', () => {
+    if (navVisible) {
+      changeImgSrc('github-logo', logoUrls.githubBlack);
+    }
+  });
+
+  mediumLogo.addEventListener('mouseover', () => {
+    if (navVisible) {
+      changeImgSrc('medium-logo', logoUrls.mediumWhiteAlt);
+    }
+  });
+
+  mediumLogo.addEventListener('mouseout', () => {
+    if (navVisible) {
+      changeImgSrc('medium-logo', logoUrls.mediumBlack);
     }
   });
 });
