@@ -1,4 +1,5 @@
 /* global document, window */
+
 document.addEventListener('DOMContentLoaded', () => {
   const bamLogo = document.querySelector('#bam-logo');
   const nav = document.querySelector('nav');
@@ -9,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // const ourTeamLink = document.querySelector('#our-team-link');
   let navVisible = false;
   const getScrollPosition = () => window.scrollY;
-  let scrollPosition = 0;
+  let scrollPosition = getScrollPosition();
 
   const changeImgSrc = (tag, url) => {
     document.querySelector(`#${tag}`).src = url;
@@ -23,9 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const changeLogoColors = (logo, location) => {
-    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    scrollPosition = getScrollPosition();
 
-    if (scrollTop < location) {
+    if (scrollPosition < location) {
       changeImgSrc(`${logo}-logo`, logoUrls[`${logo}White`]);
     } else {
       changeImgSrc(`${logo}-logo`, logoUrls[`${logo}Black`]);
@@ -34,7 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const showNav = () => {
     navVisible = true;
-    console.log('nav is not visible');
     scrollPosition = getScrollPosition();
     nav.style.display = 'block';
     main.style.display = 'none';
