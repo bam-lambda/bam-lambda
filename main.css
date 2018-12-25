@@ -165,8 +165,11 @@ nav.alt p a:not(#close) {
   border-bottom: 2px solid #282828;
 }
 
-nav.alt p a:not(#close):hover {
+nav.alt a:hover {
   color: #fff;
+}
+
+nav.alt p a:not(#close):hover {
   border-bottom: 2px solid #fff;
 }
 
