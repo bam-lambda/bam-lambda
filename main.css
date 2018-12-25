@@ -64,6 +64,22 @@ blockquote:before {
   right: 40px;
 }
 
+#github-logo {
+  cursor: pointer;
+  width: 50px;
+  position: fixed;
+  bottom: 105px;
+  right: 40px;
+}
+
+#medium-logo {
+  cursor: pointer;
+  width: 50px;
+  position: fixed;
+  bottom: 30px;
+  right: 40px;
+}
+
 /* ---------------------------------
 
                nav
