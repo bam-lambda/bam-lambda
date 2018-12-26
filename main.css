@@ -106,6 +106,10 @@ i {
   src: url(https://cdn.jsdelivr.net/npm/firacode@1.205.0/distr/woff2/FiraCode-Regular.woff2) format("truetype");
 }
 
+pre {
+  display: inline-block;
+}
+
 code {
   color: #777;
   font-family: "Fira Code", monospace;
