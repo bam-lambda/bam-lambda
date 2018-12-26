@@ -1,4 +1,4 @@
-/* global document, window */
+/* global document, window, hljs */
 
 document.addEventListener('DOMContentLoaded', () => {
   const bamLogo = document.querySelector('#bam-logo');
@@ -85,4 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
       changeImgSrc(id, logoUrls[urlKey]);
     }
   });
+
+  hljs.initHighlightingOnLoad();
 });
