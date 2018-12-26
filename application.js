@@ -7,8 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeNav = document.querySelector('#close-nav');
   const homeLink = document.querySelector('#home-link');
   const caseStudyLink = document.querySelector('#case-study-link');
-  const githubLogo = document.querySelector('#github-logo');
-  const mediumLogo = document.querySelector('#medium-logo');
+  // const githubLogo = document.querySelector('#github-logo');
+  // const mediumLogo = document.querySelector('#medium-logo');
+  const logoLinks = document.querySelector('.logo-links');
   // const ourTeamLink = document.querySelector('#our-team-link');
   let navVisible = false;
   const getScrollPosition = () => window.scrollY;
@@ -68,28 +69,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // TODO: DRY
-  githubLogo.addEventListener('mouseover', () => {
+  logoLinks.addEventListener('mouseover', (e) => {
     if (navVisible) {
-      changeImgSrc('github-logo', logoUrls.githubWhite);
+      const { id } = e.target;
+      const urlKey = /github/.test(id) ? 'githubWhite' : 'mediumWhiteAlt';
+      changeImgSrc(id, logoUrls[urlKey]);
     }
   });
 
-  githubLogo.addEventListener('mouseout', () => {
+  logoLinks.addEventListener('mouseout', (e) => {
     if (navVisible) {
-      changeImgSrc('github-logo', logoUrls.githubBlack);
-    }
-  });
-
-  mediumLogo.addEventListener('mouseover', () => {
-    if (navVisible) {
-      changeImgSrc('medium-logo', logoUrls.mediumWhiteAlt);
-    }
-  });
-
-  mediumLogo.addEventListener('mouseout', () => {
-    if (navVisible) {
-      changeImgSrc('medium-logo', logoUrls.mediumBlack);
+      const { id } = e.target;
+      const logo = id.split('-')[0];
+      const urlKey = `${logo}Black`;
+      changeImgSrc(id, logoUrls[urlKey]);
     }
   });
 });
