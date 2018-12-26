@@ -6,14 +6,35 @@ document.addEventListener('DOMContentLoaded', () => {
   const main = document.querySelector('main');
   const closeNav = document.querySelector('#close-nav');
   const homeLink = document.querySelector('#home-link');
+  const caseStudy = document.querySelector('#case-study');
+  const caseStudyNav = document.querySelector('#case-study nav');
   const caseStudyLink = document.querySelector('#case-study-link');
   // const githubLogo = document.querySelector('#github-logo');
   // const mediumLogo = document.querySelector('#medium-logo');
   const logoLinks = document.querySelector('.logo-links');
   // const ourTeamLink = document.querySelector('#our-team-link');
+  const caseStudyNavUl = document.querySelector('#case-study nav ul');
+
   let navVisible = false;
   const getScrollPosition = () => window.scrollY;
   let scrollPosition = getScrollPosition();
+
+  const h2Text = [...document.querySelectorAll('h2')].map(h2 => (
+    h2.textContent.split(' ').slice(1).join(' ')
+  ));
+
+  const snakeCaseify = text => text.toLowerCase().split(' ').join('-');
+
+  h2Text.forEach((h2TextStr) => {
+    const li = document.createElement('li');
+    li.textContent = '□';
+    const a = document.createElement('a');
+    a.href = snakeCaseify(`#${h2TextStr.replace('!', '')}`);
+    a.textContent = h2TextStr.toUpperCase();
+
+    li.appendChild(a);
+    caseStudyNavUl.appendChild(li);
+  });
 
   const changeImgSrc = (tag, url) => {
     document.querySelector(`#${tag}`).src = url;
@@ -66,6 +87,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!navVisible) {
       changeLogoColors('github', 130);
       changeLogoColors('medium', 90);
+      const caseStudyPosition = getScrollPosition() + caseStudy.getBoundingClientRect().top;
+
+      // must be less than team section position
+      if ((scrollPosition + 300) >= caseStudyPosition) {
+        caseStudyNav.style.display = 'block';
+      } else {
+        caseStudyNav.style.display = 'none';
+      }
     }
   });
 

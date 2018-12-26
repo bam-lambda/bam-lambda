@@ -34,10 +34,6 @@ h5 {
   font-size: 1.5em;
 }
 
-figcaption {
-  font-size: 1em;
-}
-
 blockquote {
   background: #f9f9f9;
   border-left: 10px solid #ccc;
@@ -95,6 +91,10 @@ i {
   height: 300px;
 }
 
+img {
+  max-width: 800px;
+}
+
 /* ---------------------------------
 
                code
@@ -129,7 +129,7 @@ code.gruvbox-code {
 
 ------------------------------------ */
 
-nav {
+nav#site-navigation {
   background-color: #282828;
   color: white;
   display: none;
@@ -139,7 +139,7 @@ nav {
   z-index: 2;
 }
 
-nav ul {
+nav#site-navigation ul {
   border-bottom: 4px solid #9eba2a;
   display: inline-block;
   font-family: 'Open Sans', sans-serif;
@@ -149,32 +149,32 @@ nav ul {
   padding-bottom: 50px;
 }
 
-nav ul li {
+nav#site-navigation ul li {
   margin: auto;
   text-align: left;
 }
 
-nav p {
+nav#site-navigation p {
   color: #fff;
   font-size: 1.2em;
 }
 
-nav a {
+nav#site-navigation a {
   color: #fff;
   text-decoration: none;
 }
 
-nav a:hover {
+nav#site-navigation a:hover {
   color: #9eba2a;
 }
 
-nav p a:not(#close) {
+nav#site-navigation p a:not(#close) {
   font-weight: bold;
   border-bottom: 2px solid #fff;
   padding-bottom: 4px;
 }
 
-nav p a:not(#close):hover {
+nav#site-navigation p a:not(#close):hover {
   border-bottom: 2px solid #9eba2a;
 }
 
@@ -190,33 +190,33 @@ nav p a:not(#close):hover {
   -webkit-transform: rotate(90deg); /* Safari and Chrome */
 }
 
-nav.alt {
+nav#site-navigation.alt {
   background-color: #9eba2a;
   color: #282828;
 }
 
-nav.alt ul {
+nav#site-navigation.alt ul {
   border-bottom: 4px solid #282828;
 }
 
-nav.alt p,
-nav.alt a {
+nav#site-navigation.alt p,
+nav#site-navigation.alt a {
   color: #282828;
 }
 
-nav.alt p a:not(#close) {
+nav#site-navigation.alt p a:not(#close) {
   border-bottom: 2px solid #282828;
 }
 
-nav.alt a:hover {
+nav#site-navigation.alt a:hover {
   color: #fff;
 }
 
-nav.alt p a:not(#close):hover {
+nav#site-navigation.alt p a:not(#close):hover {
   border-bottom: 2px solid #fff;
 }
 
-nav.alt #bam-logo-alt {
+nav#site-navigation.alt #bam-logo-alt {
   width: 85px;
   position: fixed;
   top: 40px;
@@ -258,6 +258,31 @@ header span {
 
 ------------------------------------ */
 
+#case-study nav {
+  display: none;
+  left: 1em;
+  position: fixed;
+  top: 30%;
+}
+
+#case-study nav li {
+  list-style: none;
+}
+
+#case-study nav a {
+  color: #999;
+  display: inline-block;
+  font-size: 0.6em;
+  margin-bottom: 2em;
+  margin-left: 1em;
+  text-decoration: none;
+  vertical-align: 0.08em;
+}
+
+#case-study nav a:hover {
+  color: #9eba2a;
+}
+
 section#case-study {
   height: 2000px;
   margin: 80px 350px 100px 350px;
@@ -277,8 +302,7 @@ section#case-study {
 #case-study pre,
 #case-study ul,
 #case-study ol,
-#case-study img,
-#case-study figure {
+#case-study img {
   margin-bottom: 20px;
 }
 
