@@ -26,46 +26,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const h2Text = [...document.querySelectorAll('h2')].map(h2 => (
     h2.textContent.split(' ').slice(1).join(' ')
   ));
-  const positions = h2Text.reduce((obj, h2Str) => {
-    const selector = `#${snakeCaseify(h2Str.replace('!', ''))}`;
-    const h2 = document.querySelector(selector);
-    const position = getScrollPosition() + h2.getBoundingClientRect().top;
-    obj[`${selector}-nav`] = position;
-    return obj;
-  }, {});
 
   const highlightSection = (li, a) => {
     li.style.listStyle = 'disc';
-    li.style.color = '#9eba2a';
-    li.style.fontSize = '1.6em';
     li.style.fontWeight = 'bold';
-    li.style.marginLeft = '1.7em';
+    li.style.color = '#9eba2a';
     a.style.color = '#9eba2a';
-    a.style.marginBottom = '1.75em';
   };
 
-  const unhighlightSection = (li, a) => {
-    li.style.listStyle = 'circle';
-    li.style.color = '#999';
-    li.style.fontSize = '2em';
-    li.style.fontWeight = 'normal';
-    li.style.marginLeft = '2em';
-    a.style.color = '#999';
-    a.style.marginBottom = '2em';
-  }
-
-  h2Text.forEach((h2TextStr, i) => {
+  h2Text.forEach((h2TextStr) => {
     const li = document.createElement('li');
-    li.id = `${h2TextStr.toLowerCase()}-nav`;
+    li.id = snakeCaseify(`${h2TextStr.replace('!', '').toLowerCase()}-nav`);
     const a = document.createElement('a');
     a.href = snakeCaseify(`#${h2TextStr.replace('!', '')}`);
     a.textContent = h2TextStr.toUpperCase();
-
-    if (i === 0) {
-      highlightSection(li, a);
-    } else {
-      unhighlightSection(li, a);
-    }
 
     li.appendChild(a);
     caseStudyNavUl.appendChild(li);
@@ -93,6 +67,46 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  const handleCaseStudyNavStyles = () => {
+    const positions = h2Text.reduce((obj, h2Str) => {
+      const selector = `#${snakeCaseify(h2Str.replace('!', ''))}`;
+      const h2 = document.querySelector(selector);
+      const position = window.scrollY + h2.getBoundingClientRect().top;
+      obj[`${selector}-nav`] = position;
+      return obj;
+    }, {});
+    const positionValues = Object.values(positions);
+    const positionSelectors = Object.keys(positions);
+
+    positionValues.forEach((_, i) => {
+      const li = document.querySelector(positionSelectors[i]);
+      const a = li.getElementsByTagName('a')[0];
+      const currPosition = i > 0 ? positionValues[i] : 0;
+      const nextPositionIdx = (i + 1 < positionValues.length) ? i + 1 : 9999;
+      const nextPosition = positionValues[nextPositionIdx];
+
+      if (scrollPosition >= currPosition && scrollPosition < nextPosition) {
+        highlightSection(li, a);
+      } else {
+        if (li.getAttribute('style')) li.removeAttribute('style');
+        if (a.getAttribute('style')) a.removeAttribute('style');
+      }
+    });
+  };
+
+  const handleCaseStudyNav = () => {
+    // const teamPosition = getScrollPosition() + team.getBoundingClientRect().top;
+    const mainPosition = getScrollPosition() + main.getBoundingClientRect().top;
+
+    // must be less than team section position
+    if (scrollPosition >= mainPosition) { // && scrollPosition < teamPosition
+      caseStudyNav.style.display = 'block';
+      handleCaseStudyNavStyles();
+    } else {
+      caseStudyNav.style.display = 'none';
+    }
+  };
+
   const showNav = () => {
     navVisible = true;
     scrollPosition = getScrollPosition();
@@ -100,7 +114,6 @@ document.addEventListener('DOMContentLoaded', () => {
     main.style.display = 'none';
     header.style.display = 'none';
     ['github', 'medium'].forEach(logo => changeImgSrc(`${logo}-logo`, logoUrls[`${logo}Black`]));
-    // ['github', 'medium'].forEach(logo => changeImgSrc(`${logo}-logo`, logoUrls[`${logo}White`]));
   };
 
   const hideNav = () => {
@@ -124,27 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!navVisible) {
       changeLogoColors('github', 130);
       changeLogoColors('medium', 90);
-      const mainPosition = getScrollPosition() + main.getBoundingClientRect().top;
-
-      // must be less than team section position
-      if ((scrollPosition) >= mainPosition) {
-        caseStudyNav.style.display = 'block';
-      } else {
-        caseStudyNav.style.display = 'none';
-      }
-
-      // must be less than team section position
-      const positionValues = Object.values(positions);
-      const positionSelectors = Object.keys(positions);
-      if (scrollPosition >= positionValues[0] && scrollPosition < positionValues[1]) {
-        const li = document.querySelector(positionSelectors[0]);
-        const a = li.getElementsByTagName('a')[0];
-        highlightSection(li, a);
-      } else {
-        const li = document.querySelector(positionSelectors[0]);
-        const a = li.getElementsByTagName('a')[0];
-        unhighlightSection(li, a);
-      }
+      handleCaseStudyNav();
     }
   });
 

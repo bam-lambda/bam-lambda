@@ -75,6 +75,14 @@ img {
   right: 28px;
 }
 
+nav#site-navigation #bam-logo-alt {
+  position: fixed;
+  right: 28px;
+  top: 35px;
+  width: 60px;
+}
+
+
 #github-logo {
   cursor: pointer;
   width: 35px;
@@ -152,8 +160,8 @@ code.gruvbox-code {
 ------------------------------------ */
 
 nav#site-navigation {
-  background-color: #282828;
-  color: white;
+  background-color: #9eba2a;
+  color: #282828;
   display: none;
   height: 100vh;
   text-align: center;
@@ -162,7 +170,7 @@ nav#site-navigation {
 }
 
 nav#site-navigation ul {
-  border-bottom: 4px solid #9eba2a;
+  border-bottom: 4px solid #282828;
   display: inline-block;
   font-family: 'Open Sans', sans-serif;
   font-size: 4.5em;
@@ -177,27 +185,27 @@ nav#site-navigation ul li {
 }
 
 nav#site-navigation p {
-  color: #fff;
+  color: #282828;
   font-size: 1.2em;
 }
 
 nav#site-navigation a {
-  color: #fff;
+  color: #282828;
   text-decoration: none;
 }
 
 nav#site-navigation a:hover {
-  color: #9eba2a;
+  color: #fff;
 }
 
 nav#site-navigation p a:not(#close) {
   font-weight: bold;
-  border-bottom: 2px solid #fff;
+  border-bottom: 2px solid #282828;
   padding-bottom: 4px;
 }
 
 nav#site-navigation p a:not(#close):hover {
-  border-bottom: 2px solid #9eba2a;
+  border-bottom: 2px solid #fff;
 }
 
 #close-nav {
@@ -210,39 +218,6 @@ nav#site-navigation p a:not(#close):hover {
   transform: rotate(90deg);
   -ms-transform: rotate(90deg); [> IE 9 <]
   -webkit-transform: rotate(90deg); /* Safari and Chrome */
-}
-
-nav#site-navigation.alt {
-  background-color: #9eba2a;
-  color: #282828;
-}
-
-nav#site-navigation.alt ul {
-  border-bottom: 4px solid #282828;
-}
-
-nav#site-navigation.alt p,
-nav#site-navigation.alt a {
-  color: #282828;
-}
-
-nav#site-navigation.alt p a:not(#close) {
-  border-bottom: 2px solid #282828;
-}
-
-nav#site-navigation.alt a:hover {
-  color: #fff;
-}
-
-nav#site-navigation.alt p a:not(#close):hover {
-  border-bottom: 2px solid #fff;
-}
-
-nav#site-navigation.alt #bam-logo-alt {
-  width: 85px;
-  position: fixed;
-  top: 40px;
-  right: 40px;
 }
 
 /* ---------------------------------
@@ -297,7 +272,7 @@ header span {
   color: #999;
   font-size: 2em;
   list-style: circle;
-  margin-bottom: 2em;
+  margin-bottom: 7vh;
 }
 
 #case-study nav li:last-of-type {
