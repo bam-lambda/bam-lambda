@@ -10,7 +10,11 @@ body {
   font-family: 'Raleway', sans-serif;
 }
 
-h1, h2, h3, h4, h5 {
+main {
+  padding: 0 0 0 350px;
+}
+
+h1, h2, h3, h4 {
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -23,15 +27,11 @@ h2 {
 }
 
 h3 {
-  font-size: 2.1em;
+  font-size: 1.7em;
 }
 
 h4 {
-  font-size: 1.8em;
-}
-
-h5 {
-  font-size: 1.5em;
+  font-size: 1.25em;
 }
 
 blockquote {
@@ -60,25 +60,32 @@ i {
 
 ------------------------------------ */
 
+img {
+  display: block;
+  margin: 0 auto;
+  max-width: 800px;
+  width: 100%;
+}
+
 #bam-logo {
   cursor: pointer;
-  width: 85px;
+  width: 60px;
   position: fixed;
-  top: 40px;
-  right: 40px;
+  top: 35px;
+  right: 28px;
 }
 
 #github-logo {
   cursor: pointer;
-  width: 50px;
+  width: 35px;
   position: fixed;
-  bottom: 105px;
+  bottom: 85px;
   right: 40px;
 }
 
 #medium-logo {
   cursor: pointer;
-  width: 50px;
+  width: 35px;
   position: fixed;
   bottom: 30px;
   right: 40px;
@@ -89,10 +96,19 @@ i {
   border: 10px solid #282828;
   border-radius: 10px;
   height: 300px;
+  width: auto;
 }
 
-img {
-  max-width: 800px;
+#case-study img {
+  margin: 50px auto;
+}
+
+#root-proxy-path {
+  width: 300px;
+}
+
+#flowchart {
+  width: 600px;
 }
 
 /* ---------------------------------
@@ -106,21 +122,27 @@ img {
   src: url(https://cdn.jsdelivr.net/npm/firacode@1.205.0/distr/woff2/FiraCode-Regular.woff2) format("truetype");
 }
 
+.container {
+  margin: 50px auto;
+  text-align: center;
+}
+
 pre {
   display: inline-block;
+  max-width: 100%;
+  text-align: left;
 }
 
 code {
   color: #777;
   font-family: "Fira Code", monospace;
-  font-size: 0.9em;
+  font-size: 0.7em;
 }
 
 code.gruvbox-code {
   border: 15px solid #282828;
   border-radius: 10px;
   padding: 0.5em 1.5em 0 1.5em;
-  margin-bottom: 40px;
 }
 
 /* ---------------------------------
@@ -237,15 +259,20 @@ header {
 
 header h1 {
  font-style: italic;
+ line-height: 70px;
  padding: 30px 40px;
 }
 
 header p {
   font-family: 'Open Sans', sans-serif;
-  font-size: 4.5em;
+  font-size: 3.5em;
+  left: 50%;
   letter-spacing: 0.08em;
-  margin: 25vh 100px;
+  position: absolute;
+  top: 50%;
   text-align: center;
+  transform: translateY(-50%) translateX(-50%);
+  width: 850px;
 }
 
 header span {
@@ -262,21 +289,27 @@ header span {
   display: none;
   left: 1em;
   position: fixed;
-  top: 30%;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 #case-study nav li {
-  list-style: none;
+  color: #999;
+  font-size: 2em;
+  list-style: circle;
+  margin-bottom: 2em;
+}
+
+#case-study nav li:last-of-type {
+  margin-bottom: 0;
 }
 
 #case-study nav a {
   color: #999;
-  display: inline-block;
-  font-size: 0.6em;
-  margin-bottom: 2em;
+  font-size: 0.4em;
   margin-left: 1em;
   text-decoration: none;
-  vertical-align: 0.08em;
+  vertical-align: 0.4em;
 }
 
 #case-study nav a:hover {
@@ -284,28 +317,28 @@ header span {
 }
 
 section#case-study {
-  height: 2000px;
-  margin: 80px 350px 100px 350px;
+  margin: 80px 0 100px 0;
+  width: 75%;
 }
 
 #case-study h1 {
   border-bottom: 8px solid #9eba2a;
   display: inline-block;
-  margin-bottom: 30px;
 }
 
-#case-study h2,
 #case-study h3,
 #case-study h4,
 #case-study h5,
 #case-study p,
 #case-study pre,
 #case-study ul,
-#case-study ol,
-#case-study img {
+#case-study ol {
   margin-bottom: 20px;
 }
 
+#case-study h2 {
+  margin: 75px auto 20px auto;
+}
 
 #case-study h2, h3 {
   letter-spacing: 0.02em;
@@ -322,7 +355,8 @@ section#case-study {
 }
 
 #case-study p {
-  font-size: 1.5em;
+  font-size: 1.2em;
+  line-height: 1.5em;
 }
 
 #case-study blockquote p {

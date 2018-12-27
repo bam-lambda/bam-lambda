@@ -45,11 +45,11 @@
         target="_blank">Jocie Moore</a>, and <a href="">Takayoshi
         Sampson.</a></p>
     </nav>
+    <header id=home>
+      <h1>BAM!</h1>
+      <p>a lightweight serverless framework for <span>humans</span></p>
+    </header>
     <main>
-      <header id=home>
-        <h1>BAM!</h1>
-        <p>a lightweight serverless framework for <span>humans</span></p>
-      </header>
       <section id="case-study">
         <h1>Case Study</h1>
 
@@ -168,13 +168,13 @@
         engineers working with the cloud(1). We therefore built BAM! for use
         with AWS.<p>
 
-        <h3>2.3 Relevant Services</h3>
+        <h3>2.4 Relevant Services</h3>
 
         <p>AWS provides a veritable litany of cloud based services; however, we
         designed BAM! to interact with four in particular, namely AWS Lambda,
         API Gateway, IAM, and DynamoDB.</p>
 
-        <h4>2.3.1 AWS Lambda</h4>
+        <h4>2.4.1 AWS Lambda</h4>
 
         <p>Introduced in November 2014, AWS Lambda is Amazon’s take on FaaS
         solutions, providing an event-driven, serverless computing platform
@@ -192,7 +192,7 @@
         Lambda supports a variety of languages and runtimes, for our purposes,
         we focused on supporting Node.js 8.10.</p>
 
-        <h4>2.3.2 API Gateway</h4>
+        <h4>2.4.2 API Gateway</h4>
 
         <p>Far and away one of the most common event sources encountered in
         cloud computing is the hitting of an API endpoint (3), and the creation,
@@ -208,7 +208,7 @@
         API Gateway endpoints that are integrated to trigger AWS Lambda
         invocations.</p>
 
-        <h4>2.3.3 IAM</h4>
+        <h4>2.4.3 IAM</h4>
 
         <p>One common thread permeating the whole of Amazon’s cloud
         infrastructure is the necessity for managing access permissions between
@@ -222,7 +222,7 @@
         a database table. Additionally, one can even grant a lambda itself the
         ability to access a table.</p>
 
-        <h4>2.3.4 DynamoDB</h4>
+        <h4>2.4.4 DynamoDB</h4>
 
         <p>One final service BAM! supports is DynamoDB, Amazon’s NoSQL key-value
         and document storage service. We selected DynamoDB because its lack of
@@ -232,7 +232,7 @@
         rather a brief discussion of those most relevant to the BAM!
         framework.</p>
 
-        <h3>2.4 Challenges of AWS</h3>
+        <h3>2.5 Challenges of AWS</h3>
 
         <p>While AWS is an industry leader in the new and exciting field of
         serverless computing, using its services is certainly not without it’s
@@ -294,7 +294,7 @@
         location and to your co-worker, who can view the sales report in their
         browser.</p>
 
-        <h3>2.5 How to manually create an AWS Lambda integrated with AWS API Gateway</h3>
+        <h3>2.6 How to manually create an AWS Lambda integrated with AWS API Gateway</h3>
 
         <p>Before you can even send a request to AWS, it is necessary to perform
         several local operations to prepare a deployment package for the lambda.
@@ -355,8 +355,8 @@
         <p>As mentioned before, the integration will need to be repeated for
         each HTTP method on the greedy path.</p>
 
-        <img src="https://i.imgur.com/X3zzh5d.png" alt="root path and greedy
-        path, each with added GET methods"/>
+        <img src="https://i.imgur.com/X3zzh5d.png" id="root-proxy-path"
+        alt="root path and greedy path, each with added GET methods"/>
 
         <p>Finally, call the <code>createDeployment()</code> method to bundle
         all of these resources, methods, and integrations into one deployment
@@ -364,7 +364,7 @@
 
         <p>Only now is the rest API endpoint ready to be called.</p>
 
-        <h3>2.6 A Note About Security</h3>
+        <h3>2.7 A Note About Security</h3>
 
         <p>API endpoints created by AWS are public by default. Of course, if
         BAM! is being used to host a public webpage, this is not a concern,
@@ -575,7 +575,7 @@
           <p>The <code>--dbtables</code> and <code>--lambdas</code> flags can be
           used to only log resources for those respective services.</p>
 
-          <p><pre id="list-command">
+          <div class="container"><pre id="list-command">
             <code class="nohighlight">
 <span class="heading">Lambdas and endpoints deployed from this machine using BAM!:</span>
 <span class="bam-resource">  nameOfLambda1
@@ -599,7 +599,7 @@ Other lambdas on AWS
     partition key: id (number)
     sort key: name (string)</span>
             </code>
-          </pre></p>
+          </pre></div>
 
           <code class="command">get</code>
           <p>The <code>get</code> command pulls existing lambda code from AWS
@@ -687,7 +687,7 @@ Other lambdas on AWS
         using the <code>--db</code> and <code>--html</code> flags together with
         the <code>create</code> command.</p>
 
-        <pre><code class="js gruvbox-code">
+        <div class="container"><pre><code class="js gruvbox-code">
 // Welcome to your BAM! lambda!
 
 // TODO: describe your lambda below:
@@ -763,9 +763,9 @@ exports.handler = async (event) => {
 
   return response;
 };
-        </code></pre>
+        </code></pre></div>
 
-        <h3>5.4 Flexible Local File Organization</h3>
+        <h3>5.3 Flexible Local File Organization</h3>
 
         <p>The BAM! framework allows the developer to organize lambda files in
         any way. For example, all lambda files could exist within one directory
@@ -839,7 +839,8 @@ exports.handler = async (event) => {
         overwriting the old local record with the replacement API’s identifying
         information.</p>
 
-        <img src="https://i.imgur.com/Singj66.png" alt="bam redeploy flowchart"/>
+        <img src="https://i.imgur.com/Singj66.png" id="flowchart" alt="bam
+        redeploy flowchart"/>
 
         <p>In fact, BAM! will attempt to respond in a convenient and expected
         manner under a variety of differing circumstances when redeploying a
@@ -1020,7 +1021,7 @@ exports.handler = async (event) => {
         <p>To this end, we created a function, affectionately referred to as
         bamBam, to provide this retry functionality.</p>
 
-        <pre><code class="js gruvbox-code">
+        <div class="container"><pre><code class="js gruvbox-code">
 const bamBam = async (asyncFunc, {
   asyncFuncParams = [],
   retryError = 'InvalidParameterValueException',
@@ -1060,7 +1061,7 @@ const bamBam = async (asyncFunc, {
     throw (err);
   }
 };
-        </code></pre>
+          </code></pre></div>
 
         <p><code>bamBam</code> was designed to anticipate the type of exceptions
         that are raised upon encountering one of the two problems described
