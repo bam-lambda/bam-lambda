@@ -138,6 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
     main.style.display = 'none';
     header.style.display = 'none';
     footer.style.display = 'none';
+    document.body.style.backgroundColor = '#9eba2a';
     logos.forEach(logo => changeImgSrc(`${logo}-logo`, logoUrls[`${logo}Black`]));
   };
 
@@ -147,6 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
     main.style.display = 'block';
     header.style.display = 'block';
     footer.style.display = 'block';
+    document.body.style.backgroundColor = '#fff';
     window.scrollTo(0, scrollPosition);
 
     changeLogoColors();

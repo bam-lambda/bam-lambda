@@ -174,7 +174,7 @@ nav#site-navigation ul {
   display: inline-block;
   font-family: 'Open Sans', sans-serif;
   font-size: 4.5em;
-  margin-top: 12%;
+  margin-top: 22vh;
   margin-bottom: 70px;
   padding-bottom: 50px;
 }
@@ -185,6 +185,7 @@ nav#site-navigation ul li {
 }
 
 nav#site-navigation p {
+  background-color: #9eba2a;
   color: #282828;
   font-size: 1.2em;
 }
