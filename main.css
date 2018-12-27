@@ -239,6 +239,7 @@ header {
 
 header h1 {
  font-style: italic;
+ font-size: 4rem;
  line-height: 70px;
  padding: 30px 40px;
 }
@@ -301,11 +302,6 @@ section#case-study {
   width: 75%;
 }
 
-#case-study h1 {
-  border-bottom: 8px solid #9eba2a;
-  display: inline-block;
-}
-
 #case-study h3,
 #case-study h4,
 #case-study h5,
@@ -317,15 +313,16 @@ section#case-study {
 }
 
 #case-study h2 {
+  color: #9eba2a;
   margin: 75px auto 20px auto;
+}
+
+#case-study h2:first-of-type {
+  margin-top: 50px;
 }
 
 #case-study h2, h3 {
   letter-spacing: 0.02rem;
-}
-
-#case-study h2 {
-  color: #9eba2a;
 }
 
 #case-study h3,
@@ -400,13 +397,23 @@ section#case-study {
               footnotes
 
 ------------------------------------ */
+#footnotes h3 {
+  color: #9eba2a;
+}
+
+#footnotes ol li {
+  color: #999;
+  font-size: 0.8rem;
+}
 
 #footnotes ol li {
   list-style: decimal;
+  color: #999;
 }
 
 #footnotes a {
-  color: #9eba2a;
+  color: #999;
+  font-size: 0.8rem;
   text-decoration: none;
 }
 
