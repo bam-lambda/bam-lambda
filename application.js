@@ -119,11 +119,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // must be less than team section position
     // if (scrollPosition >= mainPosition && scrollPosition < ourTeamPosition) {
 
-    if (scrollPosition >= mainPosition && scrollPosition < footerPosition - getWindowHeight()) {
-      caseStudyNav.style.display = 'block';
-      handleCaseStudyNavStyles();
-    } else {
+    if (getWindowHeight() < 500) {
       caseStudyNav.style.display = 'none';
+    } else {
+      if (scrollPosition >= mainPosition && scrollPosition < footerPosition - getWindowHeight()) {
+        caseStudyNav.style.display = 'block';
+        handleCaseStudyNavStyles();
+      } else {
+        caseStudyNav.style.display = 'none';
+      }
     }
   };
 
