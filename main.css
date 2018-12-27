@@ -19,35 +19,35 @@ h1, h2, h3, h4 {
 }
 
 h1 {
-  font-size: 4.5em;
+  font-size: 4.5rem;
 }
 
 h2 {
-  font-size: 2.5em;
+  font-size: 2.5rem;
 }
 
 h3 {
-  font-size: 1.7em;
+  font-size: 1.7rem;
 }
 
 h4 {
-  font-size: 1.25em;
+  font-size: 1.25rem;
 }
 
 blockquote {
   background: #f9f9f9;
-  border-left: 10px solid #ccc;
+  border-left: 1rem solid #ccc;
   color: #999;
-  margin: 1.5em 10px;
-  padding: 0.5em 10px;
+  margin: 1.5rem 1rem;
+  padding: 0.5rem;
 }
 
 blockquote:before {
   color: #ccc;
-  font-size: 4em;
-  line-height: 0.1em;
-  margin-right: 0.25em;
-  vertical-align: -0.4em;
+  font-size: 4rem;
+  line-height: 0.1rem;
+  margin-right: 0.25rem;
+  vertical-align: -0.4rem;
 }
 
 i {
@@ -141,17 +141,20 @@ pre {
   text-align: left;
 }
 
+pre code {
+  font-size: 0.6rem;
+}
+
 code {
   color: #777;
   font-family: "Fira Code", monospace;
-  font-size: 0.8em;
+  font-size: 1rem;
 }
 
 code.gruvbox-code {
   border: 15px solid #282828;
-  border-radius: 10px;
-  font-size: 0.7em;
-  padding: 0.5em 1.5em 0 1.5em;
+  border-radius: 1rem;
+  padding: 0.5rem 1.5rem 0 1.5rem;
 }
 
 /* ---------------------------------
@@ -174,7 +177,7 @@ nav#site-navigation ul {
   border-bottom: 4px solid #282828;
   display: inline-block;
   font-family: 'Open Sans', sans-serif;
-  font-size: 4.5em;
+  font-size: 4.5rem;
   margin-top: 22vh;
   margin-bottom: 70px;
   padding-bottom: 50px;
@@ -188,7 +191,7 @@ nav#site-navigation ul li {
 nav#site-navigation p {
   background-color: #9eba2a;
   color: #282828;
-  font-size: 1.2em;
+  font-size: 1.2rem;
 }
 
 nav#site-navigation a {
@@ -212,7 +215,7 @@ nav#site-navigation p a:not(#close):hover {
 
 #close-nav {
   cursor: pointer;
-  font-size: 4em;
+  font-size: 4rem;
   font-weight: 200;
   left: 45px;
   position: absolute;
@@ -242,9 +245,9 @@ header h1 {
 
 header p {
   font-family: 'Open Sans', sans-serif;
-  font-size: 3.5em;
+  font-size: 3.5rem;
   left: 50%;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.3rem;
   position: absolute;
   top: 50%;
   text-align: center;
@@ -264,7 +267,7 @@ header span {
 
 #case-study nav {
   display: none;
-  left: 1em;
+  left: 1rem;
   position: fixed;
   top: 50%;
   transform: translateY(-50%);
@@ -272,7 +275,7 @@ header span {
 
 #case-study nav li {
   color: #999;
-  font-size: 2em;
+  font-size: 2rem;
   list-style: circle;
   margin-bottom: 5vh;
 }
@@ -283,10 +286,10 @@ header span {
 
 #case-study nav a {
   color: #999;
-  font-size: 0.4em;
-  margin-left: 1em;
+  font-size: 0.8rem;
+  margin-left: 1rem;
   text-decoration: none;
-  vertical-align: 0.4em;
+  vertical-align: 0.4rem;
 }
 
 #case-study nav a:hover {
@@ -318,7 +321,7 @@ section#case-study {
 }
 
 #case-study h2, h3 {
-  letter-spacing: 0.02em;
+  letter-spacing: 0.02rem;
 }
 
 #case-study h2 {
@@ -332,12 +335,12 @@ section#case-study {
 }
 
 #case-study p {
-  font-size: 1.2em;
-  line-height: 1.5em;
+  font-size: 1.2rem;
+  line-height: 1.8rem;
 }
 
 #case-study blockquote p {
-  font-size: 1.3em;
+  font-size: 1.3rem;
 }
 
 #case-study blockquote p:first-of-type {
@@ -345,9 +348,14 @@ section#case-study {
 }
 
 #case-study li {
-  font-size: 1.4em;
+  font-size: 1rem;
+  line-height: 1.6rem;
   list-style: disc;
-  margin-left: 2em;
+  margin-left: 2rem;
+}
+
+#case-study li code {
+  font-size: 0.8rem;
 }
 
 /* ---------------------------------
@@ -361,15 +369,10 @@ section#case-study {
   border-radius: 2px;
   color: #282828;
   display: inline-block;
-  font-size: 1.2em;
+  font-size: 1.2rem;
   font-weight: bold;
   margin-bottom: 20px;
-  padding: 0.2em;
-}
-
-#commands p {
-  font-size: 1.3em;
-  margin-left: 1em;
+  padding: 0.2rem;
 }
 
 #list-command {
@@ -377,7 +380,7 @@ section#case-study {
   border: 10px solid #282828;
   border-radius: 10px;
   display: inline-block;
-  padding: 0.5em 1.5em 0 1.5em;
+  padding: 0.5rem 1.5rem 0 1.5rem;
 }
 
 #list-command code {
