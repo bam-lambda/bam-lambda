@@ -408,3 +408,36 @@ section#case-study {
 #footnotes a:hover {
   color: #c3e634;
 }
+
+/* ---------------------------------
+
+             footer
+
+------------------------------------ */
+
+footer {
+  background-color: #282828;
+  height: 400px;
+}
+
+/* ---------------------------------
+
+              our team
+
+------------------------------------ */
+
+/* #our-team { */
+  /* background: #282828; */
+  /* color: #fff; */
+/* } */
+
+/* section#our-team { */
+  /* [> margin: 80px 0 100px 0; <] */
+  /* height: 2000px; */
+  /* width: 100%; */
+/* } */
+
+/* #our-team h1 { */
+  /* border-bottom: 8px solid #9eba2a; */
+  /* display: inline-block; */
+/* } */

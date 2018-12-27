@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const nav = document.querySelector('nav');
   const main = document.querySelector('main');
   const header = document.querySelector('header');
+  // const ourTeam = document.querySelector('#our-team');
+  const footer = document.querySelector('footer');
   const closeNav = document.querySelector('#close-nav');
   const homeLink = document.querySelector('#home-link');
   const caseStudy = document.querySelector('#case-study');
@@ -16,10 +18,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const logoLinks = document.querySelector('.logo-links');
   // const ourTeamLink = document.querySelector('#our-team-link');
   const caseStudyNavUl = document.querySelector('#case-study nav ul');
+  const githubLogo = document.querySelector('#github-logo');
+  const mediumLogo = document.querySelector('#medium-logo');
 
+  const githubBottom = +window.getComputedStyle(githubLogo).bottom.replace('px', '');
+  const mediumBottom = +window.getComputedStyle(mediumLogo).bottom.replace('px', '');
+  const logoHeight = githubLogo.height;
   let navVisible = false;
   const getScrollPosition = () => window.scrollY;
   let scrollPosition = getScrollPosition();
+  const getWindowHeight = () => window.innerHeight;
 
   const snakeCaseify = text => text.toLowerCase().split(' ').join('-');
 
@@ -57,21 +65,30 @@ document.addEventListener('DOMContentLoaded', () => {
     mediumWhiteAlt: 'https://i.imgur.com/DP4t04E.png',
   };
 
-  const changeLogoColors = (logo, location) => {
-    scrollPosition = getScrollPosition();
+  const changeLogoColors = () => {
+    ['github', 'medium'].forEach((logo) => {
+      scrollPosition = getScrollPosition();
+      const footerPosition = footer.getBoundingClientRect().top;
+      const footerOffset = (scrollPosition + footerPosition) - getWindowHeight();
+      const githubLogoOffset = logoHeight + githubBottom;
+      const mediumLogoOffset = logoHeight + mediumBottom;
+      const logoOffset = logo === 'github' ? githubLogoOffset : mediumLogoOffset;
+      const startLocation = logoOffset;
+      const endLocation = footerOffset + logoOffset;
 
-    if (scrollPosition < location) {
-      changeImgSrc(`${logo}-logo`, logoUrls[`${logo}White`]);
-    } else {
-      changeImgSrc(`${logo}-logo`, logoUrls[`${logo}Black`]);
-    }
+      if (scrollPosition > startLocation && scrollPosition < endLocation) {
+        changeImgSrc(`${logo}-logo`, logoUrls[`${logo}Black`]);
+      } else {
+        changeImgSrc(`${logo}-logo`, logoUrls[`${logo}White`]);
+      }
+    });
   };
 
   const handleCaseStudyNavStyles = () => {
     const positions = h2Text.reduce((obj, h2Str) => {
       const selector = `#${snakeCaseify(h2Str.replace('!', ''))}`;
       const h2 = document.querySelector(selector);
-      const position = window.scrollY + h2.getBoundingClientRect().top;
+      const position = getScrollPosition() + h2.getBoundingClientRect().top;
       obj[`${selector}-nav`] = position;
       return obj;
     }, {});
@@ -82,8 +99,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const li = document.querySelector(positionSelectors[i]);
       const a = li.getElementsByTagName('a')[0];
       const currPosition = i > 0 ? positionValues[i] : 0;
-      const nextPositionIdx = (i + 1 < positionValues.length) ? i + 1 : 9999;
-      const nextPosition = positionValues[nextPositionIdx];
+      const nextPositionIdx = i + 1;
+      const nextPosition = positionValues[nextPositionIdx] || 999999;
 
       if (scrollPosition >= currPosition && scrollPosition < nextPosition) {
         highlightSection(li, a);
@@ -95,11 +112,14 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const handleCaseStudyNav = () => {
-    // const teamPosition = getScrollPosition() + team.getBoundingClientRect().top;
+    // const ourTeamPosition = getScrollPosition() + ourTeam.getBoundingClientRect().top;
+    const footerPosition = getScrollPosition() + footer.getBoundingClientRect().top;
     const mainPosition = getScrollPosition() + main.getBoundingClientRect().top;
 
     // must be less than team section position
-    if (scrollPosition >= mainPosition) { // && scrollPosition < teamPosition
+    // if (scrollPosition >= mainPosition && scrollPosition < ourTeamPosition) {
+
+    if (scrollPosition >= mainPosition && scrollPosition < footerPosition - getWindowHeight()) {
       caseStudyNav.style.display = 'block';
       handleCaseStudyNavStyles();
     } else {
@@ -113,6 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
     nav.style.display = 'block';
     main.style.display = 'none';
     header.style.display = 'none';
+    footer.style.display = 'none';
     ['github', 'medium'].forEach(logo => changeImgSrc(`${logo}-logo`, logoUrls[`${logo}Black`]));
   };
 
@@ -121,10 +142,10 @@ document.addEventListener('DOMContentLoaded', () => {
     nav.style.display = 'none';
     main.style.display = 'block';
     header.style.display = 'block';
+    footer.style.display = 'block';
     window.scrollTo(0, scrollPosition);
 
-    changeLogoColors('github', 130);
-    changeLogoColors('medium', 90);
+    changeLogoColors();
   };
 
   bamLogo.addEventListener('click', showNav);
@@ -135,8 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.addEventListener('scroll', () => {
     if (!navVisible) {
-      changeLogoColors('github', 130);
-      changeLogoColors('medium', 90);
+      changeLogoColors();
       handleCaseStudyNav();
     }
   });
