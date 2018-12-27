@@ -18,16 +18,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const logoLinks = document.querySelector('.logo-links');
   // const ourTeamLink = document.querySelector('#our-team-link');
   const caseStudyNavUl = document.querySelector('#case-study nav ul');
-  const githubLogo = document.querySelector('#github-logo');
-  const mediumLogo = document.querySelector('#medium-logo');
-
-  const githubBottom = +window.getComputedStyle(githubLogo).bottom.replace('px', '');
-  const mediumBottom = +window.getComputedStyle(mediumLogo).bottom.replace('px', '');
-  const logoHeight = githubLogo.height;
   let navVisible = false;
   const getScrollPosition = () => window.scrollY;
   let scrollPosition = getScrollPosition();
   const getWindowHeight = () => window.innerHeight;
+  const logos = [...document.querySelectorAll('.logo-links img')]
+    .filter(logo => !(/bam/.test(logo.id)))
+    .map(logo => logo.id.split('-')[0]);
+
 
   const snakeCaseify = text => text.toLowerCase().split(' ').join('-');
 
@@ -66,13 +64,15 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const changeLogoColors = () => {
-    ['github', 'medium'].forEach((logo) => {
+    logos.forEach((logo) => {
       scrollPosition = getScrollPosition();
+      const logoSelector = `#${logo}-logo`;
+      const logoElement = document.querySelector(logoSelector);
+      const logoHeight = logoElement.height;
+      const logoBottom = +window.getComputedStyle(logoElement).bottom.replace('px', '');
       const footerPosition = footer.getBoundingClientRect().top;
       const footerOffset = (scrollPosition + footerPosition) - getWindowHeight();
-      const githubLogoOffset = logoHeight + githubBottom;
-      const mediumLogoOffset = logoHeight + mediumBottom;
-      const logoOffset = logo === 'github' ? githubLogoOffset : mediumLogoOffset;
+      const logoOffset = logoHeight + logoBottom;
       const startLocation = logoOffset;
       const endLocation = footerOffset + logoOffset;
 
@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
     main.style.display = 'none';
     header.style.display = 'none';
     footer.style.display = 'none';
-    ['github', 'medium'].forEach(logo => changeImgSrc(`${logo}-logo`, logoUrls[`${logo}Black`]));
+    logos.forEach(logo => changeImgSrc(`${logo}-logo`, logoUrls[`${logo}Black`]));
   };
 
   const hideNav = () => {
