@@ -144,12 +144,13 @@ pre {
 code {
   color: #777;
   font-family: "Fira Code", monospace;
-  font-size: 0.7em;
+  font-size: 0.8em;
 }
 
 code.gruvbox-code {
   border: 15px solid #282828;
   border-radius: 10px;
+  font-size: 0.7em;
   padding: 0.5em 1.5em 0 1.5em;
 }
 
