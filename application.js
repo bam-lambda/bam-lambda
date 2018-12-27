@@ -121,13 +121,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (getWindowHeight() < 500) {
       caseStudyNav.style.display = 'none';
+    } else if (scrollPosition >= mainPosition && scrollPosition < footerPosition - getWindowHeight()) {
+      caseStudyNav.style.display = 'block';
+      handleCaseStudyNavStyles();
     } else {
-      if (scrollPosition >= mainPosition && scrollPosition < footerPosition - getWindowHeight()) {
-        caseStudyNav.style.display = 'block';
-        handleCaseStudyNavStyles();
-      } else {
-        caseStudyNav.style.display = 'none';
-      }
+      caseStudyNav.style.display = 'none';
     }
   };
 
