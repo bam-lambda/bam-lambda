@@ -6,18 +6,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const navLinks = document.querySelectorAll('#site-navigation a');
   const main = document.querySelector('main');
   const header = document.querySelector('header');
-  // const ourTeam = document.querySelector('#our-team');
-  const footer = document.querySelector('footer');
+  const ourTeam = document.querySelector('#our-team');
   const homeLink = document.querySelector('#home-link');
-  const caseStudy = document.querySelector('#case-study');
-  const introduction = document.querySelector('#introduction');
   const caseStudyNav = document.querySelector('#case-study nav');
   const caseStudyLink = document.querySelector('#case-study-link');
-  // const githubLogo = document.querySelector('#github-logo');
-  // const mediumLogo = document.querySelector('#medium-logo');
   const logoLinks = document.querySelector('.logo-links');
-  // const ourTeamLink = document.querySelector('#our-team-link');
+  const ourTeamLink = document.querySelector('#our-team-link');
   const caseStudyNavUl = document.querySelector('#case-study nav ul');
+
   let navVisible = false;
   const getScrollPosition = () => window.scrollY;
   let scrollPosition = getScrollPosition();
@@ -58,9 +54,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const logoUrls = {
     githubWhite: 'https://i.imgur.com/7X29Lfl.png',
     githubBlack: 'https://i.imgur.com/uS9im3Z.png',
-    mediumWhite: 'https://i.imgur.com/iAreLP9.png',
+    mediumWhite: 'https://i.imgur.com/DP4t04E.png',
     mediumBlack: 'https://i.imgur.com/IPiAMRb.png',
-    mediumWhiteAlt: 'https://i.imgur.com/DP4t04E.png',
+    bamWhite: 'https://i.imgur.com/zSuO4RT.png',
+    bamBlack: 'https://i.imgur.com/798Mohw.png',
   };
 
   const changeLogoColors = () => {
@@ -70,18 +67,31 @@ document.addEventListener('DOMContentLoaded', () => {
       const logoElement = document.querySelector(logoSelector);
       const logoHeight = logoElement.height;
       const logoBottom = +window.getComputedStyle(logoElement).bottom.replace('px', '');
-      const footerPosition = footer.getBoundingClientRect().top;
-      const footerOffset = (scrollPosition + footerPosition) - getWindowHeight();
       const logoOffset = logoHeight + logoBottom;
-      const startLocation = logoOffset;
-      const endLocation = footerOffset + logoOffset;
 
-      if (scrollPosition > startLocation && scrollPosition < endLocation) {
+      if (scrollPosition > logoOffset) {
         changeImgSrc(`${logo}-logo`, logoUrls[`${logo}Black`]);
       } else {
         changeImgSrc(`${logo}-logo`, logoUrls[`${logo}White`]);
       }
     });
+  };
+
+  const changeBamLogoColor = () => {
+    scrollPosition = getScrollPosition();
+    const ourTeamPosition = ourTeam.getBoundingClientRect().top;
+    const ourTeamOffset = (scrollPosition + ourTeamPosition) - getWindowHeight();
+    const logoSelector = '#bam-logo';
+    const logoElement = document.querySelector(logoSelector);
+    const logoHeight = logoElement.height;
+    const logoTop = +window.getComputedStyle(logoElement).top.replace('px', '');
+    const logoOffset = logoHeight + logoTop;
+
+    if (scrollPosition > ourTeamOffset + (getWindowHeight() - logoOffset)) {
+      changeImgSrc('bam-logo', 'https://i.imgur.com/798Mohw.png');
+    } else {
+      changeImgSrc('bam-logo', 'https://i.imgur.com/Ao4nAG5.png');
+    }
   };
 
   const handleCaseStudyNavStyles = () => {
@@ -112,16 +122,14 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const handleCaseStudyNav = () => {
-    // const ourTeamPosition = getScrollPosition() + ourTeam.getBoundingClientRect().top;
-    const footerPosition = getScrollPosition() + footer.getBoundingClientRect().top;
+    const ourTeamPosition = getScrollPosition() + ourTeam.getBoundingClientRect().top;
     const mainPosition = getScrollPosition() + main.getBoundingClientRect().top;
-
-    // must be less than team section position
-    // if (scrollPosition >= mainPosition && scrollPosition < ourTeamPosition) {
+    const withinCaseStudy = scrollPosition >= mainPosition
+      && scrollPosition < ourTeamPosition - getWindowHeight();
 
     if (getWindowHeight() < 500) {
       caseStudyNav.style.display = 'none';
-    } else if (scrollPosition >= mainPosition && scrollPosition < footerPosition - getWindowHeight()) {
+    } else if (withinCaseStudy) {
       caseStudyNav.style.display = 'block';
       handleCaseStudyNavStyles();
     } else {
@@ -170,31 +178,47 @@ document.addEventListener('DOMContentLoaded', () => {
   nav.addEventListener('mouseover', showNav);
   main.addEventListener('mouseenter', hideNav);
   header.addEventListener('mouseenter', hideNav);
-  // nav.addEventListener('mouseout', hideNav);
-  // bamLogo.addEventListener('mouseout', hideNav);
   homeLink.addEventListener('click', hideNav);
   caseStudyLink.addEventListener('click', hideNav);
-  // ourTeamLink.addEventListener('click', hideNav);
+  ourTeamLink.addEventListener('click', hideNav);
 
   document.addEventListener('scroll', () => {
     if (!navVisible) {
       changeLogoColors();
+      changeBamLogoColor();
       handleCaseStudyNav();
     }
   });
 
   logoLinks.addEventListener('mouseover', (e) => {
-    if (navVisible) {
-      const { id } = e.target;
-      const urlKey = /github/.test(id) ? 'githubWhite' : 'mediumWhiteAlt';
+    scrollPosition = getScrollPosition();
+    const { id } = e.target;
+    const logo = id.split('-')[0];
+    const ourTeamPosition = ourTeam.getBoundingClientRect().top;
+    const ourTeamOffset = (scrollPosition + ourTeamPosition) - getWindowHeight();
+    const logoElement = e.target;
+    const logoHeight = logoElement.height;
+    const logoTop = +window.getComputedStyle(logoElement).top.replace('px', '');
+    const logoOffset = logoHeight + logoTop;
+
+    if (scrollPosition > ourTeamOffset + (getWindowHeight() - logoOffset)) {
+      const urlKey = `${logo}White`;
       changeImgSrc(id, logoUrls[urlKey]);
     }
   });
 
   logoLinks.addEventListener('mouseout', (e) => {
-    if (navVisible) {
-      const { id } = e.target;
-      const logo = id.split('-')[0];
+    scrollPosition = getScrollPosition();
+    const { id } = e.target;
+    const logo = id.split('-')[0];
+    const ourTeamPosition = ourTeam.getBoundingClientRect().top;
+    const ourTeamOffset = (scrollPosition + ourTeamPosition) - getWindowHeight();
+    const logoElement = e.target;
+    const logoHeight = logoElement.height;
+    const logoTop = +window.getComputedStyle(logoElement).top.replace('px', '');
+    const logoOffset = logoHeight + logoTop;
+
+    if (scrollPosition > ourTeamOffset + (getWindowHeight() - logoOffset)) {
       const urlKey = `${logo}Black`;
       changeImgSrc(id, logoUrls[urlKey]);
     }
