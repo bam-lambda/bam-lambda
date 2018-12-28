@@ -414,17 +414,17 @@ h2#references {
   font-size: 1.25rem;
   text-align: center;
   margin: 0 auto;
-  width: 50%;
 }
 
 #our-team > ul {
   background-color: #c3e634;
   margin-top: 60px;
-  padding: 60px 0 40px 0;
+  padding: 60px 0;
   text-align: center;
 }
 
-#our-team li {
+#our-team li,
+#our-team .social-icons li {
   display: inline-block;
   margin: 0 3%;
   width: 20%;
@@ -440,8 +440,9 @@ h2#references {
   text-decoration: none;
 }
 
-#our-team img {
+#our-team li > img {
   border: 4px solid #282828;
+  background-color: #000;
   border-radius: 100%;
   margin: 0 auto 20px;
   width: 15vw;
@@ -470,6 +471,7 @@ h2#references {
 #our-team > p:last-of-type {
   font-size: 1.5rem;
   margin-top: 60px;
+  width: 50%;
 }
 
 /* ---------------------------------
@@ -505,7 +507,11 @@ h2#references {
   }
 
   section#case-study {
-    margin: 0 auto;
+    margin: 20px auto;
+  }
+
+  #case-study h2:first-of-type {
+    margin-top: 20px;
   }
 
   #flowchart {
@@ -551,7 +557,7 @@ h2#references {
 
   #bam-logo {
     width: 40px;
-    top: 32px;
+    top: 18px;
     right: 21px;
   }
 
@@ -560,7 +566,7 @@ h2#references {
     right: 21px;
     top: 32px;
     width: 40px;
-  }  
+  }
 
   #github-logo {
     cursor: pointer;
@@ -597,8 +603,9 @@ h2#references {
   }
 
   header h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
     padding: 18px 21px;
+    line-height: 2.3rem;
   }
 
   #home p {
@@ -610,7 +617,6 @@ h2#references {
   }
 
   section#case-study {
-    margin: 0;
     width: 100%;
   }
 
@@ -618,12 +624,119 @@ h2#references {
     word-wrap: break-word;
   }
 
+  /* Our Team */
+
+  #our-team h1 {
+    padding-top: 25px;
+  }
+
+  #our-team > ul {
+    padding: 30px 0;
+  }
+
+  #our-team li > img {
+    border: 3px solid #000;
+  }
+
+  #our-team .individual p {
+    font-size: 1rem;
+  }
+
+  #our-team .individual h3 {
+    font-size: 1.3rem;
+  }
+
+  #our-team .individual li img {
+    width: 30px;
+  }
+
+  #our-team .individual li {
+    margin: 10px 3px;
+  }
+
+  #our-team > p:last-of-type {
+    font-size: 1.2rem;
+    margin-top: 60px;
+    width: 70%;
+  }
 }
 
 
-/*
+
 @media (max-width: 500px) {
-  #case-study-mobile nav {
+  /* General */
+
+  h1 {
+    font-size: 2.7rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  h3 {
+    font-size: 1.3rem;
+  }
+
+  h4 {
+    font-size: 1rem;
+  }
+
+  code,
+  .command {
+    font-size: 0.9rem;
+  }
+
+  #case-study p {
+    font-size: 1rem;
+    line-height: 1.3rem;
+  }
+
+  #github-logo {
+    bottom: 75px;
+  }
+
+  /* Our Team */
+
+  #our-team > ul {
+    background-color: #9eba2a;
+    margin-top: 0;
+    padding: 0;
+  }
+
+  #our-team  li {
+    display: block;
+    margin: 30px auto;
+    width: 60%;
+  }
+
+  #our-team .individual {
+    background-color: #c3e634;
+    border: 1px solid #c3e634;
+    border-radius: 5px;
+    padding: 30px 0;
+  }
+
+  #our-team .individual ul {
+    width: 50%;
+    margin: 0 auto;
+  }
+
+  #our-team .individual li {
+    margin: 10px 5px;
+  }
+
+  #our-team li > img {
+    width: 30vw;
+  }
+
+  #our-team > p:last-of-type {
+    font-size: 1rem;
+    margin-top: 0;
+    width: 60%;
+  }
+
+  /* #case-study-mobile nav {
     width: auto;
     right: 0;
   }
@@ -632,6 +745,5 @@ h2#references {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-  }
+  } */
 }
-*/
