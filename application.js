@@ -3,11 +3,11 @@
 document.addEventListener('DOMContentLoaded', () => {
   const bamLogo = document.querySelector('#bam-logo');
   const nav = document.querySelector('nav');
+  const navLinks = document.querySelectorAll('#site-navigation a');
   const main = document.querySelector('main');
   const header = document.querySelector('header');
   // const ourTeam = document.querySelector('#our-team');
   const footer = document.querySelector('footer');
-  const closeNav = document.querySelector('#close-nav');
   const homeLink = document.querySelector('#home-link');
   const caseStudy = document.querySelector('#case-study');
   const introduction = document.querySelector('#introduction');
@@ -129,31 +129,49 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  const styleNav = (bgColor, textColor, hoverColor, changeLogo) => {
+    nav.style.backgroundColor = bgColor;
+    navLinks.forEach((link) => {
+      link.style.color = textColor;
+
+      link.addEventListener('mouseenter', () => {
+        link.style.color = hoverColor;
+      });
+
+      link.addEventListener('mouseleave', () => {
+        link.style.color = textColor;
+      });
+    });
+    if (changeLogo) $(bamLogo).fadeOut('fast');
+  };
+
   const showNav = () => {
     navVisible = true;
     scrollPosition = getScrollPosition();
-    nav.style.display = 'block';
-    main.style.display = 'none';
-    header.style.display = 'none';
-    footer.style.display = 'none';
-    document.body.style.backgroundColor = '#9eba2a';
-    logos.forEach(logo => changeImgSrc(`${logo}-logo`, logoUrls[`${logo}Black`]));
+    const darkNavStylePosition = getWindowHeight() - 88;
+    const onHeader = scrollPosition < darkNavStylePosition;
+
+    if (onHeader) {
+      styleNav('#9eba2a', '#282828', '#383838', true);
+    } else {
+      styleNav('#282828', '#9eba2a', '#c3e634');
+    }
+
+    $(nav).slideDown('fast');
   };
 
   const hideNav = () => {
     navVisible = false;
-    nav.style.display = 'none';
-    main.style.display = 'block';
-    header.style.display = 'block';
-    footer.style.display = 'block';
-    document.body.style.backgroundColor = '#fff';
-    window.scrollTo(0, scrollPosition);
-
-    changeLogoColors();
+    $(bamLogo).fadeIn('fast');
+    $(nav).slideUp('fast');
   };
 
   bamLogo.addEventListener('click', showNav);
-  closeNav.addEventListener('click', hideNav);
+  nav.addEventListener('mouseover', showNav);
+  main.addEventListener('mouseenter', hideNav);
+  header.addEventListener('mouseenter', hideNav);
+  // nav.addEventListener('mouseout', hideNav);
+  // bamLogo.addEventListener('mouseout', hideNav);
   homeLink.addEventListener('click', hideNav);
   caseStudyLink.addEventListener('click', hideNav);
   // ourTeamLink.addEventListener('click', hideNav);
