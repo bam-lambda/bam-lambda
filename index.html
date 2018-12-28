@@ -15,14 +15,14 @@
   </head>
   <body>
     <div class="logo-links">
-      <img src="https://i.imgur.com/Ao4nAG5.png" alt="BAM! logo" id="bam-logo"/>
+      <img src="https://s3.amazonaws.com/bam-lambda/images/bam_logo.png" alt="BAM! logo" id="bam-logo"/>
       <a href="https://github.com/bam-lambda/bam" target="_blank">
-          <img src="https://i.imgur.com/7X29Lfl.png" alt="github logo"
+          <img src="https://s3.amazonaws.com/bam-lambda/images/github_white.png" alt="github logo"
           id="github-logo"/>
       </a>
 
       <a href="https://medium.com/@bam.lambda" target="_blank">
-          <img src="https://i.imgur.com/iAreLP9.png" alt="medium logo"
+          <img src="https://s3.amazonaws.com/bam-lambda/images/medium_white.png" alt="medium logo"
           id="medium-logo"/>
       </a>
     </div>
@@ -94,8 +94,7 @@
         management choices, each with their own advantages and
         disadvantages.</p>
 
-        <img src="https://i.imgur.com/hXqi8jK.png" alt="table comparing server
-          management choices"/>
+        <img src="https://s3.amazonaws.com/bam-lambda/images/technology_comparison.png"/>
 
         <p>Looking at the table above, note that the amount of control decreases
         as the level of abstraction increases.</p>
@@ -277,7 +276,7 @@
         lambda. In the case of the endpoint for our co-worker who needs a sales
         report, a query is made for last month’s total sales.</p>
 
-        <img src="https://i.imgur.com/2EFJ0Ti.png" alt="co-worker visits
+        <img src="https://s3.amazonaws.com/bam-lambda/images/user_sequence.png" alt="co-worker visits
         endpoint"/>
 
         <p>Then, the data is sent back to AWS Lambda for further processing,
@@ -310,7 +309,7 @@
         those were the only two steps, but there are still several more steps to
         complete before a callable endpoint exists.</p>
 
-        <img src="https://i.imgur.com/7MqP4Xl.png" alt="steps to deploy lambda
+        <img src="https://s3.amazonaws.com/bam-lambda/images/deployment_functions.png" alt="steps to deploy lambda
         with integrated endpoiint"/>
 
         <p>At this point, the API Gateway will only consist of a root resource
@@ -349,7 +348,7 @@
         <p>As mentioned before, the integration will need to be repeated for
         each HTTP method on the greedy path.</p>
 
-        <img src="https://i.imgur.com/X3zzh5d.png" id="root-proxy-path"
+        <img src="https://s3.amazonaws.com/bam-lambda/images/root_greedy_paths.png" id="root-proxy-path"
         alt="root path and greedy path, each with added GET methods"/>
 
         <p>Finally, call the <code>createDeployment()</code> method to bundle
@@ -489,7 +488,7 @@
         single BAM! command (<code>bam deploy [myLambda]</code>) to deploy a
         lambda with an integrated endpoint:</p>
 
-        <img src="https://i.imgur.com/geWLZW0.gif" alt="animation of bam deploy
+        <img src="https://s3.amazonaws.com/bam-lambda/images/bam_deploy.gif" alt="animation of bam deploy
         command" id="bam-deploy"/>
 
         <h2 id="bam-framework-design">4 BAM! Framework Design</h2>
@@ -767,7 +766,7 @@ exports.handler = async (event) => {
         files, which keep track of the resources deployed using the BAM!
         framework.</p>
 
-        <img src="https://i.imgur.com/dOHBLZM.png" alt="local file
+        <img src="https://s3.amazonaws.com/bam-lambda/images/bam_infrastructure.png" alt="local file
         organization"/>
 
         <p>For example, a developer creates a JavaScript file for a lambda
@@ -827,7 +826,7 @@ exports.handler = async (event) => {
         overwriting the old local record with the replacement API’s identifying
         information.</p>
 
-        <img src="https://i.imgur.com/Singj66.png" id="flowchart" alt="bam
+        <img src="https://s3.amazonaws.com/bam-lambda/images/bam_redeploy_flowchart.png" id="flowchart" alt="bam
         redeploy flowchart"/>
 
         <p>In fact, BAM! will attempt to respond in a convenient and expected
@@ -1064,7 +1063,7 @@ const bamBam = async (asyncFunc, {
         does so recursively in a loop until either the operation succeeds or an
         unanticipated exception is raised.</p>
 
-        <img src="https://i.imgur.com/UMPDSVp.png" alt="bamBam handles
+        <img src="https://s3.amazonaws.com/bam-lambda/images/bamBam.png" alt="bamBam handles
         TooManyRequestsException"/>
 
         <p>The reason for retrying operations only in the event of a particular
@@ -1178,67 +1177,67 @@ const bamBam = async (asyncFunc, {
       <h1>Our Team</h1>
       <ul>
         <li class="individual">
-          <img src="https://i.imgur.com/A6BPzvm.png" alt="Jason Overby"/>
+          <img src="https://s3.amazonaws.com/bam-lambda/images/jason.png" alt="Jason Overby"/>
           <h3>Jason Overby</h3>
           <p>Portland, OR</p>
           <ul>
             <li>
               <a href="mailto:j@jasonoverby.com"
-                 target="_blank"><img src="https://i.imgur.com/ykLUs07.png"
+                 target="_blank"><img src="https://s3.amazonaws.com/bam-lambda/images/email.png"
                  alt="email"/></a>
             </li>
             <li>
               <a href="http://www.jasonoverby.com"
-                 target="_blank"><img src="https://i.imgur.com/0mxu29D.png"
+                 target="_blank"><img src="https://s3.amazonaws.com/bam-lambda/images/www.png"
                  alt="website"/></a>
             </li>
             <li>
               <a href="https://www.linkedin.com/in/jasoncoverby/"
-                 target="_blank"><img src="https://i.imgur.com/UbsXJDq.png"
+                 target="_blank"><img src="https://s3.amazonaws.com/bam-lambda/images/linkedin.png"
                  alt="linkedin"/></a>
             </li>
           </ul>
         </li>
         <li class="individual">
-          <img src="https://i.imgur.com/aHAVpq7.png" alt="Jocie Moore"/>
+          <img src="https://s3.amazonaws.com/bam-lambda/images/jocie.png" alt="Jocie Moore"/>
           <h3>Jocie Moore</h3>
           <p>San Francisco, CA</p>
           <ul>
             <li>
               <a href="mailto:hello@jociemoore.com"
-                 target="_blank"><img src="https://i.imgur.com/ykLUs07.png"
+                 target="_blank"><img src="https://s3.amazonaws.com/bam-lambda/images/email.png"
                  alt="email"/></a>
             </li>
             <li>
               <a href="https://www.jociemoore.com"
-                 target="_blank"><img src="https://i.imgur.com/0mxu29D.png"
+                 target="_blank"><img src="https://s3.amazonaws.com/bam-lambda/images/www.png"
                  alt="website"/></a>
             </li>
             <li>
               <a href="https://www.linkedin.com/in/jocie-moore/"
-                 target="_blank"><img src="https://i.imgur.com/UbsXJDq.png"
+                 target="_blank"><img src="https://s3.amazonaws.com/bam-lambda/images/linkedin.png"
                  alt="linkedin"/></a>
             </li>
           </ul>
         </li>
         <li class="individual">
-          <img src="https://i.imgur.com/CTLh26M.png" alt="Takayoshi Sampson"/>
+          <img src="https://s3.amazonaws.com/bam-lambda/images/tak.png" alt="Takayoshi Sampson"/>
           <h3>Takayoshi Sampson</h3>
           <p>New York, NY</p>
           <ul>
             <li>
               <a href="mailto:tak.sampson@gmail.com"
-                 target="_blank"><img src="https://i.imgur.com/ykLUs07.png"
+                 target="_blank"><img src="https://s3.amazonaws.com/bam-lambda/images/email.png"
                  alt="email"/></a>
             </li>
             <li>
               <a href=""
-                 target="_blank"><img src="https://i.imgur.com/0mxu29D.png"
+                 target="_blank"><img src="https://s3.amazonaws.com/bam-lambda/images/www.png"
                  alt="website"/></a>
             </li>
             <li>
               <a href="https://www.linkedin.com/in/takayoshi-sampson-780b66168/"
-                 target="_blank"><img src="https://i.imgur.com/UbsXJDq.png"
+                 target="_blank"><img src="https://s3.amazonaws.com/bam-lambda/images/linkedin.png"
                  alt="linkedin"/></a>
             </li>
           </ul>
