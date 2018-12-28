@@ -340,14 +340,6 @@ header span {
   padding: 0.2rem;
 }
 
-#list-command {
-  background-color: #282828;
-  border: 10px solid #282828;
-  border-radius: 10px;
-  display: inline-block;
-  padding: 0.5rem 1.5rem 0 1.5rem;
-}
-
 #list-command code {
   color: #ebdbb2;
 }
@@ -661,6 +653,12 @@ h2#references {
   }
 }
 
+@media (max-width: 600px) {
+  #bam-deploy {
+    width: 340px;
+    height: 265px;
+  }
+}
 
 
 @media (max-width: 500px) {
@@ -694,6 +692,11 @@ h2#references {
 
   #github-logo {
     bottom: 75px;
+  }
+
+  #bam-deploy {
+    width: 270px;
+    height: 213px
   }
 
   /* Our Team */
