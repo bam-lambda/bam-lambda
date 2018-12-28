@@ -1,3 +1,468 @@
+/* ---------------------------------
+
+                general
+
+------------------------------------ */
+
+body {
+  background-color: #fff;
+  color: #282828;
+  font-family: 'Raleway', sans-serif;
+}
+
+main {
+  padding: 0 75px 0 350px;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Open Sans', sans-serif;
+}
+
 h1 {
-  color: red;
+  font-size: 4.5rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+}
+
+h3 {
+  font-size: 1.7rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+}
+
+main > section {
+  margin: 80px 0 100px 0;
+  width: 75%;
+}
+
+blockquote {
+  background: #f9f9f9;
+  border-left: 1rem solid #ccc;
+  color: #999;
+  margin: 1.5rem 1rem;
+  padding: 0.5rem;
+}
+
+blockquote:before {
+  color: #ccc;
+  font-size: 4rem;
+  line-height: 0.1rem;
+  margin-right: 0.25rem;
+  vertical-align: -0.4rem;
+}
+
+i {
+  font-style: italic;
+}
+
+/* ---------------------------------
+
+               images
+
+------------------------------------ */
+
+img {
+  display: block;
+  margin: 0 auto;
+  max-width: 800px;
+  width: 100%;
+}
+
+#bam-logo {
+  cursor: pointer;
+  width: 50px;
+  position: fixed;
+  top: 20px;
+  right: 28px;
+  z-index: 4;
+}
+
+nav#site-navigation #bam-logo-alt {
+  position: fixed;
+  right: 28px;
+  top: 20px;
+  width: 50px;
+  z-index: 3;
+}
+
+
+#github-logo {
+  cursor: pointer;
+  width: 35px;
+  position: fixed;
+  bottom: 85px;
+  right: 35px;
+}
+
+#medium-logo {
+  cursor: pointer;
+  width: 35px;
+  position: fixed;
+  bottom: 30px;
+  right: 35px;
+}
+
+#bam-deploy {
+  background-color: #282828;
+  border: 10px solid #282828;
+  border-radius: 10px;
+  height: 300px;
+  width: auto;
+}
+
+#case-study img {
+  margin: 50px auto;
+}
+
+#root-proxy-path {
+  width: 300px;
+}
+
+#flowchart {
+  width: 600px;
+}
+
+/* ---------------------------------
+
+               code
+
+------------------------------------ */
+
+@font-face {
+  font-family: "Fira Code";
+  src: url(https://cdn.jsdelivr.net/npm/firacode@1.205.0/distr/woff2/FiraCode-Regular.woff2) format("truetype");
+}
+
+.container {
+  margin: 50px auto;
+  text-align: center;
+}
+
+pre {
+  display: inline-block;
+  max-width: 100%;
+  text-align: left;
+}
+
+pre code {
+  font-size: 0.6rem;
+}
+
+code {
+  color: #777;
+  font-family: "Fira Code", monospace;
+  font-size: 1rem;
+}
+
+code.gruvbox-code {
+  border: 15px solid #282828;
+  border-radius: 1rem;
+  padding: 0.5rem 1.5rem 0 1.5rem;
+}
+
+/* ---------------------------------
+
+               nav
+
+------------------------------------ */
+
+nav#site-navigation {
+  display: none;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 2;
+}
+
+nav#site-navigation ul {
+  display: inline-block;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.5rem;
+}
+
+nav#site-navigation ul li {
+  margin: 25px 20px 25px 40px;
+  float: left;
+}
+
+nav#site-navigation p {
+  font-size: 1.2rem;
+}
+
+nav#site-navigation a {
+  text-decoration: none;
+}
+
+/* ---------------------------------
+
+                intro
+
+------------------------------------ */
+
+header {
+  background-color: #282828;
+  color: white;
+  height: 100vh;
+}
+
+header h1 {
+ font-style: italic;
+ font-size: 3rem;
+ line-height: 3rem;
+ padding: 20px 20px;
+}
+
+header p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 3.5rem;
+  left: 50%;
+  letter-spacing: 0.3rem;
+  position: absolute;
+  top: 50%;
+  text-align: center;
+  transform: translateY(-50%) translateX(-50%);
+  width: 850px;
+}
+
+header span {
+  color: #c3e634;
+}
+
+/* ---------------------------------
+
+            case study
+
+------------------------------------ */
+
+#case-study nav {
+  display: none;
+  left: 1rem;
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#case-study nav li {
+  color: #999;
+  font-size: 2rem;
+  list-style: circle;
+  margin-bottom: 5vh;
+}
+
+#case-study nav li:last-of-type {
+  margin-bottom: 0;
+}
+
+#case-study nav a {
+  color: #999;
+  font-size: 0.8rem;
+  margin-left: 1rem;
+  text-decoration: none;
+  vertical-align: 0.4rem;
+}
+
+#case-study nav a:hover {
+  color: #9eba2a;
+}
+
+#case-study h3,
+#case-study h4,
+#case-study h5,
+#case-study p,
+#case-study pre,
+#case-study ul,
+#case-study ol {
+  margin-bottom: 20px;
+}
+
+#case-study h2 {
+  color: #9eba2a;
+  margin: 75px auto 20px auto;
+}
+
+#case-study h2:first-of-type {
+  margin-top: 50px;
+}
+
+#case-study h2, h3 {
+  letter-spacing: 0.02rem;
+}
+
+#case-study h3,
+#case-study h4,
+#case-study h5 {
+  color: #6a8015;
+}
+
+#case-study p {
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+}
+
+#case-study blockquote p {
+  font-size: 1.3rem;
+}
+
+#case-study blockquote p:first-of-type {
+  font-style: italic;
+}
+
+#case-study li {
+  font-size: 1rem;
+  line-height: 1.6rem;
+  list-style: disc;
+  margin-left: 2rem;
+}
+
+#case-study li code {
+  font-size: 0.8rem;
+}
+
+/* ---------------------------------
+
+              commands
+
+------------------------------------ */
+
+.command {
+  background-color: #eee;
+  border-radius: 2px;
+  color: #282828;
+  display: inline-block;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  padding: 0.2rem;
+}
+
+#list-command {
+  background-color: #282828;
+  border: 10px solid #282828;
+  border-radius: 10px;
+  display: inline-block;
+  padding: 0.5rem 1.5rem 0 1.5rem;
+}
+
+#list-command code {
+  color: #ebdbb2;
+}
+
+#list-command .heading {
+  color: #98971a;
+}
+
+#list-command .bam-resource {
+  color: #b8bb26;
+}
+
+/* ---------------------------------
+
+              footnotes
+
+------------------------------------ */
+
+h2#references {
+  color: #9eba2a;
+  font-size: 1.7rem;
+  margin-top: 75px;
+}
+
+#footnotes ol li {
+  color: #999;
+  font-size: 0.9rem;
+}
+
+#footnotes ol li {
+  list-style: decimal;
+  color: #999;
+}
+
+#footnotes a {
+  color: #999;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+#footnotes a:hover {
+  color: #c3e634;
+}
+
+/* ---------------------------------
+
+            our team
+
+------------------------------------ */
+
+#our-team {
+  background-color: #9eba2a;
+  color: #282828;
+  margin-top: 200px;
+  padding-bottom: 60px;
+}
+
+#our-team h1 {
+  padding-top: 100px;
+  text-align: center;
+}
+
+#our-team > p {
+  font-size: 1.25rem;
+  text-align: center;
+  margin: 20px 400px 0 400px;
+}
+
+#our-team > ul {
+  background-color: #c3e634;
+  margin-top: 60px;
+  padding: 60px 0 40px 0;
+  text-align: center;
+}
+
+#our-team li {
+  display: inline-block;
+  margin: 0 90px;
+}
+
+#our-team h3 {
+  margin-bottom: 10px;
+}
+
+#our-team a {
+  color: #282828;
+  text-decoration: none;
+}
+
+#our-team img {
+  border: 4px solid #282828;
+  border-radius: 100%;
+  margin: 0 0 20px 0;
+  width: 250px;
+}
+
+#our-team .individual ul {
+  margin: 0;
+}
+
+#our-team .individual li img {
+  border: 0;
+  border-radius: 0;
+  margin-top: 10px;
+  width: 40px;
+}
+
+#our-team .individual li {
+  margin: 10px 5px 0 5px;
+}
+
+#our-team .individual p {
+  font-size: 1.3rem;
+}
+
+#our-team > p:last-of-type {
+  font-size: 1.5rem;
+  margin-top: 60px;
 }
