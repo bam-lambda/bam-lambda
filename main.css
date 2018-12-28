@@ -69,17 +69,19 @@ img {
 
 #bam-logo {
   cursor: pointer;
-  width: 60px;
+  width: 50px;
   position: fixed;
-  top: 35px;
+  top: 20px;
   right: 28px;
+  z-index: 4;
 }
 
 nav#site-navigation #bam-logo-alt {
   position: fixed;
   right: 28px;
-  top: 35px;
-  width: 60px;
+  top: 20px;
+  width: 50px;
+  z-index: 3;
 }
 
 
@@ -88,7 +90,7 @@ nav#site-navigation #bam-logo-alt {
   width: 35px;
   position: fixed;
   bottom: 85px;
-  right: 40px;
+  right: 35px;
 }
 
 #medium-logo {
@@ -96,7 +98,7 @@ nav#site-navigation #bam-logo-alt {
   width: 35px;
   position: fixed;
   bottom: 30px;
-  right: 40px;
+  right: 35px;
 }
 
 #bam-deploy {
@@ -164,65 +166,30 @@ code.gruvbox-code {
 ------------------------------------ */
 
 nav#site-navigation {
-  background-color: #9eba2a;
-  color: #282828;
   display: none;
-  height: 100vh;
-  text-align: center;
+  position: fixed;
+  top: 0;
   width: 100vw;
   z-index: 2;
 }
 
 nav#site-navigation ul {
-  border-bottom: 4px solid #282828;
   display: inline-block;
   font-family: 'Open Sans', sans-serif;
-  font-size: 4.5rem;
-  margin-top: 22vh;
-  margin-bottom: 70px;
-  padding-bottom: 50px;
+  font-size: 1.5rem;
 }
 
 nav#site-navigation ul li {
-  margin: auto;
-  text-align: left;
+  margin: 25px 20px 25px 40px;
+  float: left;
 }
 
 nav#site-navigation p {
-  background-color: #9eba2a;
-  color: #282828;
   font-size: 1.2rem;
 }
 
 nav#site-navigation a {
-  color: #282828;
   text-decoration: none;
-}
-
-nav#site-navigation a:hover {
-  color: #fff;
-}
-
-nav#site-navigation p a:not(#close) {
-  font-weight: bold;
-  border-bottom: 2px solid #282828;
-  padding-bottom: 4px;
-}
-
-nav#site-navigation p a:not(#close):hover {
-  border-bottom: 2px solid #fff;
-}
-
-#close-nav {
-  cursor: pointer;
-  font-size: 4rem;
-  font-weight: 200;
-  left: 45px;
-  position: absolute;
-  top: 30px;
-  transform: rotate(90deg);
-  -ms-transform: rotate(90deg); /* IE 9 */
-  -webkit-transform: rotate(90deg); /* Safari and Chrome */
 }
 
 /* ---------------------------------
@@ -239,9 +206,9 @@ header {
 
 header h1 {
  font-style: italic;
- font-size: 4rem;
- line-height: 70px;
- padding: 30px 40px;
+ font-size: 3rem;
+ line-height: 3rem;
+ padding: 20px 20px;
 }
 
 header p {
