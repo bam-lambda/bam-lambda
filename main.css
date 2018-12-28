@@ -166,8 +166,6 @@ code.gruvbox-code {
 ------------------------------------ */
 
 nav#site-navigation {
-  background-color: #9eba2a;
-  color: #282828;
   display: none;
   position: fixed;
   top: 0;
@@ -187,40 +185,11 @@ nav#site-navigation ul li {
 }
 
 nav#site-navigation p {
-  background-color: #9eba2a;
-  color: #282828;
   font-size: 1.2rem;
 }
 
 nav#site-navigation a {
-  color: #282828;
   text-decoration: none;
-}
-
-nav#site-navigation a:hover {
-  color: #fff;
-}
-
-nav#site-navigation p a:not(#close) {
-  font-weight: bold;
-  border-bottom: 2px solid #282828;
-  padding-bottom: 4px;
-}
-
-nav#site-navigation p a:not(#close):hover {
-  border-bottom: 2px solid #fff;
-}
-
-#close-nav {
-  cursor: pointer;
-  font-size: 4rem;
-  font-weight: 200;
-  left: 45px;
-  position: absolute;
-  top: 30px;
-  transform: rotate(90deg);
-  -ms-transform: rotate(90deg); /* IE 9 */
-  -webkit-transform: rotate(90deg); /* Safari and Chrome */
 }
 
 /* ---------------------------------
