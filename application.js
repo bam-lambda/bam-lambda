@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
-  const changeBamLogoColor = () => {
+  const onFooter = () => {
     scrollPosition = getScrollPosition();
     const ourTeamPosition = ourTeam.getBoundingClientRect().top;
     const ourTeamOffset = (scrollPosition + ourTeamPosition) - getWindowHeight();
@@ -86,9 +86,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const logoHeight = logoElement.height;
     const logoTop = +window.getComputedStyle(logoElement).top.replace('px', '');
     const logoOffset = logoHeight + logoTop;
+    return scrollPosition > ourTeamOffset + (getWindowHeight() - logoOffset);
+  };
 
-    if (scrollPosition > ourTeamOffset + (getWindowHeight() - logoOffset)) {
+  const changeBamLogoColor = () => {
+    if (onFooter()) {
       changeImgSrc('bam-logo', 'https://i.imgur.com/798Mohw.png');
+      changeImgSrc('bam-logo-alt', 'https://i.imgur.com/Ao4nAG5.png');
     } else {
       changeImgSrc('bam-logo', 'https://i.imgur.com/Ao4nAG5.png');
     }
@@ -161,6 +165,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (onHeader) {
       styleNav('#9eba2a', '#282828', '#383838', true);
+    } else if (onFooter()) {
+      styleNav('#282828', '#9eba2a', '#c3e634', true);
     } else {
       styleNav('#282828', '#9eba2a', '#c3e634');
     }
@@ -177,6 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
   bamLogo.addEventListener('click', showNav);
   nav.addEventListener('mouseover', showNav);
   main.addEventListener('mouseenter', hideNav);
+  ourTeam.addEventListener('mouseenter', hideNav);
   header.addEventListener('mouseenter', hideNav);
   homeLink.addEventListener('click', hideNav);
   caseStudyLink.addEventListener('click', hideNav);
@@ -187,23 +194,6 @@ document.addEventListener('DOMContentLoaded', () => {
       changeLogoColors();
       changeBamLogoColor();
       handleCaseStudyNav();
-    }
-  });
-
-  logoLinks.addEventListener('mouseover', (e) => {
-    scrollPosition = getScrollPosition();
-    const { id } = e.target;
-    const logo = id.split('-')[0];
-    const ourTeamPosition = ourTeam.getBoundingClientRect().top;
-    const ourTeamOffset = (scrollPosition + ourTeamPosition) - getWindowHeight();
-    const logoElement = e.target;
-    const logoHeight = logoElement.height;
-    const logoTop = +window.getComputedStyle(logoElement).top.replace('px', '');
-    const logoOffset = logoHeight + logoTop;
-
-    if (scrollPosition > ourTeamOffset + (getWindowHeight() - logoOffset)) {
-      const urlKey = `${logo}White`;
-      changeImgSrc(id, logoUrls[urlKey]);
     }
   });
 
