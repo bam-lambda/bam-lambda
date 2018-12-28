@@ -92,6 +92,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
+  const onHeader = () => {
+    scrollPosition = getScrollPosition();
+    const darkNavStylePosition = getWindowHeight() - 88;
+    return scrollPosition < darkNavStylePosition;   
+  }
+
   const onFooter = () => {
     scrollPosition = getScrollPosition();
     const ourTeamPosition = ourTeam.getBoundingClientRect().top;
@@ -106,10 +112,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const changeBamLogoColor = () => {
     if (onFooter()) {
-      changeImgSrc('bam-logo', 'https://i.imgur.com/798Mohw.png');
-      changeImgSrc('bam-logo-alt', 'https://i.imgur.com/Ao4nAG5.png');
+      changeImgSrc('bam-logo', 'https://i.imgur.com/798Mohw.png'); // black
+      changeImgSrc('bam-logo-alt', 'https://i.imgur.com/Ao4nAG5.png'); //color
     } else {
-      changeImgSrc('bam-logo', 'https://i.imgur.com/Ao4nAG5.png');
+      changeImgSrc('bam-logo', 'https://i.imgur.com/Ao4nAG5.png'); // color
     }
   };
 
@@ -159,7 +165,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const styleNav = (bgColor, textColor, hoverColor, changeLogo) => {
     nav.style.backgroundColor = bgColor;
-    navLinks.forEach((link) => {
+    const links = Array.prototype.slice.call(navLinks).concat(mobileCaseStudyLinks);
+    links.forEach((link) => {
       link.style.color = textColor;
 
       link.addEventListener('mouseenter', () => {
@@ -175,11 +182,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const showNav = () => {
     navVisible = true;
-    scrollPosition = getScrollPosition();
-    const darkNavStylePosition = getWindowHeight() - 88;
-    const onHeader = scrollPosition < darkNavStylePosition;
+    const small = getWindowWidth() <= 768;
 
-    if (onHeader) {
+    if (small) {
+      styleNav('#282828', '#9eba2a', '#c3e634');
+    } else if (onHeader()) {
       styleNav('#9eba2a', '#282828', '#383838', true);
     } else if (onFooter()) {
       styleNav('#282828', '#9eba2a', '#c3e634', true);
@@ -196,7 +203,12 @@ document.addEventListener('DOMContentLoaded', () => {
     $(nav).slideUp('fast');
   };
 
-  bamLogo.addEventListener('click', showNav);
+  const toggleNav = () => {
+    navVisible ? hideNav() : showNav();
+    navVisible = !navVisible;
+  }
+
+  bamLogo.addEventListener('click', toggleNav);
   nav.addEventListener('mouseover', showNav);
   main.addEventListener('mouseenter', hideNav);
   ourTeam.addEventListener('mouseenter', hideNav);
@@ -215,7 +227,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   window.addEventListener('resize', (e) => {
-    handleCaseStudyNav(); 
+    handleCaseStudyNav();
+    if (navVisible) {
+      showNav();
+    }
+    changeBamLogoColor();
   });
 
   logoLinks.addEventListener('mouseout', (e) => {
