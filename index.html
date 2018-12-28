@@ -512,67 +512,65 @@
         instructional templates, and adapts to the developer’s local lambda file
         organization.</p>
 
-        <section id="commands">
-          <h3>4.1 Commands</h3>
+        <h3>4.1 Commands</h3>
 
-          <code class="command">deploy</code>
-          <p>The <code>deploy</code> command creates a lambda named
-          <code>&lt;resourceName&gt;</code> and an API Gateway endpoint (also
-          named <code>&lt;resourceName&gt;</code>) that can trigger the
-          lambda.</p>
+        <code class="command">deploy</code>
+        <p>The <code>deploy</code> command creates a lambda named
+        <code>&lt;resourceName&gt;</code> and an API Gateway endpoint (also
+        named <code>&lt;resourceName&gt;</code>) that can trigger the
+        lambda.</p>
 
-          <p>If the lambda will interact with DynamoDB, <code>--permitDb</code>
-          causes the lambda to assume an IAM role that permits
-          <code>SCAN</code>, <code>PUT</code>, <code>GET</code>, and
-          <code>DELETE</code> operations. If this option is not used, the lambda
-          assumes the default role, which is created if it does not already
-          exist.</p>
+        <p>If the lambda will interact with DynamoDB, <code>--permitDb</code>
+        causes the lambda to assume an IAM role that permits
+        <code>SCAN</code>, <code>PUT</code>, <code>GET</code>, and
+        <code>DELETE</code> operations. If this option is not used, the lambda
+        assumes the default role, which is created if it does not already
+        exist.</p>
 
-          <p>It is also possible to specify a role for the current deployment
-          only using the <code>--role</code> flag.</p>
+        <p>It is also possible to specify a role for the current deployment
+        only using the <code>--role</code> flag.</p>
 
-          <p>If there is no need for an endpoint, <code>--lambdaOnly</code>
-          deploys just a lambda.</p>
+        <p>If there is no need for an endpoint, <code>--lambdaOnly</code>
+        deploys just a lambda.</p>
 
-          <code class="command">redeploy</code>
-          <p>The <code>redeploy</code> command updates a lambda and/or its
-          associated endpoint.</p>
+        <code class="command">redeploy</code>
+        <p>The <code>redeploy</code> command updates a lambda and/or its
+        associated endpoint.</p>
 
-          <p>The <code>--role</code> and <code>--permitDb</code> options work
-          with <code>redeploy</code> in a similar fashion to how they work with
-          <code>deploy.</code> Additionally, <code>--revokeDb</code> allows the
-          lambda to assume the default role instead of the role designed to
-          specifically work with DynamoDB.</p>
+        <p>The <code>--role</code> and <code>--permitDb</code> options work
+        with <code>redeploy</code> in a similar fashion to how they work with
+        <code>deploy.</code> Additionally, <code>--revokeDb</code> allows the
+        lambda to assume the default role instead of the role designed to
+        specifically work with DynamoDB.</p>
 
-          <p>The <code>--methods</code> flag adds HTTP methods to the endpoint ,
-          and <code>--rmMethods</code> allows for the removal of methods
-          attached to the
-          endpoint.</p>
+        <p>The <code>--methods</code> flag adds HTTP methods to the endpoint ,
+        and <code>--rmMethods</code> allows for the removal of methods
+        attached to the
+        endpoint.</p>
 
-          <p>The <code>--addEndpoint</code> flag adds an endpoint to a lambda
-          that is not currently integrated with one.</p>
+        <p>The <code>--addEndpoint</code> flag adds an endpoint to a lambda
+        that is not currently integrated with one.</p>
 
-          <code class="command">create</code>
-          <p>The <code>create</code> command creates a local file or directory
-          based on a template which makes it easy to quickly write code for a
-          lambda</p>
+        <code class="command">create</code>
+        <p>The <code>create</code> command creates a local file or directory
+        based on a template which makes it easy to quickly write code for a
+        lambda</p>
 
-          <p>There are six template options that can be created using the flags,
-          <code>--invoker</code>, <code>--html</code>, and <code>--db</code>.
-          For additional guidance, <code>--verbose</code> can be used to create
-          these templates with instructional comments.</p>
+        <p>There are six template options that can be created using the flags,
+        <code>--invoker</code>, <code>--html</code>, and <code>--db</code>.
+        For additional guidance, <code>--verbose</code> can be used to create
+        these templates with instructional comments.</p>
 
-          <code class="command">list</code>
-          <p>The <code>list</code> command logs existing lambdas, endpoints, and
-          DynamoDb tables, allowing quick visibility to resources in the cloud,
-          including existing endpoint urls associated with each lambda (see
-          below).</p>
+        <code class="command">list</code>
+        <p>The <code>list</code> command logs existing lambdas, endpoints, and
+        DynamoDb tables, allowing quick visibility to resources in the cloud,
+        including existing endpoint urls associated with each lambda (see
+        below).</p>
 
-          <p>The <code>--dbtables</code> and <code>--lambdas</code> flags can be
-          used to only log resources for those respective services.</p>
+        <p>The <code>--dbtables</code> and <code>--lambdas</code> flags can be
+        used to only log resources for those respective services.</p>
 
-          <div class="container"><pre id="list-command">
-            <code class="nohighlight">
+        <div class="container"><pre id="list-command"><code class="nohighlight">
 <span class="heading">Lambdas and endpoints deployed from this machine using BAM!:</span>
 <span class="bam-resource">  nameOfLambda1
     description: a description of the lambda
@@ -594,29 +592,27 @@ Other lambdas on AWS
   nameOfTable2
     partition key: id (number)
     sort key: name (string)</span>
-            </code>
-          </pre></div>
+        </code></pre></div>
 
-          <code class="command">get</code>
-          <p>The <code>get</code> command pulls existing lambda code from AWS
-          into a local directory for testing, editing, and updating.</p>
+        <code class="command">get</code>
+        <p>The <code>get</code> command pulls existing lambda code from AWS
+        into a local directory for testing, editing, and updating.</p>
 
-          <code class="command">dbtable</code>
-          <p>The <code>dbtale</code> command creates a DynamoDB table on
-          AWS.</p>
+        <code class="command">dbtable</code>
+        <p>The <code>dbtale</code> command creates a DynamoDB table on
+        AWS.</p>
 
-          <code class="command">delete</code>
-          <p>The <code>delete</code> command deletes both the lambda and
-          endpoint from AWS.</p>
+        <code class="command">delete</code>
+        <p>The <code>delete</code> command deletes both the lambda and
+        endpoint from AWS.</p>
 
-          <p>The <code>--endpointOnly</code> option can be used to delete only
-          the endpoint, and <code>--dbtable</code> option can be used to delete
-          a DynamoDB table instead of lambda/endpoint.</p>
+        <p>The <code>--endpointOnly</code> option can be used to delete only
+        the endpoint, and <code>--dbtable</code> option can be used to delete
+        a DynamoDB table instead of lambda/endpoint.</p>
 
-          <code class="command">config</code>
-          <p>The <code>config</code> command prompts the user to update the
-          account number and default role</p>
-        </section>
+        <code class="command">config</code>
+        <p>The <code>config</code> command prompts the user to update the
+        account number and default role</p>
 
         <h2 id="behind-the-scenes">5 Behind the Scenes</h2>
 
@@ -1128,7 +1124,7 @@ const bamBam = async (asyncFunc, {
         addition to Node.js.</p>
 
         <section id="footnotes">
-          <h3 id="references">8 References</h3>
+          <h2 id="references">8 References</h2>
 
           <h5>8.1 Footnotes</h5>
           <ol>
@@ -1182,8 +1178,78 @@ const bamBam = async (asyncFunc, {
         </section>
       </section>
     </main>
-    <footer>
-      
-    </footer>
+    <section id="our-team">
+      <h1>Our Team</h1>
+      <ul>
+        <li class="individual">
+          <img src="https://i.imgur.com/A6BPzvm.png" alt="Jason Overby"/>
+          <h3>Jason Overby</h3>
+          <p>Portland, OR</p>
+          <ul>
+            <li>
+              <a href="mailto:j@jasonoverby.com"
+                 target="_blank"><img src="https://i.imgur.com/ykLUs07.png"
+                 alt="email"/></a>
+            </li>
+            <li>
+              <a href="http://www.jasonoverby.com"
+                 target="_blank"><img src="https://i.imgur.com/0mxu29D.png"
+                 alt="website"/></a>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/in/jasoncoverby/"
+                 target="_blank"><img src="https://i.imgur.com/UbsXJDq.png"
+                 alt="linkedin"/></a>
+            </li>
+          </ul>
+        </li>
+        <li class="individual">
+          <img src="https://i.imgur.com/B012eB6.png" alt="Jocie Moore"/>
+          <h3>Jocie Moore</h3>
+          <p>San Francisco, CA</p>
+          <ul>
+            <li>
+              <a href="mailto:hello@jociemoore.com"
+                 target="_blank"><img src="https://i.imgur.com/ykLUs07.png"
+                 alt="email"/></a>
+            </li>
+            <li>
+              <a href="https://www.jociemoore.com"
+                 target="_blank"><img src="https://i.imgur.com/0mxu29D.png"
+                 alt="website"/></a>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/in/jocie-moore/"
+                 target="_blank"><img src="https://i.imgur.com/UbsXJDq.png"
+                 alt="linkedin"/></a>
+            </li>
+          </ul>
+        </li>
+        <li class="individual">
+          <img src="https://i.imgur.com/oa8EfhM.png" alt="Takayoshi Sampson"/>
+          <h3>Takayoshi Sampson</h3>
+          <p>New York, NY</p>
+          <ul>
+            <li>
+              <a href="mailto:tak.sampson@gmail.com"
+                 target="_blank"><img src="https://i.imgur.com/ykLUs07.png"
+                 alt="email"/></a>
+            </li>
+            <li>
+              <a href=""
+                 target="_blank"><img src="https://i.imgur.com/0mxu29D.png"
+                 alt="website"/></a>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/in/takayoshi-sampson-780b66168/"
+                 target="_blank"><img src="https://i.imgur.com/UbsXJDq.png"
+                 alt="linkedin"/></a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <p>We are looking for opportunities.  If you liked what you saw and want to talk more, please
+      reach out!</p>
+    </section>
   </body>
 </html>

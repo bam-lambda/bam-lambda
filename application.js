@@ -5,19 +5,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const nav = document.querySelector('nav');
   const main = document.querySelector('main');
   const header = document.querySelector('header');
-  // const ourTeam = document.querySelector('#our-team');
-  const footer = document.querySelector('footer');
+  const ourTeam = document.querySelector('#our-team');
   const closeNav = document.querySelector('#close-nav');
   const homeLink = document.querySelector('#home-link');
-  const caseStudy = document.querySelector('#case-study');
-  const introduction = document.querySelector('#introduction');
   const caseStudyNav = document.querySelector('#case-study nav');
   const caseStudyLink = document.querySelector('#case-study-link');
-  // const githubLogo = document.querySelector('#github-logo');
-  // const mediumLogo = document.querySelector('#medium-logo');
   const logoLinks = document.querySelector('.logo-links');
-  // const ourTeamLink = document.querySelector('#our-team-link');
+  const ourTeamLink = document.querySelector('#our-team-link');
   const caseStudyNavUl = document.querySelector('#case-study nav ul');
+
   let navVisible = false;
   const getScrollPosition = () => window.scrollY;
   let scrollPosition = getScrollPosition();
@@ -58,9 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const logoUrls = {
     githubWhite: 'https://i.imgur.com/7X29Lfl.png',
     githubBlack: 'https://i.imgur.com/uS9im3Z.png',
-    mediumWhite: 'https://i.imgur.com/iAreLP9.png',
+    mediumWhite: 'https://i.imgur.com/DP4t04E.png',
     mediumBlack: 'https://i.imgur.com/IPiAMRb.png',
-    mediumWhiteAlt: 'https://i.imgur.com/DP4t04E.png',
   };
 
   const changeLogoColors = () => {
@@ -70,18 +65,31 @@ document.addEventListener('DOMContentLoaded', () => {
       const logoElement = document.querySelector(logoSelector);
       const logoHeight = logoElement.height;
       const logoBottom = +window.getComputedStyle(logoElement).bottom.replace('px', '');
-      const footerPosition = footer.getBoundingClientRect().top;
-      const footerOffset = (scrollPosition + footerPosition) - getWindowHeight();
       const logoOffset = logoHeight + logoBottom;
-      const startLocation = logoOffset;
-      const endLocation = footerOffset + logoOffset;
 
-      if (scrollPosition > startLocation && scrollPosition < endLocation) {
+      if (scrollPosition > logoOffset) {
         changeImgSrc(`${logo}-logo`, logoUrls[`${logo}Black`]);
       } else {
         changeImgSrc(`${logo}-logo`, logoUrls[`${logo}White`]);
       }
     });
+  };
+
+  const changeBamLogoColor = () => {
+    scrollPosition = getScrollPosition();
+    const ourTeamPosition = ourTeam.getBoundingClientRect().top;
+    const ourTeamOffset = (scrollPosition + ourTeamPosition) - getWindowHeight();
+    const logoSelector = '#bam-logo';
+    const logoElement = document.querySelector(logoSelector);
+    const logoHeight = logoElement.height;
+    const logoTop = +window.getComputedStyle(logoElement).top.replace('px', '');
+    const logoOffset = logoHeight + logoTop;
+
+    if (scrollPosition > ourTeamOffset + (getWindowHeight() - logoOffset)) {
+      changeImgSrc('bam-logo', 'https://i.imgur.com/798Mohw.png');
+    } else {
+      changeImgSrc('bam-logo', 'https://i.imgur.com/Ao4nAG5.png');
+    }
   };
 
   const handleCaseStudyNavStyles = () => {
@@ -112,16 +120,14 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const handleCaseStudyNav = () => {
-    // const ourTeamPosition = getScrollPosition() + ourTeam.getBoundingClientRect().top;
-    const footerPosition = getScrollPosition() + footer.getBoundingClientRect().top;
+    const ourTeamPosition = getScrollPosition() + ourTeam.getBoundingClientRect().top;
     const mainPosition = getScrollPosition() + main.getBoundingClientRect().top;
-
-    // must be less than team section position
-    // if (scrollPosition >= mainPosition && scrollPosition < ourTeamPosition) {
+    const withinCaseStudy = scrollPosition >= mainPosition
+      && scrollPosition < ourTeamPosition - getWindowHeight();
 
     if (getWindowHeight() < 500) {
       caseStudyNav.style.display = 'none';
-    } else if (scrollPosition >= mainPosition && scrollPosition < footerPosition - getWindowHeight()) {
+    } else if (withinCaseStudy) {
       caseStudyNav.style.display = 'block';
       handleCaseStudyNavStyles();
     } else {
@@ -135,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
     nav.style.display = 'block';
     main.style.display = 'none';
     header.style.display = 'none';
-    footer.style.display = 'none';
+    ourTeam.style.display = 'none';
     document.body.style.backgroundColor = '#9eba2a';
     logos.forEach(logo => changeImgSrc(`${logo}-logo`, logoUrls[`${logo}Black`]));
   };
@@ -145,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
     nav.style.display = 'none';
     main.style.display = 'block';
     header.style.display = 'block';
-    footer.style.display = 'block';
+    ourTeam.style.display = 'block';
     document.body.style.backgroundColor = '#fff';
     window.scrollTo(0, scrollPosition);
 
@@ -156,11 +162,12 @@ document.addEventListener('DOMContentLoaded', () => {
   closeNav.addEventListener('click', hideNav);
   homeLink.addEventListener('click', hideNav);
   caseStudyLink.addEventListener('click', hideNav);
-  // ourTeamLink.addEventListener('click', hideNav);
+  ourTeamLink.addEventListener('click', hideNav);
 
   document.addEventListener('scroll', () => {
     if (!navVisible) {
       changeLogoColors();
+      changeBamLogoColor();
       handleCaseStudyNav();
     }
   });
