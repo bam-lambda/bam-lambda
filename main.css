@@ -197,6 +197,7 @@ nav#site-navigation p {
 nav#site-navigation a {
   color: #282828;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 nav#site-navigation a:hover {
@@ -453,3 +454,168 @@ footer {
   /* border-bottom: 8px solid #9eba2a; */
   /* display: inline-block; */
 /* } */
+
+/* ---------------------------------
+
+              mobile
+
+------------------------------------ */
+@media (min-width: 1101px) {
+  nav#case-study-mobile {
+    display: none;
+  }
+}
+
+
+@media (max-width: 1100px) {
+  #case-study nav {
+    display: none;
+  }
+
+  nav#site-navigation {
+    height: auto;
+    padding-bottom: 3rem;
+  }
+
+  nav#case-study-mobile ul {
+    border: none;
+    font-size: 3rem;
+    margin: 0;
+    padding: 5px 0;
+  }
+
+  main {
+    padding: 3rem 7rem 0 7rem;
+  }
+
+  section#case-study {
+    margin: 0 auto;
+  }
+
+  #flowchart {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 1030px) {
+  #home p {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0 90px;
+  }
+}
+
+
+@media (max-width: 975px) {
+  nav#site-navigation {
+
+  }
+
+  nav#site-navigation ul {
+    font-size: 3rem;
+  }
+
+  nav#case-study-mobile ul {
+    font-size: 2rem;
+  }
+
+  nav#site-navigation p {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    padding: 0 90px;
+  }
+}
+
+/* 885 pre becomes wider than container */
+
+@media (max-width: 800px) {
+
+  /* Logos */
+
+  #bam-logo {
+    width: 40px;
+    top: 32px;
+    right: 21px;
+  }
+
+  nav#site-navigation #bam-logo-alt {
+    position: fixed;
+    right: 21px;
+    top: 32px;
+    width: 40px;
+  }  
+
+  #github-logo {
+    cursor: pointer;
+    width: 28px;
+    position: fixed;
+    bottom: 85px;
+    right: 27px;
+  }
+
+  #medium-logo {
+    cursor: pointer;
+    width: 28px;
+    position: fixed;
+    bottom: 30px;
+    right: 27px;
+  }
+
+  /* Site Nav */
+  #close-nav {
+    left: 21px;
+    top: 32px;
+    font-size: 2.6rem;
+  }
+
+  nav#site-navigation > ul {
+    margin-top: 14vh;
+  }
+
+
+  /* Main */
+
+  main {
+    padding: 2rem 3rem 0 3rem;
+  }
+
+  header h1 {
+    font-size: 3rem;
+    padding: 18px 21px;
+  }
+
+  #home p {
+    font-size: 2rem;
+  }
+
+  main {
+    padding: 0 75px;
+  }
+
+  section#case-study {
+    margin: 0;
+    width: 100%;
+  }
+
+  #footnotes {
+    word-wrap: break-word;
+  }
+
+}
+
+
+/*
+@media (max-width: 500px) {
+  #case-study-mobile nav {
+    width: auto;
+    right: 0;
+  }
+
+  #case-study-mobile nav ul {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+*/

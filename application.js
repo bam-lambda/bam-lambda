@@ -18,10 +18,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const logoLinks = document.querySelector('.logo-links');
   // const ourTeamLink = document.querySelector('#our-team-link');
   const caseStudyNavUl = document.querySelector('#case-study nav ul');
+  const mobileCaseStudyNavUl = document.querySelector('#case-study-mobile ul');
+
   let navVisible = false;
   const getScrollPosition = () => window.scrollY;
   let scrollPosition = getScrollPosition();
   const getWindowHeight = () => window.innerHeight;
+  const getWindowWidth = () => window.innerWidth;
+
   const logos = [...document.querySelectorAll('.logo-links img')]
     .filter(logo => !(/bam/.test(logo.id)))
     .map(logo => logo.id.split('-')[0]);
@@ -40,6 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
     a.style.color = '#9eba2a';
   };
 
+  const mobileCaseStudyLinks = [];
+
   h2Text.forEach((h2TextStr) => {
     const li = document.createElement('li');
     li.id = snakeCaseify(`${h2TextStr.replace('!', '').toLowerCase()}-nav`);
@@ -47,8 +53,18 @@ document.addEventListener('DOMContentLoaded', () => {
     a.href = snakeCaseify(`#${h2TextStr.replace('!', '')}`);
     a.textContent = h2TextStr.toUpperCase();
 
+    const li2 = document.createElement('li');
+    li2.id = snakeCaseify(`mobile-${h2TextStr.replace('!', '').toLowerCase()}-nav`);
+    const a2 = document.createElement('a');
+    a2.href = snakeCaseify(`#${h2TextStr.replace('!', '')}`);
+    a2.textContent = h2TextStr.toUpperCase();
+
     li.appendChild(a);
     caseStudyNavUl.appendChild(li);
+
+    mobileCaseStudyLinks.push(a2);
+    li2.appendChild(a2);
+    mobileCaseStudyNavUl.appendChild(li2);
   });
 
   const changeImgSrc = (tag, url) => {
@@ -94,15 +110,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }, {});
     const positionValues = Object.values(positions);
     const positionSelectors = Object.keys(positions);
+    const mobileCaseStudyNav = document.querySelector('#case-study-mobile');
 
     positionValues.forEach((_, i) => {
-      const li = document.querySelector(positionSelectors[i]);
+      const li = document.querySelector(positionSelectors[i]);      
       const a = li.getElementsByTagName('a')[0];
       const currPosition = i > 0 ? positionValues[i] : 0;
       const nextPositionIdx = i + 1;
       const nextPosition = positionValues[nextPositionIdx] || 999999;
 
-      if (scrollPosition >= currPosition && scrollPosition < nextPosition) {
+      if (scrollPosition >= currPosition && scrollPosition < nextPosition && !mobileCaseStudyNav.contains(li)) {
         highlightSection(li, a);
       } else {
         if (li.getAttribute('style')) li.removeAttribute('style');
@@ -119,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // must be less than team section position
     // if (scrollPosition >= mainPosition && scrollPosition < ourTeamPosition) {
 
-    if (getWindowHeight() < 500) {
+    if (getWindowHeight() < 500 || getWindowWidth() < 1100) {     
       caseStudyNav.style.display = 'none';
     } else if (scrollPosition >= mainPosition && scrollPosition < footerPosition - getWindowHeight()) {
       caseStudyNav.style.display = 'block';
@@ -156,6 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
   closeNav.addEventListener('click', hideNav);
   homeLink.addEventListener('click', hideNav);
   caseStudyLink.addEventListener('click', hideNav);
+  mobileCaseStudyLinks.forEach(link => link.addEventListener('click', hideNav));
   // ourTeamLink.addEventListener('click', hideNav);
 
   document.addEventListener('scroll', () => {
@@ -163,6 +181,10 @@ document.addEventListener('DOMContentLoaded', () => {
       changeLogoColors();
       handleCaseStudyNav();
     }
+  });
+
+  window.addEventListener('resize', (e) => {
+    handleCaseStudyNav(); 
   });
 
   logoLinks.addEventListener('mouseover', (e) => {
