@@ -56,6 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
     githubBlack: 'https://i.imgur.com/uS9im3Z.png',
     mediumWhite: 'https://i.imgur.com/DP4t04E.png',
     mediumBlack: 'https://i.imgur.com/IPiAMRb.png',
+    bamWhite: 'https://i.imgur.com/zSuO4RT.png',
+    bamBlack: 'https://i.imgur.com/798Mohw.png',
   };
 
   const changeLogoColors = () => {
@@ -173,17 +175,34 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   logoLinks.addEventListener('mouseover', (e) => {
-    if (navVisible) {
-      const { id } = e.target;
-      const urlKey = /github/.test(id) ? 'githubWhite' : 'mediumWhiteAlt';
+    scrollPosition = getScrollPosition();
+    const { id } = e.target;
+    const logo = id.split('-')[0];
+    const ourTeamPosition = ourTeam.getBoundingClientRect().top;
+    const ourTeamOffset = (scrollPosition + ourTeamPosition) - getWindowHeight();
+    const logoElement = e.target;
+    const logoHeight = logoElement.height;
+    const logoTop = +window.getComputedStyle(logoElement).top.replace('px', '');
+    const logoOffset = logoHeight + logoTop;
+
+    if (scrollPosition > ourTeamOffset + (getWindowHeight() - logoOffset)) {
+      const urlKey = `${logo}White`;
       changeImgSrc(id, logoUrls[urlKey]);
     }
   });
 
   logoLinks.addEventListener('mouseout', (e) => {
-    if (navVisible) {
-      const { id } = e.target;
-      const logo = id.split('-')[0];
+    scrollPosition = getScrollPosition();
+    const { id } = e.target;
+    const logo = id.split('-')[0];
+    const ourTeamPosition = ourTeam.getBoundingClientRect().top;
+    const ourTeamOffset = (scrollPosition + ourTeamPosition) - getWindowHeight();
+    const logoElement = e.target;
+    const logoHeight = logoElement.height;
+    const logoTop = +window.getComputedStyle(logoElement).top.replace('px', '');
+    const logoOffset = logoHeight + logoTop;
+
+    if (scrollPosition > ourTeamOffset + (getWindowHeight() - logoOffset)) {
       const urlKey = `${logo}Black`;
       changeImgSrc(id, logoUrls[urlKey]);
     }
