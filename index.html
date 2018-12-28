@@ -311,7 +311,7 @@
         complete before a callable endpoint exists.</p>
 
         <img src="https://i.imgur.com/7MqP4Xl.png" alt="steps to deploy lambda
-        with integrated endpoiint"/>
+        with integrated endpoint"/>
 
         <p>At this point, the API Gateway will only consist of a root resource
         representing the root path of the API. If you want your gateway to
@@ -848,7 +848,7 @@ exports.handler = async (event) => {
         <code>deploy</code> a lambda with the same name as a preexisting
         function in the cloud.</p>
 
-        <p>Futher, considering user interaction with AWS beyond the confines of
+        <p>Further, considering user interaction with AWS beyond the confines of
         BAM!, we had to account for the possibility that developers may wish to
         use our framework to pull down the code for existing lambdas created
         without using BAM!, or for which they have no local JavaScript file. To
@@ -1069,7 +1069,7 @@ const bamBam = async (asyncFunc, {
 
         <p>The reason for retrying operations only in the event of a particular
         error is because if a wholly different type of exception is thrown, it
-        is preferrable to simply let the operation fail, rather than keep the
+        is preferable to simply let the operation fail, rather than keep the
         running process hanging indefinitely, knowing full well it may never
         succeed. BAM! will therefore only retry operations in cases where
         eventual success is a likely outcome.</p>
@@ -1099,7 +1099,7 @@ const bamBam = async (asyncFunc, {
 
         <p>AWS S3 is Amazon’s Simple Storage Service. Since we see BAM! being
         used often to deploy web pages, we would like to add support to upload
-        assets to an S3 bucket for use within the lamdba code.</p>
+        assets to an S3 bucket for use within the lambda code.</p>
 
         <h3>7.3 Additional Runtimes</h3>
 
