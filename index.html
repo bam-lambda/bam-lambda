@@ -27,7 +27,8 @@
       </a>
     </div>
     <nav id="site-navigation">
-      <img id="bam-logo-alt" src="https://i.imgur.com/798Mohw.png" alt="BAM! logo"/>
+      <img id="bam-logo-alt"
+      src="https://s3.amazonaws.com/bam-lambda/images/bam_logo_black.png" alt="BAM! logo"/>
       <ul>
         <li>
           <a href="#home" id="home-link">HOME</a>
@@ -53,7 +54,7 @@
 
         <nav>
           <ul></ul>
-        </nav>      
+        </nav>
 
         <h2 id="introduction">1 Introduction</h2>
 
@@ -568,7 +569,7 @@
         <p>The <code>--dbtables</code> and <code>--lambdas</code> flags can be
         used to only log resources for those respective services.</p>
 
-        <div class="container"><pre id="list-command"><code class="nohighlight">
+        <div class="container"><pre id="list-command"><code class="shell gruvbox-code">
 <span class="heading">Lambdas and endpoints deployed from this machine using BAM!:</span>
 <span class="bam-resource">  nameOfLambda1
     description: a description of the lambda
@@ -1178,12 +1179,14 @@ const bamBam = async (asyncFunc, {
     </main>
     <section id="our-team">
       <h1>Our Team</h1>
+      <p>We are looking for opportunities.  If you liked what you saw and want to talk more, please
+      reach out!</p>
       <ul>
         <li class="individual">
           <img src="https://s3.amazonaws.com/bam-lambda/images/jason.png" alt="Jason Overby"/>
           <h3>Jason Overby</h3>
           <p>Portland, OR</p>
-          <ul>
+          <ul class="social-icons">
             <li>
               <a href="mailto:j@jasonoverby.com"
                  target="_blank"><img src="https://s3.amazonaws.com/bam-lambda/images/email.png"
@@ -1205,7 +1208,7 @@ const bamBam = async (asyncFunc, {
           <img src="https://s3.amazonaws.com/bam-lambda/images/jocie.png" alt="Jocie Moore"/>
           <h3>Jocie Moore</h3>
           <p>San Francisco, CA</p>
-          <ul>
+          <ul class="social-icons">
             <li>
               <a href="mailto:hello@jociemoore.com"
                  target="_blank"><img src="https://s3.amazonaws.com/bam-lambda/images/email.png"
@@ -1228,7 +1231,7 @@ const bamBam = async (asyncFunc, {
           <h3>Tak Sampson</h3>
 
           <p>New York, NY</p>
-          <ul>
+          <ul class="social-icons">
             <li>
               <a href="mailto:tak.sampson@gmail.com"
                  target="_blank"><img src="https://s3.amazonaws.com/bam-lambda/images/email.png"
@@ -1247,8 +1250,6 @@ const bamBam = async (asyncFunc, {
           </ul>
         </li>
       </ul>
-      <p>We are looking for opportunities.  If you liked what you saw and want to talk more, please
-      reach out!</p>
     </section>
   </body>
 </html>

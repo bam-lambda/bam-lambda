@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const homeLink = document.querySelector('#home-link');
   const caseStudyNav = document.querySelector('#case-study nav');
   const caseStudyLink = document.querySelector('#case-study-link');
-  const logoLinks = document.querySelector('.logo-links');
   const ourTeamLink = document.querySelector('#our-team-link');
   const caseStudyNavUl = document.querySelector('#case-study nav ul');
   const mobileCaseStudyNavUl = document.querySelector('#case-study-mobile ul');
@@ -20,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let scrollPosition = getScrollPosition();
   const getWindowHeight = () => window.innerHeight;
   const getWindowWidth = () => window.innerWidth;
+  const isSmall = () => getWindowWidth() < 1100;
 
   const logos = [...document.querySelectorAll('.logo-links img')]
     .filter(logo => !(/bam/.test(logo.id)))
@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const h2Text = [...document.querySelectorAll('h2')].map(h2 => (
     h2.textContent.split(' ').slice(1).join(' ')
   ));
-
 
   const getPositions = () => (
     h2Text.reduce((obj, h2Str) => {
@@ -87,51 +86,40 @@ document.addEventListener('DOMContentLoaded', () => {
     bamBlack: 'https://s3.amazonaws.com/bam-lambda/images/bam_logo_black.png',
   };
 
-  const changeLogoColors = (logo, threshold) => {
-    if (scrollPosition > threshold) {
-      changeImgSrc(`${logo}-logo`, logoUrls[`${logo}Black`]);
-    } else {
-      changeImgSrc(`${logo}-logo`, logoUrls[`${logo}White`]);
-    }
-  };
-
-  const changeLogosColors = () => {
-    logos.forEach((logo) => {
-      scrollPosition = getScrollPosition();
-      const logoSelector = `#${logo}-logo`;
-      const logoElement = document.querySelector(logoSelector);
-      const logoHeight = logoElement.height;
-      const logoBottom = +window.getComputedStyle(logoElement).bottom.replace('px', '');
-      const logoOffset = logoHeight + logoBottom;
-      changeLogoColors(logo, logoOffset);
-    });
-  };
-
-  const onHeader = () => {
+  const isOnHeader = (logo) => {
     scrollPosition = getScrollPosition();
-    const darkNavStylePosition = getWindowHeight() - 88;
-    return scrollPosition < darkNavStylePosition;   
-  }
-
-  const onFooter = () => {
-    scrollPosition = getScrollPosition();
-    const ourTeamPosition = ourTeam.getBoundingClientRect().top;
-    const ourTeamOffset = (scrollPosition + ourTeamPosition) - getWindowHeight();
-    const logoSelector = '#bam-logo';
+    const logoSelector = `#${logo}-logo`;
     const logoElement = document.querySelector(logoSelector);
     const logoHeight = logoElement.height;
-    const logoTop = +window.getComputedStyle(logoElement).top.replace('px', '');
-    const logoOffset = logoHeight + logoTop;
-    return scrollPosition > ourTeamOffset + (getWindowHeight() - logoOffset);
+    const logoBottom = +window.getComputedStyle(logoElement).bottom.replace('px', '');
+    const logoOffset = logoHeight + logoBottom;
+    return scrollPosition < logoOffset;
   };
 
-  const changeBamLogoColor = () => {
-    if (onFooter()) {
-      changeImgSrc('bam-logo', 'https://s3.amazonaws.com/bam-lambda/images/bam_logo_black.png');
-      changeImgSrc('bam-logo-alt', 'https://s3.amazonaws.com/bam-lambda/images/bam_logo.png');
-    } else {
-      changeImgSrc('bam-logo', 'https://s3.amazonaws.com/bam-lambda/images/bam_logo.png');
-    }
+  const isOnTeamSection = (logo) => {
+    scrollPosition = getScrollPosition();
+    const ourTeamOffset = ourTeam.getBoundingClientRect().top;
+    const ourTeamPosition = (scrollPosition + ourTeamOffset);
+    const logoSelector = `#${logo}-logo`;
+    const logoElement = document.querySelector(logoSelector);
+    const logoHeight = logoElement.height;
+    const logoBottom = +window.getComputedStyle(logoElement).bottom.replace('px', '');
+    const logoOffset = logoHeight + logoBottom;
+    const logoPosition = ((scrollPosition + getWindowHeight()) - logoOffset);
+    return logoPosition > ourTeamPosition;
+  };
+
+  const changeLogoColors = () => {
+    logos.forEach((logo) => {
+      const onHeader = isOnHeader(logo);
+      const onTeam = isOnTeamSection(logo);
+
+      if (onHeader || onTeam) {
+        changeImgSrc(`${logo}-logo`, logoUrls[`${logo}White`]);
+      } else {
+        changeImgSrc(`${logo}-logo`, logoUrls[`${logo}Black`]);
+      }
+    });
   };
 
   const handleCaseStudyNavStyles = () => {
@@ -141,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileCaseStudyNav = document.querySelector('#case-study-mobile');
 
     positionValues.forEach((_, i) => {
-      const li = document.querySelector(positionSelectors[i]);      
+      const li = document.querySelector(positionSelectors[i]);
       const a = li.getElementsByTagName('a')[0];
       const currPosition = i > 0 ? positionValues[i] : 0;
       const nextPositionIdx = i + 1;
@@ -162,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const withinCaseStudy = scrollPosition >= mainPosition
       && scrollPosition < ourTeamPosition - getWindowHeight();
 
-    if (getWindowHeight() < 500 || getWindowWidth() < 1100) {     
+    if (getWindowHeight() < 500 || getWindowWidth() < 1100) {
       caseStudyNav.style.display = 'none';
     } else if (withinCaseStudy) {
       caseStudyNav.style.display = 'block';
@@ -191,35 +179,60 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const showNav = () => {
-    navVisible = true;
-    const small = getWindowWidth() <= 768;
+    const position = scrollPosition;
+    const small = isSmall();
+    const onHeader = isOnHeader('bam');
+    const onTeam = isOnTeamSection('bam');
+    scrollPosition = position;
 
     if (small) {
       styleNav('#282828', '#9eba2a', '#c3e634');
-    } else if (onHeader()) {
+    } else if (onHeader || onTeam) {
       styleNav('#9eba2a', '#282828', '#383838', true);
-    } else if (onFooter()) {
-      styleNav('#282828', '#9eba2a', '#c3e634', true);
     } else {
       styleNav('#282828', '#9eba2a', '#c3e634');
     }
 
+    if (small) document.body.style.backgroundColor = '#282828';
     $(nav).slideDown('fast');
+  };
+
+  const showSite = () => {
+    header.style.display = 'block';
+    main.style.display = 'block';
+    ourTeam.style.display = 'block';
+    document.body.removeAttribute('style');
   };
 
   const hideNav = () => {
     navVisible = false;
     $(bamLogo).fadeIn('fast');
     $(nav).slideUp('fast');
+    showSite();
+  };
+
+  const handleToggleNav = () => {
+    if (navVisible) {
+      hideNav();
+      window.scrollTo(0, scrollPosition);
+    } else {
+      showNav();
+      navVisible = true;
+      header.style.display = 'none';
+      main.style.display = 'none';
+      ourTeam.style.display = 'none';
+    }
   };
 
   const toggleNav = () => {
-    navVisible ? hideNav() : showNav();
-    navVisible = !navVisible;
-  }
+    if (isSmall()) {
+      handleToggleNav();
+    } else {
+      showNav();
+    }
+  };
 
   bamLogo.addEventListener('click', toggleNav);
-  nav.addEventListener('mouseover', showNav);
   main.addEventListener('mouseenter', hideNav);
   ourTeam.addEventListener('mouseenter', hideNav);
   header.addEventListener('mouseenter', hideNav);
@@ -230,34 +243,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.addEventListener('scroll', () => {
     if (!navVisible) {
-      changeLogosColors();
-      changeBamLogoColor();
+      changeLogoColors();
       handleCaseStudyNav();
     }
   });
 
-  window.addEventListener('resize', (e) => {
+  window.addEventListener('resize', () => {
     handleCaseStudyNav();
-    if (navVisible) {
-      showNav();
-    }
-    changeBamLogoColor();
-  });
-
-  logoLinks.addEventListener('mouseout', (e) => {
-    scrollPosition = getScrollPosition();
-    const { id } = e.target;
-    const logo = id.split('-')[0];
-    const ourTeamPosition = ourTeam.getBoundingClientRect().top;
-    const ourTeamOffset = (scrollPosition + ourTeamPosition) - getWindowHeight();
-    const logoElement = e.target;
-    const logoHeight = logoElement.height;
-    const logoTop = +window.getComputedStyle(logoElement).top.replace('px', '');
-    const logoOffset = logoHeight + logoTop;
-
-    if (scrollPosition > ourTeamOffset + (getWindowHeight() - logoOffset)) {
-      const urlKey = `${logo}Black`;
-      changeImgSrc(id, logoUrls[urlKey]);
+    if (!isSmall() && navVisible) {
+      showSite();
+      hideNav();
+      window.scrollTo(0, scrollPosition);
     }
   });
 
