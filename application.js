@@ -1,4 +1,4 @@
-/* global document, window, hljs */
+/* global document, window, hljs, $ */
 
 document.addEventListener('DOMContentLoaded', () => {
   const bamLogo = document.querySelector('#bam-logo');
@@ -67,15 +67,23 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const logoUrls = {
-    githubWhite: 'https://i.imgur.com/7X29Lfl.png',
-    githubBlack: 'https://i.imgur.com/uS9im3Z.png',
-    mediumWhite: 'https://i.imgur.com/DP4t04E.png',
-    mediumBlack: 'https://i.imgur.com/IPiAMRb.png',
-    bamWhite: 'https://i.imgur.com/zSuO4RT.png',
-    bamBlack: 'https://i.imgur.com/798Mohw.png',
+    githubWhite: 'https://s3.amazonaws.com/bam-lambda/images/github_white.png',
+    githubBlack: 'https://s3.amazonaws.com/bam-lambda/images/github_black.png',
+    mediumWhite: 'https://s3.amazonaws.com/bam-lambda/images/medium_white.png',
+    mediumBlack: 'https://s3.amazonaws.com/bam-lambda/images/medium_black.png',
+    bamWhite: 'https://s3.amazonaws.com/bam-lambda/images/bam_logo.png',
+    bamBlack: 'https://s3.amazonaws.com/bam-lambda/images/bam_logo_black.png',
   };
 
-  const changeLogoColors = () => {
+  const changeLogoColors = (logo, threshold) => {
+    if (scrollPosition > threshold) {
+      changeImgSrc(`${logo}-logo`, logoUrls[`${logo}Black`]);
+    } else {
+      changeImgSrc(`${logo}-logo`, logoUrls[`${logo}White`]);
+    }
+  };
+
+  const changeLogosColors = () => {
     logos.forEach((logo) => {
       scrollPosition = getScrollPosition();
       const logoSelector = `#${logo}-logo`;
@@ -83,12 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const logoHeight = logoElement.height;
       const logoBottom = +window.getComputedStyle(logoElement).bottom.replace('px', '');
       const logoOffset = logoHeight + logoBottom;
-
-      if (scrollPosition > logoOffset) {
-        changeImgSrc(`${logo}-logo`, logoUrls[`${logo}Black`]);
-      } else {
-        changeImgSrc(`${logo}-logo`, logoUrls[`${logo}White`]);
-      }
+      changeLogoColors(logo, logoOffset);
     });
   };
 
@@ -106,10 +109,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const changeBamLogoColor = () => {
     if (onFooter()) {
-      changeImgSrc('bam-logo', 'https://i.imgur.com/798Mohw.png');
-      changeImgSrc('bam-logo-alt', 'https://i.imgur.com/Ao4nAG5.png');
+      changeImgSrc('bam-logo', 'https://s3.amazonaws.com/bam-lambda/images/bam_logo_black.png');
+      changeImgSrc('bam-logo-alt', 'https://s3.amazonaws.com/bam-lambda/images/bam_logo.png');
     } else {
-      changeImgSrc('bam-logo', 'https://i.imgur.com/Ao4nAG5.png');
+      changeImgSrc('bam-logo', 'https://s3.amazonaws.com/bam-lambda/images/bam_logo.png');
     }
   };
 
@@ -159,6 +162,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const styleNav = (bgColor, textColor, hoverColor, changeLogo) => {
     nav.style.backgroundColor = bgColor;
+    changeImgSrc('bam-logo', logoUrls.bamWhite);
+
     navLinks.forEach((link) => {
       link.style.color = textColor;
 
@@ -170,6 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
         link.style.color = textColor;
       });
     });
+
     if (changeLogo) $(bamLogo).fadeOut('fast');
   };
 
@@ -208,7 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.addEventListener('scroll', () => {
     if (!navVisible) {
-      changeLogoColors();
+      changeLogosColors();
       changeBamLogoColor();
       handleCaseStudyNav();
     }
