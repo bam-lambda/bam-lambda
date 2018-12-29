@@ -82,8 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
     githubBlack: 'https://s3.amazonaws.com/bam-lambda/images/github_black.png',
     mediumWhite: 'https://s3.amazonaws.com/bam-lambda/images/medium_white.png',
     mediumBlack: 'https://s3.amazonaws.com/bam-lambda/images/medium_black.png',
-    bamWhite: 'https://s3.amazonaws.com/bam-lambda/images/bam_logo.png',
-    bamBlack: 'https://s3.amazonaws.com/bam-lambda/images/bam_logo_black.png',
   };
 
   const isOnHeader = (logo) => {
