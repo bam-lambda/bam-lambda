@@ -613,7 +613,7 @@ h2#references {
     cursor: pointer;
     width: 28px;
     position: fixed;
-    bottom: 8vh;
+    bottom: 75px;
     right: 27px;
   }
 
@@ -621,7 +621,7 @@ h2#references {
     cursor: pointer;
     width: 28px;
     position: fixed;
-    bottom: 3vh;
+    bottom: 30px;
     right: 27px;
   }
 
