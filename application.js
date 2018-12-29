@@ -132,8 +132,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const currPosition = i > 0 ? positionValues[i] : 0;
       const nextPositionIdx = i + 1;
       const nextPosition = positionValues[nextPositionIdx] || 999999;
+      const windowPositionIsAtLi = scrollPosition >= currPosition && scrollPosition < nextPosition;
 
-      if (scrollPosition >= currPosition && scrollPosition < nextPosition && !mobileCaseStudyNav.contains(li)) {
+      if (windowPositionIsAtLi && !mobileCaseStudyNav.contains(li)) {
         highlightSection(li, a);
       } else {
         if (li.getAttribute('style')) li.removeAttribute('style');
