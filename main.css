@@ -397,7 +397,7 @@ h2#references {
 }
 
 #our-team h1 {
-  padding-top: 60px;
+  padding-top: 100px;
   margin-bottom: 30px;
   text-align: center;
   line-height: 4rem;
@@ -496,11 +496,11 @@ h2#references {
   }
 
   main {
-    padding: 3rem 7rem 0 7rem;
+    padding: 0 75px;
   }
 
   section#case-study {
-    margin: 20px auto;
+    margin: 70px auto;
   }
 
   #case-study h2:first-of-type {
@@ -510,6 +510,10 @@ h2#references {
   #flowchart {
     max-width: 100%;
     height: auto;
+  }
+
+  #our-team h1 {
+    padding-top: 70px;
   }
 }
 
@@ -523,10 +527,6 @@ h2#references {
 
 
 @media (max-width: 975px) {
-  nav#site-navigation {
-
-  }
-
   nav#site-navigation ul {
     font-size: 3rem;
   }
@@ -540,11 +540,39 @@ h2#references {
     line-height: 1.5rem;
     padding: 0 90px;
   }
+
+  #our-team > p {
+    width: 60%;
+  }
+
+  #our-team .individual li {
+      margin: 10px 7px 0;
+  }
+
+  #our-team .individual li img {
+    width: 30px;
+  }
 }
 
-/* 885 pre becomes wider than container */
-
 @media (max-width: 800px) {
+  /* General */
+
+  h1 {
+    font-size: 3.5rem;
+  }
+
+  h2 {
+    font-size: 2.0rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  h4 {
+    font-size: 1.3rem;
+  }
+
 
   /* Logos */
 
@@ -565,7 +593,7 @@ h2#references {
     cursor: pointer;
     width: 28px;
     position: fixed;
-    bottom: 85px;
+    bottom: 88px;
     right: 27px;
   }
 
@@ -578,11 +606,6 @@ h2#references {
   }
 
   /* Site Nav */
-  #close-nav {
-    left: 21px;
-    top: 32px;
-    font-size: 2.6rem;
-  }
 
   nav#site-navigation > ul {
     margin-top: 14vh;
@@ -591,10 +614,6 @@ h2#references {
 
   /* Main */
 
-  main {
-    padding: 2rem 3rem 0 3rem;
-  }
-
   header h1 {
     font-size: 2.5rem;
     padding: 18px 21px;
@@ -602,15 +621,26 @@ h2#references {
   }
 
   #home p {
-    font-size: 2rem;
-  }
-
-  main {
-    padding: 0 75px;
+    font-size: 2.5rem;
   }
 
   section#case-study {
     width: 100%;
+  }
+
+  #case-study p {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  #case-study blockquote p {
+    font-size: 1.1rem;
+    line-height: 1.6rem;
+  }
+
+  code,
+  .command {
+    font-size: 0.9rem;
   }
 
   #footnotes {
@@ -619,50 +649,20 @@ h2#references {
 
   /* Our Team */
 
-  #our-team h1 {
-    padding-top: 25px;
-  }
-
-  #our-team > ul {
-    padding: 30px 0;
-  }
-
-  #our-team li > img {
-    border: 3px solid #000;
-  }
-
-  #our-team .individual p {
-    font-size: 1rem;
-  }
-
-  #our-team .individual h3 {
-    font-size: 1.3rem;
-  }
-
-  #our-team .individual li img {
-    width: 30px;
+  #our-team > p {
+    width: 70%;
   }
 
   #our-team .individual li {
-    margin: 10px 3px;
+      margin: 10px 5px 0;
   }
 
-  #our-team > p:last-of-type {
-    font-size: 1.2rem;
-    margin-top: 60px;
-    width: 70%;
+  #our-team .individual li img{
+    width: 25px;
   }
 }
 
 @media (max-width: 600px) {
-  #bam-deploy {
-    width: 340px;
-    height: 265px;
-  }
-}
-
-
-@media (max-width: 500px) {
   /* General */
 
   h1 {
@@ -681,48 +681,59 @@ h2#references {
     font-size: 1rem;
   }
 
-  code,
-  .command {
-    font-size: 0.9rem;
-  }
-
-  #case-study p {
-    font-size: 1rem;
-    line-height: 1.3rem;
-  }
+  /* Main */ 
 
   #github-logo {
-    bottom: 75px;
+    bottom: 88px;
+  }
+
+  #home p {
+    font-size: 2.3rem;
+    padding: 0 60px;
+  }
+
+  section#case-study {
+    margin: 40px auto;
   }
 
   #bam-deploy {
-    width: 270px;
-    height: 213px
+    width: 340px;
+    height: 265px;
   }
 
   /* Our Team */
 
+  #our-team h1 {
+    padding-top: 60px;
+  }
+
+  #our-team > p {
+    font-size: 1rem;
+    margin-top: 0;
+  }
+
   #our-team > ul {
-    background-color: #9eba2a;
     margin-top: 0;
     padding: 0;
   }
 
   #our-team  li {
     display: block;
-    margin: 30px auto;
+    margin: 0 auto;
     width: 60%;
   }
 
   #our-team .individual {
-    background-color: #c3e634;
-    border: 1px solid #c3e634;
-    border-radius: 5px;
-    padding: 30px 0;
+    padding: 50px 0;
+    border-bottom: 1px solid #fff;
+  }
+
+  #our-team .individual:last-of-type {
+    border-bottom: 0px;
   }
 
   #our-team .individual ul {
-    width: 50%;
+    width: 70%;
     margin: 0 auto;
   }
 
@@ -730,24 +741,42 @@ h2#references {
     margin: 10px 5px;
   }
 
+  #our-team .individual li img {
+    width: 25px;
+    padding: 3px;
+  }
+
   #our-team li > img {
     width: 30vw;
   }
+}
 
-  #our-team > p:last-of-type {
-    font-size: 1rem;
-    margin-top: 0;
-    width: 60%;
+
+@media (max-width: 500px) {
+  #home p {
+    font-size: 2.1rem;
   }
 
-  /* #case-study-mobile nav {
-    width: auto;
-    right: 0;
+  #bam-deploy {
+    width: 270px;
+    height: 213px
   }
 
-  #case-study-mobile nav ul {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  } */
+  #our-team .individual ul {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  #our-team .individual li {
+    margin: 10px 7px;
+  }
+
+  #our-team .individual li img {
+    width: 30px;
+    padding: 2px;
+  }
+
+  #our-team li > img {
+    width: 35vw;
+  }
 }
