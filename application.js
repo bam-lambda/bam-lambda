@@ -32,6 +32,17 @@ document.addEventListener('DOMContentLoaded', () => {
     h2.textContent.split(' ').slice(1).join(' ')
   ));
 
+
+  const getPositions = () => (
+    h2Text.reduce((obj, h2Str) => {
+      const selector = `#${snakeCaseify(h2Str.replace('!', ''))}`;
+      const h2 = document.querySelector(selector);
+      const position = getScrollPosition() + h2.getBoundingClientRect().top;
+      obj[`${selector}-nav`] = position;
+      return obj;
+    }, {})
+  );
+
   const highlightSection = (li, a) => {
     li.style.listStyle = 'disc';
     li.style.fontWeight = 'bold';
@@ -47,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const a = document.createElement('a');
     a.href = snakeCaseify(`#${h2TextStr.replace('!', '')}`);
     a.textContent = h2TextStr.toUpperCase();
+    a.className = 'case-study-anchor';
 
     const li2 = document.createElement('li');
     li2.id = snakeCaseify(`mobile-${h2TextStr.replace('!', '').toLowerCase()}-nav`);
@@ -117,13 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const handleCaseStudyNavStyles = () => {
-    const positions = h2Text.reduce((obj, h2Str) => {
-      const selector = `#${snakeCaseify(h2Str.replace('!', ''))}`;
-      const h2 = document.querySelector(selector);
-      const position = getScrollPosition() + h2.getBoundingClientRect().top;
-      obj[`${selector}-nav`] = position;
-      return obj;
-    }, {});
+    const positions = getPositions();
     const positionValues = Object.values(positions);
     const positionSelectors = Object.keys(positions);
     const mobileCaseStudyNav = document.querySelector('#case-study-mobile');
@@ -238,6 +244,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (scrollPosition > ourTeamOffset + (getWindowHeight() - logoOffset)) {
       const urlKey = `${logo}Black`;
       changeImgSrc(id, logoUrls[urlKey]);
+    }
+  });
+
+  caseStudyNav.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A') {
+      e.preventDefault();
+      const positions = getPositions();
+      const positionKey = `#${e.target.href.split('#')[1]}-nav`;
+      const newScrollPosition = positions[positionKey];
+      window.scrollTo(0, newScrollPosition + 5);
     }
   });
 
