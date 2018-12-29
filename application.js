@@ -197,10 +197,8 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const showSite = () => {
-    header.style.display = 'block';
-    main.style.display = 'block';
-    ourTeam.style.display = 'block';
-    document.body.removeAttribute('style');
+    const siteElements = [header, main, ourTeam, document.body];
+    siteElements.forEach(el => el.removeAttribute('style'));
   };
 
   const hideNav = () => {
