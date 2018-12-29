@@ -198,6 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const showSite = () => {
     const siteElements = [header, main, ourTeam, document.body];
+    // remove "display = 'none'" set when small nav was displayed
     siteElements.forEach(el => el.removeAttribute('style'));
   };
 
