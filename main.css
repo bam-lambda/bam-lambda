@@ -613,7 +613,7 @@ h2#references {
     cursor: pointer;
     width: 28px;
     position: fixed;
-    bottom: 88px;
+    bottom: 8vh;
     right: 27px;
   }
 
@@ -621,7 +621,7 @@ h2#references {
     cursor: pointer;
     width: 28px;
     position: fixed;
-    bottom: 30px;
+    bottom: 3vh;
     right: 27px;
   }
 
@@ -695,10 +695,6 @@ h2#references {
   }
 
   /* Main */
-
-  #github-logo {
-    bottom: 88px;
-  }
 
   #home p {
     font-size: 2.3rem;
