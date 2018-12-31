@@ -119,6 +119,8 @@ nav#site-navigation #bam-logo-alt {
 
 #case-study img {
   margin: 50px auto;
+  max-width: 50vw;
+  height: auto;
 }
 
 #root-proxy-path {
@@ -326,10 +328,6 @@ header span {
   font-size: 0.8rem;
 }
 
-#case-study img {
-  max-width: 50vw;
-}
-
 /* ---------------------------------
 
               commands
@@ -522,21 +520,18 @@ h2#references {
 
   nav#site-navigation {
     height: 100vh;
-    padding-bottom: 3rem;
     overflow: scroll;
   }
 
   nav#site-navigation > ul {
-    margin-top: 3vh;
-  }
-
-  nav#site-navigation ul {
-    font-size: 5vw;
+    margin-top: 50px;
+    padding-bottom: 50px;
   }
 
   nav#site-navigation ul li {
     display: block;
     float: none;
+    margin: 15px 20px 15px 40px;
   }
 }
 
@@ -705,11 +700,6 @@ h2#references {
     margin: 40px auto;
   }
 
-  #bam-deploy {
-    width: 340px;
-    height: 265px;
-  }
-
   /* Our Team */
 
   #our-team h1 {
@@ -765,9 +755,8 @@ h2#references {
     font-size: 2.1rem;
   }
 
-  #bam-deploy {
-    width: 270px;
-    height: 213px
+  #case-study img{
+    max-width: 60vw;
   }
 
   #our-team .individual ul {
@@ -786,5 +775,66 @@ h2#references {
 
   #our-team li > img {
     width: 35vw;
+  }
+
+  nav#site-navigation ul {
+    font-size: 1.2rem;
+  }
+
+  nav#site-navigation ul li {
+    margin: 10px 0 10px 40px;
+  }
+}
+
+@media (max-width: 400px) {
+  #bam-logo {
+    right: 14px;
+  }
+
+  nav#site-navigation #bam-logo-alt {
+    right: 14px;
+  }
+
+  #github-logo {
+    bottom: 70px;
+    right: 20px;
+  }
+
+  #medium-logo {
+    bottom: 20px;
+    right: 20px;
+  }
+
+  #home p {
+    font-size: 1.7rem;
+  }
+
+  main {
+    padding: 0 70px 0 25px;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  nav#site-navigation ul {
+    font-size: 1rem;
+  }
+
+  nav#site-navigation > ul {
+    margin-top: 20px;
+    padding-bottom: 25px;
+  }
+
+  nav#site-navigation ul li {
+    margin-bottom: 15px;
+  }
+
+  #case-study img{
+    max-width: 65vw;
+  }
+
+  #our-team > p {
+    width: 57%;
   }
 }
