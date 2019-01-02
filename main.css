@@ -69,7 +69,6 @@ img {
   display: block;
   margin: 0 auto;
   max-width: 800px;
-  width: 100%;
 }
 
 #bam-logo {
@@ -80,15 +79,6 @@ img {
   right: 28px;
   z-index: 4;
 }
-
-nav#site-navigation #bam-logo-alt {
-  position: fixed;
-  right: 28px;
-  top: 20px;
-  width: 50px;
-  z-index: 3;
-}
-
 
 #github-logo {
   cursor: pointer;
@@ -116,6 +106,8 @@ nav#site-navigation #bam-logo-alt {
 
 #case-study img {
   margin: 50px auto;
+  max-width: 50vw;
+  height: auto;
 }
 
 #root-proxy-path {
@@ -161,7 +153,7 @@ code {
 code.gruvbox-code {
   border: 15px solid #282828;
   border-radius: 1rem;
-  padding: 0.5rem 1.5rem 0 1.5rem;
+  padding: 0.5vh 1vw;
 }
 
 /* ---------------------------------
@@ -195,6 +187,7 @@ nav#site-navigation p {
 
 nav#site-navigation a {
   text-decoration: none;
+  white-space: nowrap;
 }
 
 /* ---------------------------------
@@ -210,8 +203,8 @@ header {
 }
 
 header h1 {
- font-style: italic;
  font-size: 3rem;
+ font-style: italic;
  line-height: 3rem;
  padding: 20px 20px;
 }
@@ -222,14 +215,25 @@ header p {
   left: 50%;
   letter-spacing: 0.3rem;
   position: absolute;
-  top: 50%;
   text-align: center;
+  top: 50%;
   transform: translateY(-50%) translateX(-50%);
   width: 850px;
 }
 
 header span {
   color: #c3e634;
+}
+
+h6 {
+  bottom: 25px;
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: normal;
+  left: 20px;
+  opacity: 0.5;
+  position: absolute;
+  text-align: left;
 }
 
 /* ---------------------------------
@@ -339,14 +343,6 @@ header span {
   padding: 0.2rem;
 }
 
-#list-command {
-  background-color: #282828;
-  border: 10px solid #282828;
-  border-radius: 10px;
-  display: inline-block;
-  padding: 0.5rem 1.5rem 0 1.5rem;
-}
-
 #list-command code {
   color: #ebdbb2;
 }
@@ -398,33 +394,38 @@ h2#references {
 ------------------------------------ */
 
 #our-team {
-  background-color: #9eba2a;
-  color: #282828;
-  margin-top: 200px;
-  padding-bottom: 60px;
+  background-color: #282828;
+  color: #fff;
+  margin-top: 100px;
 }
 
 #our-team h1 {
   padding-top: 100px;
+  margin-bottom: 30px;
   text-align: center;
+  line-height: 4rem;
 }
 
 #our-team > p {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
+  line-height: 1.7rem;
+  margin-top: 30px;
   text-align: center;
-  margin: 20px 400px 0 400px;
+  margin: 0 auto;
+  width: 45%;
 }
 
 #our-team > ul {
-  background-color: #c3e634;
-  margin-top: 60px;
-  padding: 60px 0 40px 0;
+  padding: 60px 0 80px;
   text-align: center;
 }
 
-#our-team li {
+#our-team li,
+#our-team .social-icons li {
   display: inline-block;
-  margin: 0 90px;
+  margin: 0 3%;
+  width: 20%;
+  vertical-align: top;
 }
 
 #our-team h3 {
@@ -436,11 +437,11 @@ h2#references {
   text-decoration: none;
 }
 
-#our-team img {
-  border: 4px solid #282828;
+#our-team li > img {
   border-radius: 100%;
-  margin: 0 0 20px 0;
-  width: 250px;
+  margin: 0 auto 20px;
+  width: 15vw;
+  max-width: 250px;
 }
 
 #our-team .individual ul {
@@ -448,21 +449,390 @@ h2#references {
 }
 
 #our-team .individual li img {
-  border: 0;
-  border-radius: 0;
+  background-color: #c3e643;
+  border: 1px solid #c3e643;
+  border-radius: 25px;
+  padding: 2px;
   margin-top: 10px;
-  width: 40px;
+  width: 35px;
+}
+
+#our-team .individual li img:hover {
+  background-color: #9eba2a;
+  border: 1px solid #9eba2a;
 }
 
 #our-team .individual li {
-  margin: 10px 5px 0 5px;
+  margin: 10px 10px 0 10px;
 }
 
 #our-team .individual p {
-  font-size: 1.3rem;
+  font-size: 1rem;
 }
 
-#our-team > p:last-of-type {
-  font-size: 1.5rem;
-  margin-top: 60px;
+/* ---------------------------------
+
+              mobile
+
+------------------------------------ */
+
+@media (max-width: 1100px) {
+  #case-study nav {
+    display: none;
+  }
+
+  nav#case-study-mobile ul {
+    margin: 0;
+  }
+
+  nav#site-navigation #case-study-mobile li {
+    margin-left: 0;
+  }
+
+  nav#site-navigation #case-study-mobile li:last-child {
+    margin-bottom: 0;
+  }
+
+  main {
+    padding: 0 75px;
+  }
+
+  section#case-study {
+    margin: 70px auto;
+  }
+
+  #case-study h2:first-of-type {
+    margin-top: 20px;
+  }
+
+  #flowchart {
+    max-width: 100%;
+    height: auto;
+  }
+
+  #our-team h1 {
+    padding-top: 70px;
+  }
+
+  /* Site Nav */
+
+  nav#site-navigation {
+    height: 100vh;
+    overflow: scroll;
+  }
+
+  nav#site-navigation > ul {
+    margin-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  nav#site-navigation ul li {
+    display: block;
+    float: none;
+    margin: 15px 20px 15px 40px;
+  }
+}
+
+@media (max-width: 1030px) {
+  #home p {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0 90px;
+  }
+}
+
+@media (max-width: 975px) {
+
+  nav#site-navigation p {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    padding: 0 90px;
+  }
+
+  #our-team > p {
+    width: 60%;
+  }
+
+  #our-team .individual li {
+      margin: 10px 7px 0;
+  }
+
+  #our-team .individual li img {
+    width: 30px;
+  }
+}
+
+@media (min-width: 1100px) {
+  nav#case-study-mobile {
+    display: none;
+  }
+}
+
+@media (max-width: 800px) {
+  /* General */
+
+  h1 {
+    font-size: 3.5rem;
+  }
+
+  h2 {
+    font-size: 2.0rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  h4 {
+    font-size: 1.3rem;
+  }
+
+  /* Logos */
+
+  #bam-logo {
+    width: 40px;
+    top: 18px;
+    right: 21px;
+  }
+
+  #github-logo {
+    cursor: pointer;
+    width: 28px;
+    position: fixed;
+    bottom: 75px;
+    right: 27px;
+  }
+
+  #medium-logo {
+    cursor: pointer;
+    width: 28px;
+    position: fixed;
+    bottom: 30px;
+    right: 27px;
+  }
+
+  /* Main */
+
+  header h1 {
+    font-size: 2.5rem;
+    padding: 18px 21px;
+    line-height: 2.3rem;
+  }
+
+  #home p {
+    font-size: 2.5rem;
+  }
+
+  section#case-study {
+    width: 100%;
+  }
+
+  #case-study p {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  #case-study blockquote p {
+    font-size: 1.1rem;
+    line-height: 1.6rem;
+  }
+
+  code,
+  .command {
+    font-size: 0.9rem;
+  }
+
+  pre code {
+    font-size: 1.5vw;
+  }
+
+  #footnotes {
+    word-wrap: break-word;
+  }
+
+  /* Our Team */
+
+  #our-team > p {
+    width: 70%;
+  }
+
+  #our-team .individual li {
+      margin: 10px 5px 0;
+  }
+
+  #our-team .individual li img{
+    width: 25px;
+  }
+}
+
+@media (max-width: 600px) {
+  /* General */
+
+  h1 {
+    font-size: 2.7rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  h3 {
+    font-size: 1.3rem;
+  }
+
+  h4 {
+    font-size: 1rem;
+  }
+
+  /* Main */
+
+  #home p {
+    font-size: 2.3rem;
+    padding: 0 60px;
+  }
+
+  section#case-study {
+    margin: 40px auto;
+  }
+
+  /* Our Team */
+
+  #our-team h1 {
+    padding-top: 60px;
+  }
+
+  #our-team > p {
+    font-size: 1rem;
+    margin-top: 0;
+  }
+
+  #our-team > ul {
+    margin-top: 0;
+    padding: 0;
+  }
+
+  #our-team  li {
+    display: block;
+    margin: 0 auto;
+    width: 60%;
+  }
+
+  #our-team .individual {
+    padding: 50px 0;
+    border-bottom: 1px solid #fff;
+  }
+
+  #our-team .individual:last-of-type {
+    border-bottom: 0px;
+  }
+
+  #our-team .individual ul {
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  #our-team .individual li {
+    margin: 10px 5px;
+  }
+
+  #our-team .individual li img {
+    width: 25px;
+    padding: 3px;
+  }
+
+  #our-team li > img {
+    width: 30vw;
+  }
+}
+
+@media (max-width: 500px) {
+  #home p {
+    font-size: 2.1rem;
+  }
+
+  #case-study img{
+    max-width: 60vw;
+  }
+
+  #our-team .individual ul {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  #our-team .individual li {
+    margin: 10px 7px;
+  }
+
+  #our-team .individual li img {
+    width: 30px;
+    padding: 2px;
+  }
+
+  #our-team li > img {
+    width: 35vw;
+  }
+
+  nav#site-navigation ul {
+    font-size: 1.2rem;
+  }
+
+  nav#site-navigation ul li {
+    margin: 10px 0 10px 40px;
+  }
+}
+
+@media (max-width: 400px) {
+  #bam-logo {
+    width: 30px;
+    right: 14px;
+  }
+
+  #github-logo {
+    bottom: 60px;
+    right: 20px;
+    width: 20px;
+  }
+
+  #medium-logo {
+    bottom: 20px;
+    right: 20px;
+    width: 20px;
+  }
+
+  #home p {
+    font-size: 1.7rem;
+  }
+
+  main {
+    padding: 0 70px 0 25px;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  nav#site-navigation ul {
+    font-size: 1.1rem;
+  }
+
+  nav#site-navigation > ul {
+    margin-top: 20px;
+    padding-bottom: 25px;
+  }
+
+  nav#site-navigation ul li {
+    margin-bottom: 3.5vh;
+  }
+
+  nav#case-study-mobile {
+    margin-top: 1.75vh;
+  }
+
+  #case-study img{
+    max-width: 65vw;
+  }
+
+  #our-team > p {
+    width: 57%;
+  }
 }
