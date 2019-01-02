@@ -647,6 +647,10 @@ h2#references {
     font-size: 0.9rem;
   }
 
+  pre code {
+    font-size: 1.5vw;
+  }
+
   #footnotes {
     word-wrap: break-word;
   }
@@ -828,10 +832,6 @@ h2#references {
 
   nav#site-navigation ul li {
     margin-bottom: 15px;
-  }
-
-  pre code {
-    font-size: 6px;
   }
 
   #case-study img{
