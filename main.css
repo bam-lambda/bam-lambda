@@ -234,6 +234,17 @@ header span {
   color: #c3e634;
 }
 
+h6 {
+  bottom: 25px;
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: normal;
+  left: 20px;
+  opacity: 0.5;
+  position: absolute;
+  text-align: left;
+}
+
 /* ---------------------------------
 
             case study
