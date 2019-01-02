@@ -213,10 +213,8 @@ document.addEventListener('DOMContentLoaded', () => {
   ourTeamLink.addEventListener('click', hideNav);
 
   document.addEventListener('scroll', () => {
-//    if (!navVisible) {
-      changeLogoColors();
-      handleCaseStudyNav();
-//    }
+    changeLogoColors();
+    handleCaseStudyNav();
     handleNavAndBamLogo();
   });
 
