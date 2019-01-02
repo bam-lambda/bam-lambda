@@ -59,10 +59,6 @@ i {
   font-style: italic;
 }
 
-.no-scroll {
-  overflow: hidden;
-}
-
 /* ---------------------------------
 
                images
@@ -216,8 +212,8 @@ header {
 }
 
 header h1 {
- font-style: italic;
  font-size: 3rem;
+ font-style: italic;
  line-height: 3rem;
  padding: 20px 20px;
 }
@@ -228,8 +224,8 @@ header p {
   left: 50%;
   letter-spacing: 0.3rem;
   position: absolute;
-  top: 50%;
   text-align: center;
+  top: 50%;
   transform: translateY(-50%) translateX(-50%);
   width: 850px;
 }
@@ -788,21 +784,25 @@ h2#references {
 
 @media (max-width: 400px) {
   #bam-logo {
+    width: 30px;
     right: 14px;
   }
 
   nav#site-navigation #bam-logo-alt {
+    width: 30px;
     right: 14px;
   }
 
   #github-logo {
-    bottom: 70px;
+    bottom: 60px;
     right: 20px;
+    width: 20px;
   }
 
   #medium-logo {
     bottom: 20px;
     right: 20px;
+    width: 20px;
   }
 
   #home p {
@@ -828,6 +828,10 @@ h2#references {
 
   nav#site-navigation ul li {
     margin-bottom: 15px;
+  }
+
+  pre code {
+    font-size: 6px;
   }
 
   #case-study img{
