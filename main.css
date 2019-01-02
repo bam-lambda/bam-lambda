@@ -80,15 +80,6 @@ img {
   z-index: 4;
 }
 
-nav#site-navigation #bam-logo-alt {
-  position: fixed;
-  right: 28px;
-  top: 20px;
-  width: 50px;
-  z-index: 3;
-}
-
-
 #github-logo {
   cursor: pointer;
   width: 35px;
@@ -604,13 +595,6 @@ h2#references {
     right: 21px;
   }
 
-  nav#site-navigation #bam-logo-alt {
-    position: fixed;
-    right: 21px;
-    top: 18px;
-    width: 40px;
-  }
-
   #github-logo {
     cursor: pointer;
     width: 28px;
@@ -799,11 +783,6 @@ h2#references {
 
 @media (max-width: 400px) {
   #bam-logo {
-    width: 30px;
-    right: 14px;
-  }
-
-  nav#site-navigation #bam-logo-alt {
     width: 30px;
     right: 14px;
   }
