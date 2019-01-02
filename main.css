@@ -822,7 +822,7 @@ h2#references {
   }
 
   nav#site-navigation ul {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 
   nav#site-navigation > ul {
@@ -831,7 +831,11 @@ h2#references {
   }
 
   nav#site-navigation ul li {
-    margin-bottom: 15px;
+    margin-bottom: 3.5vh;
+  }
+
+  nav#case-study-mobile {
+    margin-top: 1.75vh;
   }
 
   #case-study img{
