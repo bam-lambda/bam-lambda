@@ -110,15 +110,6 @@ document.addEventListener('DOMContentLoaded', () => {
     return scrollPosition > ourTeamOffset + (getWindowHeight() - logoOffset);
   };
 
-  const changeBamLogoColor = () => {
-    if (onFooter()) {
-      changeImgSrc('bam-logo', 'https://i.imgur.com/798Mohw.png'); // black
-      changeImgSrc('bam-logo-alt', 'https://i.imgur.com/Ao4nAG5.png'); //color
-    } else {
-      changeImgSrc('bam-logo', 'https://i.imgur.com/Ao4nAG5.png'); // color
-    }
-  };
-
   const handleCaseStudyNavStyles = () => {
     const positions = h2Text.reduce((obj, h2Str) => {
       const selector = `#${snakeCaseify(h2Str.replace('!', ''))}`;
@@ -162,8 +153,8 @@ document.addEventListener('DOMContentLoaded', () => {
       caseStudyNav.style.display = 'none';
     }
   };
-
-  const styleNav = (bgColor, textColor, hoverColor, changeLogo) => {
+//------------------------------------------------------------------------------------------
+  const styleNav = (bgColor, textColor, hoverColor) => {
     nav.style.backgroundColor = bgColor;
     const links = Array.prototype.slice.call(navLinks).concat(mobileCaseStudyLinks);
     links.forEach((link) => {
@@ -177,35 +168,38 @@ document.addEventListener('DOMContentLoaded', () => {
         link.style.color = textColor;
       });
     });
-    if (changeLogo) $(bamLogo).fadeOut('fast');
   };
 
   const showNav = () => {
     navVisible = true;
-    const small = getWindowWidth() <= 768;
-
-    if (small) {
-      styleNav('#282828', '#9eba2a', '#c3e634');
-    } else if (onHeader()) {
-      styleNav('#9eba2a', '#282828', '#383838', true);
-    } else if (onFooter()) {
-      styleNav('#282828', '#9eba2a', '#c3e634', true);
-    } else {
-      styleNav('#282828', '#9eba2a', '#c3e634');
-    }
-
     $(nav).slideDown('fast');
+    handleNavAndBamLogo();
   };
 
   const hideNav = () => {
     navVisible = false;
-    $(bamLogo).fadeIn('fast');
     $(nav).slideUp('fast');
+    handleNavAndBamLogo();
   };
 
+  const handleNavAndBamLogo = () => {
+    const main = !(onHeader() || onFooter());
+    const big = getWindowWidth() > 768;
+    const nav = navVisible;
+
+    if (big && !main && nav) {
+      changeImgSrc('bam-logo', 'https://i.imgur.com/798Mohw.png'); // black
+      styleNav('#9eba2a', '#282828', '#383838');
+    } else {
+      changeImgSrc('bam-logo', 'https://i.imgur.com/Ao4nAG5.png'); // color
+      styleNav('#282828', '#9eba2a', '#c3e634');
+    }
+  }
+
+
+//----------------------------------------------------------------------------
   const toggleNav = () => {
     navVisible ? hideNav() : showNav();
-    navVisible = !navVisible;
   }
 
   bamLogo.addEventListener('click', toggleNav);
@@ -219,11 +213,11 @@ document.addEventListener('DOMContentLoaded', () => {
   ourTeamLink.addEventListener('click', hideNav);
 
   document.addEventListener('scroll', () => {
-    if (!navVisible) {
+//    if (!navVisible) {
       changeLogoColors();
-      changeBamLogoColor();
       handleCaseStudyNav();
-    }
+//    }
+    handleNavAndBamLogo();
   });
 
   window.addEventListener('resize', (e) => {
@@ -231,7 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (navVisible) {
       showNav();
     }
-    changeBamLogoColor();
+    handleNavAndBamLogo();
   });
 
   logoLinks.addEventListener('mouseout', (e) => {

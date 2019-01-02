@@ -524,6 +524,24 @@ h2#references {
 
 @media (max-width: 768px) {
 
+  /* General */
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 1.7rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  h4 {
+    font-size: 1.1rem;
+  }
+
   /* Logos */
 
   #bam-logo {
@@ -571,6 +589,7 @@ h2#references {
 
   nav#site-navigation > ul {
     margin-top: 3vh;
+    margin-bottom: 3vh;
   }
   
   nav#site-navigation ul {
@@ -589,7 +608,8 @@ h2#references {
   /* Main */
 
   main {
-    padding: 2rem 3rem 0 3rem;
+    padding: 2rem 75px 0 75px;
+    font-size: 2vw;
   }
 
   header h1 {
@@ -601,17 +621,32 @@ h2#references {
     font-size: 2rem;
   }
 
-  main {
+/*  main {
     padding: 0 75px;
-  }
+  }*/
 
   section#case-study {
     margin: 0;
     width: 100%;
   }
 
+  #case-study p {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
   #footnotes {
     word-wrap: break-word;
   }
+}
+
+@media (max-width: 515px) {
+  nav#site-navigation ul li {
+    margin: 21px;
+    font-size: 5.5vw;
+  }
 
 }
+
+
+
