@@ -14,17 +14,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const caseStudyNavUl = document.querySelector('#case-study nav ul');
   const mobileCaseStudyNavUl = document.querySelector('#case-study-mobile ul');
 
-  let navVisible = false;
+  let topNavVisible = false;
+  let smallNavVisible = false;
   const getScrollPosition = () => window.scrollY;
   let scrollPosition = getScrollPosition();
   const getWindowHeight = () => window.innerHeight;
   const getWindowWidth = () => window.innerWidth;
-  const isSmall = () => getWindowWidth() < 1100;
+  const isNarrowScreen = () => getWindowWidth() < 1100;
 
   const logos = [...document.querySelectorAll('.logo-links img')]
     .filter(logo => !(/bam/.test(logo.id)))
     .map(logo => logo.id.split('-')[0]);
-
 
   const snakeCaseify = text => text.toLowerCase().split(' ').join('-');
 
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     h2.textContent.split(' ').slice(1).join(' ')
   ));
 
-  const getPositions = () => (
+  const getCaseStudyHeadingPositions = () => (
     h2Text.reduce((obj, h2Str) => {
       const selector = `#${snakeCaseify(h2Str.replace('!', ''))}`;
       const h2 = document.querySelector(selector);
@@ -85,25 +85,25 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const isOnHeader = (logo) => {
-    scrollPosition = getScrollPosition();
+    const position = getScrollPosition();
     const logoSelector = `#${logo}-logo`;
     const logoElement = document.querySelector(logoSelector);
     const logoHeight = logoElement.height;
     const logoBottom = +window.getComputedStyle(logoElement).bottom.replace('px', '');
     const logoOffset = logoHeight + logoBottom;
-    return scrollPosition < logoOffset;
+    return position < logoOffset;
   };
 
   const isOnTeamSection = (logo) => {
-    scrollPosition = getScrollPosition();
+    const position = getScrollPosition();
     const ourTeamOffset = ourTeam.getBoundingClientRect().top;
-    const ourTeamPosition = (scrollPosition + ourTeamOffset);
+    const ourTeamPosition = (position + ourTeamOffset);
     const logoSelector = `#${logo}-logo`;
     const logoElement = document.querySelector(logoSelector);
     const logoHeight = logoElement.height;
     const logoBottom = +window.getComputedStyle(logoElement).bottom.replace('px', '');
     const logoOffset = logoHeight + logoBottom;
-    const logoPosition = ((scrollPosition + getWindowHeight()) - logoOffset);
+    const logoPosition = ((position + getWindowHeight()) - logoOffset);
     return logoPosition > ourTeamPosition;
   };
 
@@ -121,10 +121,11 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const handleCaseStudyNavStyles = () => {
-    const positions = getPositions();
+    const positions = getCaseStudyHeadingPositions();
     const positionValues = Object.values(positions);
     const positionSelectors = Object.keys(positions);
     const mobileCaseStudyNav = document.querySelector('#case-study-mobile');
+    const position = getScrollPosition();
 
     positionValues.forEach((_, i) => {
       const li = document.querySelector(positionSelectors[i]);
@@ -132,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const currPosition = i > 0 ? positionValues[i] : 0;
       const nextPositionIdx = i + 1;
       const nextPosition = positionValues[nextPositionIdx] || 999999;
-      const windowPositionIsAtLi = scrollPosition >= currPosition && scrollPosition < nextPosition;
+      const windowPositionIsAtLi = position >= currPosition && position < nextPosition;
 
       if (windowPositionIsAtLi && !mobileCaseStudyNav.contains(li)) {
         highlightSection(li, a);
@@ -144,10 +145,11 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const handleCaseStudyNav = () => {
-    const ourTeamPosition = getScrollPosition() + ourTeam.getBoundingClientRect().top;
-    const mainPosition = getScrollPosition() + main.getBoundingClientRect().top;
-    const withinCaseStudy = scrollPosition >= mainPosition
-      && scrollPosition < ourTeamPosition - getWindowHeight();
+    const position = getScrollPosition();
+    const ourTeamPosition = position + ourTeam.getBoundingClientRect().top;
+    const mainPosition = position + main.getBoundingClientRect().top;
+    const withinCaseStudy = position >= mainPosition
+      && position < ourTeamPosition - getWindowHeight();
 
     if (getWindowHeight() < 500 || getWindowWidth() < 1100) {
       caseStudyNav.style.display = 'none';
@@ -159,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  const styleNav = (bgColor, textColor, hoverColor, changeLogo) => {
+  const styleNavColors = (bgColor, textColor, hoverColor) => {
     nav.style.backgroundColor = bgColor;
     const links = Array.prototype.slice.call(navLinks).concat(mobileCaseStudyLinks);
     links.forEach((link) => {
@@ -173,26 +175,32 @@ document.addEventListener('DOMContentLoaded', () => {
         link.style.color = textColor;
       });
     });
+  };
 
-    if (changeLogo) $(bamLogo).fadeOut('fast');
+  const handleNavColors = () => {
+    const onHeader = isOnHeader('bam');
+    const onTeam = isOnTeamSection('bam');
+    const onMain = !(onHeader || onTeam);
+    const isWideScreen = !isNarrowScreen();
+
+    if (isWideScreen && !onMain && topNavVisible) {
+      styleNavColors('#9eba2a', '#282828', '#383838');
+      changeImgSrc('bam-logo', 'https://s3.amazonaws.com/bam-lambda/images/bam_logo_black.png'); // black
+    } else {
+      styleNavColors('#282828', '#9eba2a', '#c3e634');
+      changeImgSrc('bam-logo', 'https://s3.amazonaws.com/bam-lambda/images/bam_logo.png');
+    }
   };
 
   const showNav = () => {
-    const position = scrollPosition;
-    const small = isSmall();
-    const onHeader = isOnHeader('bam');
-    const onTeam = isOnTeamSection('bam');
+    const position = getScrollPosition();
+    const narrowScreen = isNarrowScreen();
+    topNavVisible = true;
+
+    handleNavColors();
     scrollPosition = position;
 
-    if (small) {
-      styleNav('#282828', '#9eba2a', '#c3e634');
-    } else if (onHeader || onTeam) {
-      styleNav('#9eba2a', '#282828', '#383838', true);
-    } else {
-      styleNav('#282828', '#9eba2a', '#c3e634');
-    }
-
-    if (small) document.body.style.backgroundColor = '#282828';
+    if (narrowScreen) document.body.style.backgroundColor = '#282828';
     $(nav).slideDown('fast');
   };
 
@@ -202,35 +210,40 @@ document.addEventListener('DOMContentLoaded', () => {
     siteElements.forEach(el => el.removeAttribute('style'));
   };
 
+  const hideSite = () => {
+    header.style.display = 'none';
+    main.style.display = 'none';
+    ourTeam.style.display = 'none';
+  };
+
   const hideNav = () => {
-    navVisible = false;
-    $(bamLogo).fadeIn('fast');
+    smallNavVisible = false;
+    topNavVisible = false;
+    handleNavColors();
     $(nav).slideUp('fast');
     showSite();
   };
 
-  const handleToggleNav = () => {
-    if (navVisible) {
+  const toggleNav = () => {
+    if (smallNavVisible) {
       hideNav();
       window.scrollTo(0, scrollPosition);
     } else {
       showNav();
-      navVisible = true;
-      header.style.display = 'none';
-      main.style.display = 'none';
-      ourTeam.style.display = 'none';
+      smallNavVisible = true;
+      hideSite();
     }
   };
 
-  const toggleNav = () => {
-    if (isSmall()) {
-      handleToggleNav();
+  const handleNavDisplay = () => {
+    if (isNarrowScreen()) {
+      toggleNav();
     } else {
       showNav();
     }
   };
 
-  bamLogo.addEventListener('click', toggleNav);
+  bamLogo.addEventListener('click', handleNavDisplay);
   main.addEventListener('mouseenter', hideNav);
   ourTeam.addEventListener('mouseenter', hideNav);
   header.addEventListener('mouseenter', hideNav);
@@ -240,15 +253,17 @@ document.addEventListener('DOMContentLoaded', () => {
   ourTeamLink.addEventListener('click', hideNav);
 
   document.addEventListener('scroll', () => {
-    if (!navVisible) {
+    if (!smallNavVisible) {
       changeLogoColors();
       handleCaseStudyNav();
     }
+    handleNavColors();
   });
 
   window.addEventListener('resize', () => {
     handleCaseStudyNav();
-    if (!isSmall() && navVisible) {
+    handleNavColors();
+    if (!isNarrowScreen() && smallNavVisible) {
       showSite();
       hideNav();
       window.scrollTo(0, scrollPosition);
@@ -258,7 +273,7 @@ document.addEventListener('DOMContentLoaded', () => {
   caseStudyNav.addEventListener('click', (e) => {
     if (e.target.tagName === 'A') {
       e.preventDefault();
-      const positions = getPositions();
+      const positions = getCaseStudyHeadingPositions();
       const positionKey = `#${e.target.href.split('#')[1]}-nav`;
       const newScrollPosition = positions[positionKey];
       window.scrollTo(0, newScrollPosition + 5);
