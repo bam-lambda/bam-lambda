@@ -2,15 +2,23 @@
 <html>
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>BAM!</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="https://bit.ly/bamFavicon">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:800,800i|Raleway:200,400,700" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="32x32"
+    href="https://bit.ly/bamFavicon" />
+    <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:800,800i|Raleway:200,400,700"
+    rel="stylesheet" />
+    <!-- <style>reset</style> -->
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/gruvbox-dark.min.css"
-    charset="utf-8"> <link rel="stylesheet" href="main.css" />
+    charset="utf-8" />
+    <!-- <style></style> -->
+    <link rel="stylesheet" href="main.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script></script> -->
     <script src="application.js"></script>
   </head>
   <body>
@@ -27,7 +35,8 @@
       </a>
     </div>
     <nav id="site-navigation">
-      <img id="bam-logo-alt" src="https://i.imgur.com/798Mohw.png" alt="BAM! logo"/>
+      <img id="bam-logo-alt"
+      src="https://s3.amazonaws.com/bam-lambda/images/bam_logo_black.png" alt="BAM! logo"/>
       <ul>
         <li>
           <a href="#home" id="home-link">HOME</a>
@@ -46,6 +55,7 @@
     <header id=home>
       <h1>BAM!</h1>
       <p>a lightweight serverless framework for <span>humans</span></p>
+      <h6>made with BAM!</h6>
     </header>
     <main>
       <section id="case-study">
@@ -53,7 +63,7 @@
 
         <nav>
           <ul></ul>
-        </nav>      
+        </nav>
 
         <h2 id="introduction">1 Introduction</h2>
 
@@ -97,7 +107,9 @@
         management choices, each with their own advantages and
         disadvantages.</p>
 
-        <img src="https://s3.amazonaws.com/bam-lambda/images/technology_comparison.png"/>
+        <img
+        src="https://s3.amazonaws.com/bam-lambda/images/technology_comparison.png"
+        alt="comparison of technologies"/>
 
         <p>Looking at the table above, note that the amount of control decreases
         as the level of abstraction increases.</p>
@@ -139,7 +151,7 @@
 
         <p>FaaS are small bits of code that live on ephemeral containers usually
         written by the person or organization deploying them. AWS supports FaaS
-        with AWS Lambda.<p>
+        with AWS Lambda.</p>
 
         <blockquote>
           <p>I want to write code that accomplishes a small task and can be run
@@ -162,7 +174,7 @@
         There are many others such as Microsoft, Google, and IBM; however, with
         over 1 million active customers, AWS currently enjoys prominence among
         engineers working with the cloud(1). We therefore built BAM! for use
-        with AWS.<p>
+        with AWS.</p>
 
         <h3>2.4 Relevant Services</h3>
 
@@ -568,7 +580,7 @@
         <p>The <code>--dbtables</code> and <code>--lambdas</code> flags can be
         used to only log resources for those respective services.</p>
 
-        <div class="container"><pre id="list-command"><code class="nohighlight">
+        <div class="container"><pre id="list-command"><code class="shell gruvbox-code">
 <span class="heading">Lambdas and endpoints deployed from this machine using BAM!:</span>
 <span class="bam-resource">  nameOfLambda1
     description: a description of the lambda
@@ -1130,8 +1142,11 @@ const bamBam = async (asyncFunc, {
                 href="https://arstechnica.com/information-technology/2016/04/amazon-cloud-has-1-million-users-and-is-near-10-billion-in-annual-sales/"
                 target="_blank">https://arstechnica.com/information-technology/2016/04/amazon-cloud-has-1-million-users-and-is-near-10-billion-in-annual-sales/</a></li>
             <li><a href="https://sdtimes.com/amazon/amazon-introduces-lambda-containers/" target="_blank">https://sdtimes.com/amazon/amazon-introduces-lambda-containers/</a></li>
-            <li><a href="https://serverless.com/blog/serverless-by-the-numbers-2018-data-report" target="_blank">https://serverless.com/blog/serverless-by-the-numbers-2018-data-report</li>
-            <li><a href="https://aws.amazon.com/dynamodb/" target="_blank">https://aws.amazon.com/dynamodb/</li>
+            <li><a
+                href="https://serverless.com/blog/serverless-by-the-numbers-2018-data-report"
+                target="_blank">https://serverless.com/blog/serverless-by-the-numbers-2018-data-report</a></li>
+            <li><a href="https://aws.amazon.com/dynamodb/"
+                target="_blank">https://aws.amazon.com/dynamodb/</a></li>
             <li><a href="https://aws.amazon.com/products/?hp=tile&so-exp=below" target="_blank">https://aws.amazon.com/products/?hp=tile&so-exp=below</a></li>
             <li><a href="https://serverless.com/blog/keep-your-lambdas-warm/" target="_blank">https://serverless.com/blog/keep-your-lambdas-warm/</a></li>
             <li><a href="https://www.robertvojta.com/aws-journey-api-gateway-lambda-vpc-performance/" target="_blank">https://www.robertvojta.com/aws-journey-api-gateway-lambda-vpc-performance/</a></li>
@@ -1147,9 +1162,8 @@ const bamBam = async (asyncFunc, {
             <li><a
                 href="https://www.manning.com/books/serverless-architectures-on-aws"
                 target="_blank">Serverless Architecture on AWS</a></li>
-            <li><a href="Lambda in Action" target="_blank">Lambda in Action</a></li>
-            <li><a href="https://www.youtube.com/playlist?list=PLEx5khR4g7PJNproQQ4SZ96Qeu-kr-Xbn" target="_blank">GOTO Conferences
-                2018</a></li>
+            <li><a href="https://www.manning.com/books/aws-lambda-in-action" target="_blank">Lambda in Action</a></li>
+            <li><a href="https://www.youtube.com/playlist?list=PLEx5khR4g7PJNproQQ4SZ96Qeu-kr-Xbn" target="_blank">GOTO Conferences 2018</a></li>
           </ol>
 
           <h5>8.3 AWS Documentation</h5>
@@ -1178,12 +1192,14 @@ const bamBam = async (asyncFunc, {
     </main>
     <section id="our-team">
       <h1>Our Team</h1>
+      <p>We are looking for opportunities.  If you liked what you saw and want to talk more, please
+      reach out!</p>
       <ul>
         <li class="individual">
           <img src="https://s3.amazonaws.com/bam-lambda/images/jason.png" alt="Jason Overby"/>
           <h3>Jason Overby</h3>
           <p>Portland, OR</p>
-          <ul>
+          <ul class="social-icons">
             <li>
               <a href="mailto:j@jasonoverby.com"
                  target="_blank"><img src="https://s3.amazonaws.com/bam-lambda/images/email.png"
@@ -1205,7 +1221,7 @@ const bamBam = async (asyncFunc, {
           <img src="https://s3.amazonaws.com/bam-lambda/images/jocie.png" alt="Jocie Moore"/>
           <h3>Jocie Moore</h3>
           <p>San Francisco, CA</p>
-          <ul>
+          <ul class="social-icons">
             <li>
               <a href="mailto:hello@jociemoore.com"
                  target="_blank"><img src="https://s3.amazonaws.com/bam-lambda/images/email.png"
@@ -1228,7 +1244,7 @@ const bamBam = async (asyncFunc, {
           <h3>Tak Sampson</h3>
 
           <p>New York, NY</p>
-          <ul>
+          <ul class="social-icons">
             <li>
               <a href="mailto:tak.sampson@gmail.com"
                  target="_blank"><img src="https://s3.amazonaws.com/bam-lambda/images/email.png"
@@ -1247,8 +1263,6 @@ const bamBam = async (asyncFunc, {
           </ul>
         </li>
       </ul>
-      <p>We are looking for opportunities.  If you liked what you saw and want to talk more, please
-      reach out!</p>
     </section>
   </body>
 </html>
