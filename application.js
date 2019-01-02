@@ -181,9 +181,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const onHeader = isOnHeader('bam');
     const onTeam = isOnTeamSection('bam');
     const onMain = !(onHeader || onTeam);
-    const big = !isNarrowScreen();
+    const isWideScreen = !isNarrowScreen();
 
-    if (big && !onMain && topNavVisible) {
+    if (isWideScreen && !onMain && topNavVisible) {
       styleNavColors('#9eba2a', '#282828', '#383838');
       changeImgSrc('bam-logo', 'https://s3.amazonaws.com/bam-lambda/images/bam_logo_black.png'); // black
     } else {
@@ -194,13 +194,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const showNav = () => {
     const position = getScrollPosition();
-    const small = isNarrowScreen();
+    const narrowScreen = isNarrowScreen();
     topNavVisible = true;
 
     handleNavColors();
     scrollPosition = position;
 
-    if (small) document.body.style.backgroundColor = '#282828';
+    if (narrowScreen) document.body.style.backgroundColor = '#282828';
     $(nav).slideDown('fast');
   };
 
