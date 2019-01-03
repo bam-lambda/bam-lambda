@@ -467,6 +467,10 @@ small {
   opacity: 0.5;
 }
 
+#our-team small a {
+  color: #9eba2a;
+}
+
 /* ---------------------------------
 
               mobile
