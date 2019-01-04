@@ -211,7 +211,7 @@
 
         <p>BAM! was designed specifically in the latter context of generating
         API Gateway endpoints that are integrated with AWS Lambda
-        invocations.</p>
+        functions.</p>
 
         <h4>2.4.3 AWS IAM</h4>
 
@@ -243,7 +243,7 @@
         share of difficulties. Chief among these is a high degree of complexity,
         which steepens the learning curve for developers new to the technology
         and can prove to be burdensome in a more seasoned engineer’s day-to-day
-        experience with the platform. There are over one-hundred and fifty AWS
+        experience with the platform. There are over one-hundred fifty AWS
         services<sup><a href="#footnote-4">4</a></sup>, each with its own
         configuration and jargon the developer needs to be familiar with. Even
         more, many tasks that seem discrete are actually composed of several
@@ -1065,7 +1065,7 @@ const bamBam = async (asyncFunc, {
         <p><code>bamBam</code> was designed to anticipate the type of exceptions
         that are raised upon encountering one of the two problems described
         above; respectively, we found the SDK throws an
-        <code>InvalidParamterValueException</code> in the case of the
+        <code>InvalidParameterValueException</code> in the case of the
         aforementioned latency issue, and a
         <code>TooManyRequestsException</code> when AWS is throttling
         requests.</p>
