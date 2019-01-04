@@ -67,17 +67,17 @@
         <h3>1.1 What is BAM!?</h3>
 
         <p>BAM! is a serverless framework that makes it quick (hence, the name)
-        and easy to get small applications up & running using Node.js and Amazon
-        Web Services (AWS). It is optimized for the deployment of AWS Lambda
-        functions integrated with AWS API Gateway endpoints, but also allows for
-        the creation of DynamoDB tables, which can be used to persist data
-        between lambda invocations.</p>
+        and easy to get small applications up and running using Node.js and
+        Amazon Web Services (AWS). It is optimized for the deployment of AWS
+        Lambda functions integrated with Amazon API Gateway endpoints, but also
+        allows for the creation of Amazon DynamoDB tables, which can be used to
+        persist data between lambda invocations.</p>
 
         <p>In comparison to other technologies, the biggest benefits of
         serverless are, arguably, the rapidity of iteration and the abstraction
         of infrastructure management. The irony is that the experience of
         working with serverless technologies often lacks the very simplicity
-        that the idea of serverless computing promises to deliver. This led to
+        the idea of serverless computing promises to deliver. This led to
         our focus on speed and convenience for the developer as our guiding
         principles.</p>
 
@@ -146,9 +146,9 @@
 
         <h3>2.2 Functions as a Service</h3>
 
-        <p>FaaS are small bits of code that live on ephemeral containers usually
-        written by the person or organization deploying them. AWS supports FaaS
-        with AWS Lambda.</p>
+        <p>FaaS are small pieces of code that live on ephemeral containers
+        usually written by the person or organization deploying them. AWS
+        supports FaaS with AWS Lambda.</p>
 
         <blockquote>
           <p>I want to write code that accomplishes a small task and can be run
@@ -170,8 +170,8 @@
         Amazon is by no means the only provider of serverless technologies.
         There are many others such as Microsoft, Google, and IBM; however, with
         over 1 million active customers, AWS currently enjoys prominence among
-        engineers working with the cloud(1). We therefore built BAM! for use
-        with AWS.</p>
+        engineers working with the cloud<sup><a href="#footnote-1">1</a></sup>.
+        We therefore built BAM! for use with AWS.</p>
 
         <h3>2.4 Relevant Services</h3>
 
@@ -184,24 +184,24 @@
         <p>Introduced in November 2014, AWS Lambda is Amazon’s take on FaaS
         solutions, providing an event-driven, serverless computing platform
         which runs functions in response to events while automatically handling
-        the provisioning of required resources (2). To accomplish this, AWS will
-        spin up a new server instance within a new container as it is needed,
-        and tear down idle instances after a period of inactivity to avoid
-        waste.</p>
+        the provisioning of required resources<sup><a
+        href="#footnote-2">2</a></sup>. To accomplish this, AWS will spin up a
+        new server instance within a new container as it is needed, and tear
+        down idle instances after a period of inactivity to avoid waste.</p>
 
         <p>Using AWS Lambda, it is possible to code some small piece of
         functionality on one’s local machine and deploy it to the cloud,
-        whereafter it can be invoked, or triggered by events such as a call to
-        an API endpoint, from anywhere in the world, assuming proper access
-        permissions. BAM! was built to make this process easier. While AWS
-        Lambda supports a variety of languages and runtimes, for our purposes,
-        we focused on supporting Node.js 8.10.</p>
+        whereafter it can be triggered by events such as a call to an API
+        endpoint from anywhere in the world. BAM! was built to make this process
+        easier. While AWS Lambda supports a variety of languages and runtimes,
+        for our purposes, we focused on supporting Node.js 8.10.</p>
 
-        <h4>2.4.2 API Gateway</h4>
+        <h4>2.4.2 Amazon API Gateway</h4>
 
         <p>Far and away one of the most common event sources encountered in
-        cloud computing is the hitting of an API endpoint (3), and the creation,
-        management, and hosting of APIs is precisely what AWS’ API Gateway
+        cloud computing is the hitting of an API endpoint<sup><a
+        href="#footnote-3">3</a></sup>, and the creation,
+        management, and hosting of APIs is precisely what Amazon's API Gateway
         service was designed to handle.</p>
 
         <p>As the name suggests, API Gateway most often acts as the outward,
@@ -210,10 +210,10 @@
         lightweight interface for interacting with a single service.</p>
 
         <p>BAM! was designed specifically in the latter context of generating
-        API Gateway endpoints that are integrated to trigger AWS Lambda
+        API Gateway endpoints that are integrated with AWS Lambda
         invocations.</p>
 
-        <h4>2.4.3 IAM</h4>
+        <h4>2.4.3 AWS IAM</h4>
 
         <p>One common thread permeating the whole of Amazon’s cloud
         infrastructure is the necessity for managing access permissions between
@@ -224,10 +224,9 @@
         authorization for use of resources at a highly granular level. For
         instance, one can use this service to permit a user to invoke all
         lambdas associated with an account, but only perform read operations on
-        a database table. Additionally, one can even grant a lambda itself the
-        ability to access a table.</p>
+        a database table.</p>
 
-        <h4>2.4.4 DynamoDB</h4>
+        <h4>2.4.4 Amazon DynamoDB</h4>
 
         <p>One final service BAM! supports is DynamoDB, Amazon’s NoSQL key-value
         and document storage service. We selected DynamoDB because its lack of
@@ -245,11 +244,10 @@
         which steepens the learning curve for developers new to the technology
         and can prove to be burdensome in a more seasoned engineer’s day-to-day
         experience with the platform. There are over one-hundred and fifty AWS
-        services (5), each with its own configuration and jargon the developer
-        needs to be familiar with in order to use the AWS command line interface
-        (CLI) or Software Development Kit (SDK). Even more, many tasks that seem
-        discrete are actually composed of several micro-tasks under the
-        hood.</p>
+        services<sup><a href="#footnote-4">4</a></sup>, each with its own
+        configuration and jargon the developer needs to be familiar with. Even
+        more, many tasks that seem discrete are actually composed of several
+        micro-tasks under the hood.</p>
 
         <p>We will be walking through an example to see just how complex working
         with AWS can be.</p>
@@ -261,11 +259,12 @@
         manually access this data and send it to them, or write a script to
         produce the relevant data and manually distribute it, these options can
         be tedious, especially if you are frequently asked to retrieve a
-        variation of this information. Instead, with the AWS SDK, you can create
+        variation of this information. Instead, with the AWS software
+        development kit (SDK), you can create
         a lambda function integrated with an API gateway. The lambda will have
         access and logic to process the data and the endpoint will be configured
         to call the lambda and display the output in a browser. This way, you
-        will be able to give your co-worker the URL endpoint and enable them to
+        will be able to give your co-worker the endpoint and enable them to
         retrieve the data at their convenience without disrupting your
         workflow.</p>
 
@@ -273,12 +272,9 @@
         what happens when your co-worker visits the endpoint.</p>
 
         <p>There are several types of endpoints, and in most cases, the best is
-        an Edge-Optimized endpoint because AWS routes the user’s request through
-        AWS Cloudfront. With Cloudfront, the endpoint can be called from
-        locations around the world with better performance. Assuming the
-        endpoint is an Edge-Optimized endpoint, the request will first be routed
-        to API Gateway through an AWS Cloudfront Edge location or data
-        center.</p>
+        an Edge-optimized endpoint because AWS routes the user’s request through
+        an AWS Cloudfront Edge Location (data center). With Cloudfront, the endpoint can be
+        called from locations around the world with better performance.</p>
 
         <p>At this point, API Gateway checks the IAM role and associated
         policies to confirm the API endpoint has permission to invoke the
@@ -292,20 +288,20 @@
         endpoint"/>
 
         <p>Then, the data is sent back to AWS Lambda for further processing,
-        metadata is persisted to a DynamoDB table, and the response is returned
+        metadata can be persisted to a DynamoDB table, and the response is returned
         to API Gateway. With Lambda Proxy integrations, the lambda must return a
         JSON formatted response which the gateway can transform into an HTTP
         response. Finally, API Gateway routes the response back to the Edge
         location and to your co-worker, who can view the sales report in their
         browser.</p>
 
-        <h3>2.6 How to manually create an AWS Lambda integrated with AWS API Gateway</h3>
+        <h3>2.6 How to manually create an AWS Lambda integrated with Amazon API Gateway</h3>
 
         <p>Before you can even send a request to AWS, it is necessary to perform
         several local operations to prepare a deployment package for the lambda.
         This includes confirming your AWS credentials are properly set up;
         deciding what configuration details to use (e.g. profile and region);
-        creating a properly formatted, local JavaScript file for the lambda
+        creating a properly formatted, local Node.js file for the lambda
         function, which should contain <code>exports.handler</code>; installing
         any node package dependencies; zipping all relevant files into a
         deployment package; and verifying the lambda name does not conflict with
@@ -329,11 +325,14 @@
         support access to path parameters within the lambda function code, you
         must create an additional resource for the greedy path. The greedy path
         matches the path portion of the URL after the root slash
-        (<code>/</code>). To accomplish this, call the AWS API Gateway method
+        (<code>/</code>). To accomplish this, call the Amazon API Gateway method
         <code>createResource()</code>. Even this operation is complex in that
         you need to retrieve the resource ID of the API’s root resource using
         the <code>getResources()</code> method and supply it as a parameter to
         the <code>createResource()</code> method.</p>
+
+        <img src="https://s3.amazonaws.com/bam-lambda/images/root_greedy_paths.png" id="root-proxy-path"
+        alt="root path and greedy path, each with added GET methods"/>
 
         <p>To review, now the lambda, API gateway, and path resources exist. The
         following three steps are needed to add each HTTP method to the root
@@ -343,7 +342,7 @@
 
         <p>First, use the AWS Lambda <code>addPermission()</code> method to give
         permission to the API Gateway so that it can invoke the lambda function.
-        Next, use the AWS API Gateway <code>putMethod()</code> method to add the
+        Next, use the Amazon API Gateway <code>putMethod()</code> method to add the
         HTTP method to the resource. Finally, call the
         <code>putIntegration()</code> method to complete the integration between
         the lambda and the resource.</p>
@@ -360,9 +359,6 @@
         <p>As mentioned before, the integration will need to be repeated for
         each HTTP method on the greedy path.</p>
 
-        <img src="https://s3.amazonaws.com/bam-lambda/images/root_greedy_paths.png" id="root-proxy-path"
-        alt="root path and greedy path, each with added GET methods"/>
-
         <p>Finally, call the <code>createDeployment()</code> method to bundle
         all of these resources, methods, and integrations into one deployment
         resource.</p>
@@ -371,7 +367,7 @@
 
         <h3>2.7 A Note About Security</h3>
 
-        <p>API endpoints created by AWS are public by default. Of course, if
+        <p>Edge-optimized endpoints created by AWS are public by default. Of course, if
         BAM! is being used to host a public webpage, this is not a concern,
         since the API Gateway should obviously be public. We built BAM! assuming
         the developer or developer’s company will take appropriate measures to
@@ -397,14 +393,14 @@
 
         <h3>3.1 Serverless Framework</h3>
 
-        <p>Serverless Framework is a suite of applications, which enable
+        <p>Serverless Framework is a suite of applications, which enables
         developers to deploy and manage serverless code. It has been around
         since 2015, and it is the dominant platform in this space.</p>
 
         <p>Pros:</p>
         <ul>
-          <li>supports variety of providers and runtimes</li>
-          <li>supports wide range of configuration and functionality</li>
+          <li>supports a variety of providers and runtimes</li>
+          <li>supports a wide range of configuration and functionality</li>
           <li>includes prefab lambda code and helpful lambda templates</li>
         </ul>
 
@@ -413,20 +409,19 @@
           <li>requires YAML file configuration</li>
           <li>creates many AWS resources to accomplish even a simple
             deployment</li>
-          <li>took approx. 2 mins on avg for initial deployment based on our
+          <li>takes approx. 2 mins on avg for initial deployment based on our
             tests</li>
         </ul>
 
         <h3>3.2 Claudia.js</h3>
 
-        <p>Claudia.js is a more opinionated serverless deployment tool, which
-        was made specifically to help JavaScript developers create AWS
-        serverless applications easily and independently from AWS
-        CloudFormation.</p>
+        <p>Claudia.js is a serverless deployment tool, which was made
+        specifically to help JavaScript developers create AWS serverless
+        applications easily and independently from AWS CloudFormation.</p>
 
         <p>Pros:</p>
         <ul>
-          <li>supports wide range of configuration</li>
+          <li>supports a wide range of configuration</li>
           <li>includes optimized modules for specific use cases
             (<code>claudia-api-builder</code>,
             <code>claudia-bot-builder</code>)</li>
@@ -440,19 +435,20 @@
           <li>requires separate installation of <code>claudia-api-builder</code>
             and <code>claudia</code> modules</li>
           <li>supports only Node.js runtime and AWS services</li>
-          <li>took  approx. 1:15 on avg for initial deployment based on our
-            tests</li> </ul>
+          <li>takes approx. 1 min 15 secs on avg for initial deployment based on
+            our tests</li>
+        </ul>
 
         <h3>3.3 Shep</h3>
 
         <p>Shep, which bills itself as a way to “make serverless simple”, is an
         opinionated framework designed to streamline deployment of AWS Lambda
-        functions that can be invoked via AWS API Gateway endpoints.</p>
+        functions that can be invoked via Amazon API Gateway endpoints.</p>
 
         <p>Pros:</p>
         <ul>
           <li>uses prompts instead of configuration files</li>
-          <li>deploys multiple lambas at one time</li>
+          <li>can deploy multiple lambas at one time</li>
           <li>can upload the difference between Lambda function files</li>
         </ul>
 
@@ -461,9 +457,9 @@
           <li>permits few configuration options</li>
           <li>requires grouping code into <i>“projects”</i> and bundling with
             Webpack</li>
-          <li>supports only Node.js runtime, AWS Lambda, and AWS API
+          <li>supports only Node.js runtime, AWS Lambda, and Amazon API
             Gateway</li>
-          <li>took approx. 2 mins on avg for initial deployment based on our
+          <li>takes approx. 2 mins on avg for initial deployment based on our
             tests</li>
         </ul>
 
@@ -478,21 +474,21 @@
         <h3>3.4 BAM!</h3>
 
         <p>The goal with BAM! is to have the right functionality for a small
-        app, while being quick and easy to use for the developer.</p>
+        application, while being quick and easy to use for the developer.</p>
 
         <p>Pros:</p>
         <ul>
-          <li>does not require <i>“project”</i> directory or configuration
-            file</li>
+          <li>does not require a <i>“project”</i> directory or configuration
+            files</li>
           <li>can persist data between Lambda invocations via DynamoDB</li>
           <li>includes helpful lambda templates</li>
-          <li>took  approx. 20 secs on avg for initial deployment based on our
+          <li>takes approx. 20 secs on avg for initial deployment based on our
             tests</li> </ul>
 
         <p>Cons:</p>
         <ul>
           <li>permits few configuration options</li>
-          <li>supports only Node.js runtime, AWS Lambda, AWS API Gateway, and
+          <li>supports only Node.js runtime, AWS Lambda, Amazon API Gateway, and
             DynamoDB</li>
         </ul>
 
@@ -508,7 +504,8 @@
         <p>BAM! is designed to be human-friendly. We spent considerable time
         deciding which AWS services to integrate with Lambda and how to make
         working with those services most helpful for a developer. According to a
-        2018 report by Serverless Framework (3), HTTP endpoints account for more
+        2018 report by Serverless Framework<sup><a href="#footnote-3">3</a>
+        </sup>, HTTP endpoints account for more
         than 2/3 of all event sources. This is why BAM! is centered around
         lambdas connected to endpoints. As we’ve shown above, the deployment
         process is deceptively complex. We aimed to simplify common scenarios
@@ -522,20 +519,20 @@
         <h3>4.1 Commands</h3>
 
         <code class="command">deploy</code>
-        <p>The <code>deploy</code> command creates a lambda named
+        <p>The <code>deploy</code> command creates a lambda called
         <code>&lt;resourceName&gt;</code> and an API Gateway endpoint (also
-        named <code>&lt;resourceName&gt;</code>) that can trigger the
+        called <code>&lt;resourceName&gt;</code>) that can trigger the
         lambda.</p>
 
-        <p>If the lambda will interact with DynamoDB, <code>--permitDb</code>
-        causes the lambda to assume an IAM role that permits
-        <code>SCAN</code>, <code>PUT</code>, <code>GET</code>, and
+        <p>If the lambda is coded to interact with a DynamoDB table,
+        <code>--permitDb</code> causes the lambda to assume an IAM role that
+        permits <code>SCAN</code>, <code>PUT</code>, <code>GET</code>, and
         <code>DELETE</code> operations. If this option is not used, the lambda
         assumes the default role, which is created if it does not already
         exist.</p>
 
-        <p>It is also possible to specify a role for the current deployment
-        only using the <code>--role</code> flag.</p>
+        <p>It is also possible to specify a role only for the current deployment
+        using the <code>--role</code> flag.</p>
 
         <p>If there is no need for an endpoint, <code>--lambdaOnly</code>
         deploys just a lambda.</p>
@@ -548,7 +545,7 @@
         with <code>redeploy</code> in a similar fashion to how they work with
         <code>deploy.</code> Additionally, <code>--revokeDb</code> allows the
         lambda to assume the default role instead of the role designed to
-        specifically work with DynamoDB.</p>
+        work with DynamoDB.</p>
 
         <p>The <code>--methods</code> flag adds HTTP methods to the endpoint ,
         and <code>--rmMethods</code> allows for the removal of methods
@@ -560,22 +557,23 @@
 
         <code class="command">create</code>
         <p>The <code>create</code> command creates a local file or directory
-        based on a template which makes it easy to quickly write code for a
-        lambda</p>
+        based on a template, which makes it easy to quickly write code for a
+        lambda.</p>
 
-        <p>There are six template options that can be created using the flags,
-        <code>--invoker</code>, <code>--html</code>, and <code>--db</code>.
-        For additional guidance, <code>--verbose</code> can be used to create
-        these templates with instructional comments.</p>
+        <p>There are six template options that can be created using combinations
+        of the <code>--invoker</code>, <code>--html</code>, and
+        <code>--db</code> flags. For additional guidance, <code>--verbose</code>
+        can be used to create versions of these templates with instructional
+        comments.</p>
 
         <code class="command">list</code>
-        <p>The <code>list</code> command logs existing lambdas, endpoints, and
-        DynamoDb tables, allowing quick visibility to resources in the cloud,
+        <p>The <code>list</code> command logs existing lambdas and
+        DynamoDB tables, allowing quick visibility to resources in the cloud
         including existing endpoint urls associated with each lambda (see
         below).</p>
 
         <p>The <code>--dbtables</code> and <code>--lambdas</code> flags can be
-        used to only log resources for those respective services.</p>
+        used to log only resources for those respective services.</p>
 
         <div class="container"><pre id="list-command"><code class="shell gruvbox-code">
 <span class="heading">Lambdas and endpoints deployed from this machine using BAM!:</span>
@@ -615,11 +613,11 @@ Other lambdas on AWS
 
         <p>The <code>--endpointOnly</code> option can be used to delete only
         the endpoint, and <code>--dbtable</code> option can be used to delete
-        a DynamoDB table instead of lambda/endpoint.</p>
+        a DynamoDB table instead of a lambda and endpoint.</p>
 
         <code class="command">config</code>
         <p>The <code>config</code> command prompts the user to update the
-        account number and default role</p>
+        account number and default role.</p>
 
         <h2 id="behind-the-scenes">5 Behind the Scenes</h2>
 
@@ -635,24 +633,23 @@ Other lambdas on AWS
 
         <p>Instead, BAM! finds the necessary information needed to call various
         SDK methods automatically. For instance, BAM! calls the AWS Security
-        Token Service (STS) <code>getCallerIdentity()</code> method in order to
-        get the developer’s account number. Additionally, BAM! uses the region
-        and default profile specified in the hidden config and credentials files
-        that exist in the <code>.aws</code> directory after proper installation
-        of the AWS CLI. Lastly, BAM! creates a default role with permissions to
-        interact with CloudWatch logs, invoke other lambdas, and, optionally,
-        perform <code>SCAN</code>, <code>PUT</code>, <code>GET</code>, and
-        <code>DELETE</code> operations on DynamoDB tables.</p>
+        Token Service's (STS) <code>getCallerIdentity()</code> method in order
+        to get the developer’s account number. Additionally, BAM! uses the
+        region and default profile specified in the hidden config and
+        credentials files, which exist in the <code>.aws</code> directory after
+        proper installation of the AWS command line interface (CLI). Lastly,
+        BAM! creates a default role with permissions to interact with CloudWatch
+        logs and invoke other lambdas.</p>
 
         <p>Note that since BAM! uses the <code>aws-sdk,</code> the framework
-        does not directly touch the developer’s AWS Access Key and Secret Access
+        does not directly touch the developer’s AWS Access Key or Secret Access
         Key.</p>
 
         <p>There are several additional settings BAM! uses on behalf of the
         developer. These configurations are specifically for working with AWS
-        API Gateway and include a stage and default HTTP method. An AWS API
-        Gateway stage specifies a set of resource specific configuration details
-        for the API gateway. All endpoints deployed using the BAM! framework
+        API Gateway and include a stage and default HTTP method. An Amazon API
+        Gateway stage specifies a set of resource-specific configuration details
+        for the gateway. All endpoints deployed using the BAM! framework
         will be deployed to the <code>bam</code> stage. Furthermore, by default,
         BAM! will create an API gateway with the <code>GET</code> HTTP method,
         however, additional methods can be specified.</p>
@@ -660,31 +657,31 @@ Other lambdas on AWS
         <h3>5.2 Templates</h3>
 
         <p>The BAM! framework includes six templates to help a developer get
-        going quickly. These templates can be created with and/or without
-        instructional comments, and although useful, they not a requirement for
-        deploying a lambda with the BAM! framework.</p>
+        going quickly. These templates can be created with or without
+        instructional comments, and although useful, these templates are not a
+        requirement for deploying a lambda with the BAM! framework.</p>
 
         <p>The first is a basic template, which is created by default when
         <code>bam create</code> is run without any flags. This template shows
         the developer how to handle any or all of the HTTP methods in one lambda
-        function and exposes query and path parameters.</p>
+        function and exposes query and path parameters. All of the remaining
+        templates extend this one.</p>
 
-        <p>All of the remaining templates extend this one. Second, there is the
-        invoker template, which exposes the necessary parameters and payload
-        response required to invoke another lambda. Third, there is the HTML
-        template, which allows a developer to write HTML, JavaScript, and CSS
-        that can be accessed from the lambda. The fourth template is combination
-        of the invoker and HTML templates and is created simply by using the
-        <code>--invoker</code> and <code>--html</code> flags together with the
-        create command. Fifth, there is the database template, which includes
-        the <code>SCAN</code>, <code>PUT</code>, <code>GET</code>, and
+        <p>There is the invoker template, which exposes the necessary parameters
+        and payload response required to invoke another lambda. There is the
+        HTML template, which allows a developer to write HTML, JavaScript, and
+        CSS that can be accessed from the lambda. The next template is a
+        combination of the invoker and HTML templates and is created simply by
+        using the <code>--invoker</code> and <code>--html</code> flags together
+        with the create command. The database template includes the
+        <code>SCAN</code>, <code>PUT</code>, <code>GET</code>, and
         <code>DELETE</code> methods and parameters for querying a DynamoDB
         table. Note: to use this template properly, the lambda also needs the
-        correct the database permissions, which can be added with
+        correct database permissions, which can be added with
         <code>--permitDb</code> flag during deployment or redeployment. The
-        sixth and final template combines the database and HTML templates by
-        using the <code>--db</code> and <code>--html</code> flags together with
-        the <code>create</code> command.</p>
+        final template combines the database and HTML templates by using the
+        <code>--db</code> and <code>--html</code> flags together with the
+        <code>create</code> command.</p>
 
         <div class="container"><pre><code class="js gruvbox-code">
 // Welcome to your BAM! lambda!
@@ -781,9 +778,9 @@ exports.handler = async (event) => {
         <img src="https://s3.amazonaws.com/bam-lambda/images/bam_infrastructure.png" alt="local file
         organization"/>
 
-        <p>For example, a developer creates a JavaScript file for a lambda
-        function that requires the <code>fs</code> native Node module and the
-        <code>uuid</code> npm package. After copying the lambda file or
+        <p>For example, suppose a developer creates a Node.js file for a
+        lambda function that requires the <code>fs</code> native Node module and
+        the <code>uuid</code> npm package. After copying the lambda file or
         directory to the staging area, BAM! parses the require statements within
         the file, determines which dependencies are native to Node (in this case
         <code>fs),</code> creates a <code>package.json</code> file, adds only
@@ -821,14 +818,14 @@ exports.handler = async (event) => {
         integrated lambda and API endpoint, and thereafter attempts to add
         additional HTTP methods for the API to support.</p>
 
-        <p>The challenge here is that unbeknownst to BAM!, the user could
-        meanwhile have easily deleted the API Gateway in the AWS Console,
-        whether deliberately or by accident, but left the lambda intact. Under
-        such circumstances, there will exist a lambda, but no associated
-        endpoint in the cloud. In this case, BAM! will still maintain local
-        records of both the lambda and endpoint. If any attempt is made to
-        update HTTP methods, the SDK will raise an exception, as there is no
-        such API to which those methods can be attached.</p>
+        <p>The challenge here is that unbeknownst to BAM!, the user could,
+        meanwhile, have deliberately or accidentally deleted the API Gateway in
+        the AWS console, while leaving the lambda intact. Under such
+        circumstances, there will exist a lambda without an associated endpoint
+        in the cloud. In this case, BAM! will still maintain local records of
+        both the lambda and endpoint. If any attempt is made to update HTTP
+        methods, the SDK will raise an exception, as there is no such API to
+        which those methods can be attached.</p>
 
         <p>We accounted for this problem by first having BAM! check for the
         existence of the lambda and API, and respond intelligently to the
@@ -844,25 +841,25 @@ exports.handler = async (event) => {
         <p>In fact, BAM! will attempt to respond in a convenient and expected
         manner under a variety of differing circumstances when redeploying a
         lambda. To add a new API when one does not exist in the cloud, BAM!
-        accepts the either <code>--addEndpoint</code> flag, or, to reiterate,
+        accepts either the <code>--addEndpoint</code> flag, or, to reiterate,
         the user may imply the addition of an API by adding HTTP methods. In the
         latter case, BAM! is making what we feel to be a reasonable assessment
         of user intent.</p>
 
         <h4>6.1.2 Preexisting and Nonexistent Lambdas</h4>
 
-        <p>If BAM! finds that the lambda itself does not exist in the cloud, it
-        will simply warn the user to run the <code>deploy</code> command instead
-        of <code>redeploy</code>.  Inversely, since AWS enforces uniqueness of
-        lambda names for a specific region and account, we designed BAM! to warn
-        a user to <code>redeploy</code> whenever they attempt to
-        <code>deploy</code> a lambda with the same name as a preexisting
-        function in the cloud.</p>
+        <p>If BAM! finds the lambda itself does not exist in the cloud while
+        attempting to redeploy, it will simply warn the user to run the
+        <code>deploy</code> command instead. Inversely, since AWS enforces
+        uniqueness of lambda names for a specific region and account, we
+        designed BAM! to warn a user to <code>redeploy</code> whenever they
+        attempt to <code>deploy</code> a lambda with the same name as a
+        preexisting function in the cloud.</p>
 
         <p>Further, considering user interaction with AWS beyond the confines of
         BAM!, we had to account for the possibility that developers may wish to
         use our framework to pull down the code for existing lambdas created
-        without using BAM!, or for which they have no local JavaScript file. To
+        without using BAM!, or for which they have no local Node.js file. To
         provide functionality in this regard, we added the <code>get</code>
         command to our framework. The <code>get</code> command combined with
         <code>redeploy</code> can be especially helpful if the lambda code
@@ -884,10 +881,8 @@ exports.handler = async (event) => {
         simple solution is for BAM! to check AWS for the existence of this role
         and rebuild it if necessary.</p>
 
-        <p>The ultimate point here is that BAM! must at all times treat the
-        actual state of the user’s AWS account as its source of truth. BAM! was
-        therefore designed to function in a manner compatible with a developer’s
-        broader interactions with AWS.</p>
+        <p>The ultimate point here is that BAM! was designed to function in a
+        manner compatible with a developer’s broader interactions with AWS.</p>
 
         <h3>6.2 Persistence</h3>
 
@@ -903,8 +898,9 @@ exports.handler = async (event) => {
         provisioning resources can be abstracted away from day-to-day
         operations. However, any data stored by a lambda, for instance via
         closure of its handler function over some mutable object, will not
-        persist beyond the lifetime of the container and typically be lost due
-        to teardown after roughly 15 minutes of inactivity (6).</p>
+        persist beyond the lifetime of the container and will typically be lost
+        due to teardown after roughly 15 minutes of inactivity<sup><a
+        href="#footnote-5">5</a></sup>.</p>
 
         <h4>6.2.1 NoSQL Storage</h4>
 
@@ -912,10 +908,10 @@ exports.handler = async (event) => {
         running, which would largely defeat the purpose of autoscaling
         serverless technologies anyway, they must find some alternative means of
         persisting data. For this purpose, we designed BAM! to support DynamoDB,
-        AWS’ service for NoSQL key-value and document storage. Supporting
+        Amazon’s service for NoSQL key-value and document storage. Supporting
         DynamoDB for optional persistence provides highly desirable
-        functionality over even more lightweight frameworks such as Shep, while
-        at the same time staying true to our intended use case of building and
+        functionality over even more lightweight frameworks such as Shep, while,
+        at the same time, staying true to our intended use case of building and
         deploying small applications. We selected DynamoDB over other storage
         options, such as AWS RDS, Amazon’s relational database service, since
         the absence of rigid schema facilitates more agile and versatile
@@ -926,26 +922,27 @@ exports.handler = async (event) => {
         <p>It should also be noted there is a related problem of server “cold
         start”, where a noticeable latency will occur the first time a user
         invokes a lambda, as a new server instance must be spun up before
-        invocation can proceed. In extreme cases this can add upwards of 10
+        invocation can proceed. In extreme cases, this can add upwards of 10
         seconds of latency compared with calling a lambda on a preexisting (i.e.
-        “warm”) instance (6). Since instances are destroyed due to prolonged
-        inactivity the simple trick of “pinging” the server to keep it warm will
-        work.</p>
+        “warm”) instance<sup><a href="#footnote-5">5</a></sup>. Since instances
+        are destroyed due to prolonged inactivity the simple act of “pinging”
+        the server to keep it warm will work.</p>
 
-        <p>While this will suffice to prevent cold start (7), AWS Lambda works
-        on a pay-per-usage model (8), and so there is a financial benefit to
-        letting otherwise idle servers die. Furthermore, we do not anticipate
-        sustained or highly variable traffic for BAM! applications, nor does our
-        predicted use case prioritize ultra-low latency. In the end, this led us
-        to the opinion that some minor cold start issues were ultimately
-        tolerable.</p>
+        <p>While this trick will suffice to prevent cold starts<sup><a
+         href="#footnote-6">6</a></sup>, AWS Lambda works on a pay-per-usage
+        model<sup><a href="#footnote-7">7</a></sup>, which means there is a
+         financial benefit to letting otherwise idle servers die. Furthermore,
+         we do not anticipate sustained or highly variable traffic for BAM!
+         applications, nor does our predicted use case prioritize ultra-low
+         latency. In the end, this led us to the opinion that some minor cold
+         start issues were ultimately tolerable.</p>
 
         <h3>6.3 Timing</h3>
 
         <p>The last of two hurdles we cleared in the design of BAM! are two
         sides of the same coin. Specifically, we encountered an issue with
         latency within Amazon’s systems as well as a challenge with working
-        around AWS’ own rate limits.</p>
+        around Amazon's own rate limits.</p>
 
         <h4>6.3.1 Latency and Stateful Dependence</h4>
 
@@ -953,11 +950,11 @@ exports.handler = async (event) => {
         automated sequence of a large number of individual SDK operations under
         the hood. While we maintain that abstracting away these sequences of
         operations drastically improves user experience, we consequently had to
-        account for cases where one operation relies upon AWS’ system being in a
-        particular state generated by a previous operation.</p>
+        account for cases where one operation relies upon Amazon's system being
+        in a particular state generated by a previous operation.</p>
 
         <p>For example, during the sequence of steps required to deploy a lambda
-        and set up an integrated API Gateway, at some point BAM! makes SDK calls
+        and set up an integrated API Gateway, BAM! makes SDK calls
         to deploy a lambda, deploy an API gateway, and subsequently give
         permission for the API to invoke said lambda. This may sound obvious,
         but in order to attach these permissions the relevant resources actually
@@ -965,32 +962,35 @@ exports.handler = async (event) => {
 
         <p>Similarly, in the case where BAM! must rebuild its default role
         before deploying a lambda, AWS must be in a ready state for the deployed
-        lambda to assume the newly created role, which due to automation of the
-        process will be attempted mere milliseconds later.</p>
+        lambda to assume the newly created role.  Due to automation of this
+        process, the assumption of the role will be attempted mere
+        milliseconds later.</p>
 
-        <p>Within the BAM! framework’s JavaScript source code, each SDK
-        operation is performed sequentially, with each operation asynchronously
-        awaiting its predecessor. The problem is that with the AWS SDK, if a
-        request is made, say to deploy a lambda, even in the case of success,
-        Amazon comes back with an optimistic AWS Request Object (9). In other
-        words, even though we are awaiting each SDK call, the next asynchronous
-        operation is performed upon receipt of an optimistic successful
-        response, not when the state of AWS’ system is actually prepared to
-        accept the next operation. This latency, if left unhandled, would
-        periodically cause the failure of one, and therefore all subsequent SDK
-        operations.</p>
+        <p>Within the BAM! framework’s Node.js source code, each SDK operation
+        is performed sequentially, with each operation asynchronously awaiting
+        its predecessor. The problem is that with the AWS SDK, if a request is
+        made, say to deploy a lambda, Amazon comes back with an
+        <em>optimistic</em> AWS Request Object<sup><a
+         href="#footnote-8">8</a></sup> in the event of success. In
+        other words, even though we are awaiting each SDK call, the next
+        asynchronous operation is performed upon receipt of an optimistic
+        successful response, not when the state of Amazon's system is actually
+        prepared to accept the next operation. This latency, if left unhandled,
+        would periodically cause the failure of one, and therefore all
+        subsequent SDK operations.</p>
 
         <h4>6.3.2 AWS Rate Limits</h4>
 
         <p>Similar to the challenge posed by unintended latency was that of SDK
-        operations failing due to AWS’ own rate limits. In situations like this,
-        Amazon throttles one of the many individual steps part way through a
-        sequence of operations.</p>
+        operations failing due to Amazon's own rate limits. In situations like
+        this, Amazon throttles one of the many individual steps part way through
+        a sequence of operations.</p>
 
         <p>AWS sets a variety of per account rate limits for different
         interactions with its services, ranging from a comparatively lenient 5
         requests per second for API Gateway resource creation to a staggering 1
-        request per 30 seconds for API deletion (10). In the latter case, even
+        request per 30 seconds for API deletion<sup><a
+         href="#footnote-9">9</a></sup>. In the latter case, even
         though no single BAM! command will delete more than one API, even manual
         use can easily collide with this upper bound.</p>
 
@@ -1002,7 +1002,7 @@ exports.handler = async (event) => {
 
         <h4>6.3.3 bamBam</h4>
 
-        <p>Since both AWS’ rate limits and infrastructural latency are beyond
+        <p>Since both Amazon's rate limits and infrastructural latency are beyond
         our control, it is fair to say that this was not so much a traditional
         system design problem, but rather an opportunity to take a preexisting
         architecture and find clever workarounds to accomplish our engineering
@@ -1064,7 +1064,7 @@ const bamBam = async (asyncFunc, {
 
         <p><code>bamBam</code> was designed to anticipate the type of exceptions
         that are raised upon encountering one of the two problems described
-        above; respectively, we found that the SDK throws an
+        above; respectively, we found the SDK throws an
         <code>InvalidParamterValueException</code> in the case of the
         aforementioned latency issue, and a
         <code>TooManyRequestsException</code> when AWS is throttling
@@ -1080,21 +1080,21 @@ const bamBam = async (asyncFunc, {
 
         <p>The reason for retrying operations only in the event of a particular
         error is because if a wholly different type of exception is thrown, it
-        is preferable to simply let the operation fail, rather than keep the
+        is preferable to simply let the operation fail rather than keep the
         running process hanging indefinitely, knowing full well it may never
         succeed. BAM! will therefore only retry operations in cases where
         eventual success is a likely outcome.</p>
 
         <p>All of the challenges described above presented an opportunity to
         refine BAM! and further tailor it for our use case of building and
-        deploying small applications. Designing a framework atop AWS’ cloud
+        deploying small applications. Designing a framework atop Amazon’s cloud
         computing services and simplifying developer interaction therewith has
-        required a significant degree of ingenuity, and will hopefully save
+        required a significant degree of ingenuity and will hopefully save
         developers a great deal of frustration.</p>
 
         <h2 id="future-work">7 Future Work</h2>
 
-        <p>Of course, a software application is never truly finished; below, are
+        <p>Of course, a software application is never truly finished; below are
         three ideas to further improve the developer’s experience with AWS via
         the BAM! framework.</p>
 
@@ -1108,13 +1108,15 @@ const bamBam = async (asyncFunc, {
 
         <h3>7.2 AWS S3</h3>
 
-        <p>AWS S3 is Amazon’s Simple Storage Service. Since we see BAM! being
-        used often to deploy web pages, we would like to add support to upload
-        assets to an S3 bucket for use within the lambda code.</p>
+        <p>AWS S3 is Amazon’s Simple Storage Service. Since we anticipate BAM!
+        being used often to deploy web pages, we would like to add support for
+        uploading assets to an S3 bucket for use within lambda code.</p>
 
         <h3>7.3 Additional Runtimes</h3>
 
-        <p>With the addition of support for the Ruby (11) and custom (12)
+        <p>With the addition of the Ruby<sup><a
+         href="#footnote-10">10</a></sup> and custom<sup><a
+         href="#footnote-11">11</a></sup>
         runtimes on Nov. 29th 2018, AWS Lambda now supports:</p>
 
         <ul>
@@ -1135,23 +1137,21 @@ const bamBam = async (asyncFunc, {
 
           <h5>8.1 Footnotes</h5>
           <ol>
-            <li><a
+            <li id="footnote-1"><a
                 href="https://arstechnica.com/information-technology/2016/04/amazon-cloud-has-1-million-users-and-is-near-10-billion-in-annual-sales/"
                 target="_blank">https://arstechnica.com/information-technology/2016/04/amazon-cloud-has-1-million-users-and-is-near-10-billion-in-annual-sales/</a></li>
-            <li><a href="https://sdtimes.com/amazon/amazon-introduces-lambda-containers/" target="_blank">https://sdtimes.com/amazon/amazon-introduces-lambda-containers/</a></li>
-            <li><a
+            <li id="footnote-2"><a href="https://sdtimes.com/amazon/amazon-introduces-lambda-containers/" target="_blank">https://sdtimes.com/amazon/amazon-introduces-lambda-containers/</a></li>
+            <li id="footnote-3"><a
                 href="https://serverless.com/blog/serverless-by-the-numbers-2018-data-report"
                 target="_blank">https://serverless.com/blog/serverless-by-the-numbers-2018-data-report</a></li>
-            <li><a href="https://aws.amazon.com/dynamodb/"
-                target="_blank">https://aws.amazon.com/dynamodb/</a></li>
-            <li><a href="https://aws.amazon.com/products/?hp=tile&so-exp=below" target="_blank">https://aws.amazon.com/products/?hp=tile&so-exp=below</a></li>
-            <li><a href="https://serverless.com/blog/keep-your-lambdas-warm/" target="_blank">https://serverless.com/blog/keep-your-lambdas-warm/</a></li>
-            <li><a href="https://www.robertvojta.com/aws-journey-api-gateway-lambda-vpc-performance/" target="_blank">https://www.robertvojta.com/aws-journey-api-gateway-lambda-vpc-performance/</a></li>
-            <li><a href="https://aws.amazon.com/lambda/pricing/" target="_blank">https://aws.amazon.com/lambda/pricing/</a></li>
-            <li><a href="https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Request.html" target="_blank">https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Request.html</a></li>
-            <li><a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/limits.html" target="_blank">https://docs.aws.amazon.com/apigateway/latest/developerguide/limits.html</a></li>
-            <li><a href="https://aws.amazon.com/blogs/compute/announcing-ruby-support-for-aws-lambda/" target="_blank">https://aws.amazon.com/blogs/compute/announcing-ruby-support-for-aws-lambda/</a></li>
-            <li><a href="https://aws.amazon.com/about-aws/whats-new/2018/11/aws-lambda-now-supports-custom-runtimes-and-layers/" target="_blank">https://aws.amazon.com/about-aws/whats-new/2018/11/aws-lambda-now-supports-custom-runtimes-and-layers/</a></li>
+            <li id="footnote-4"><a href="https://aws.amazon.com/products/?hp=tile&so-exp=below" target="_blank">https://aws.amazon.com/products/?hp=tile&so-exp=below</a></li>
+            <li id="footnote-5"><a href="https://serverless.com/blog/keep-your-lambdas-warm/" target="_blank">https://serverless.com/blog/keep-your-lambdas-warm/</a></li>
+            <li id="footnote-6"><a href="https://www.robertvojta.com/aws-journey-api-gateway-lambda-vpc-performance/" target="_blank">https://www.robertvojta.com/aws-journey-api-gateway-lambda-vpc-performance/</a></li>
+            <li id="footnote-7"><a href="https://aws.amazon.com/lambda/pricing/" target="_blank">https://aws.amazon.com/lambda/pricing/</a></li>
+            <li id="footnote-8"><a href="https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Request.html" target="_blank">https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Request.html</a></li>
+            <li id="footnote-9"><a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/limits.html" target="_blank">https://docs.aws.amazon.com/apigateway/latest/developerguide/limits.html</a></li>
+            <li id="footnote-10"><a href="https://aws.amazon.com/blogs/compute/announcing-ruby-support-for-aws-lambda/" target="_blank">https://aws.amazon.com/blogs/compute/announcing-ruby-support-for-aws-lambda/</a></li>
+            <li id="footnote-11"><a href="https://aws.amazon.com/about-aws/whats-new/2018/11/aws-lambda-now-supports-custom-runtimes-and-layers/" target="_blank">https://aws.amazon.com/about-aws/whats-new/2018/11/aws-lambda-now-supports-custom-runtimes-and-layers/</a></li>
           </ol>
 
           <h5>8.2 Resources</h5>
