@@ -1,8 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html prefix="og: http://opg.me/ns#">
   <head>
     <meta charset="UTF-8" />
+    <meta name="title" property="og:title" content="BAM!" />
+    <meta name="description" property="og:description" content="BAM! is a lightweight
+    serverless framework for deploying applications with Node.js and AWS">
+    <meta name="type" property="og:type" content="website" />
+    <meta name="url" property="og:url" content="https://www.bam-lambda.com" />
+    <meta name="image" property="og:image" content="https://s3.amazonaws.com/bam-lambda/images/user_sequence.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Jason Overby, Jocie Moore, Tak Sampson">
     <title>BAM!</title>
     <link rel="icon" type="image/png" sizes="32x32"
     href="https://bit.ly/bamFavicon" />
@@ -145,9 +152,9 @@
 
         <h3>2.2 Functions as a Service</h3>
 
-        <p>FaaS are small pieces of code that live on ephemeral containers
-        usually written by the person or organization deploying them. AWS
-        supports FaaS with AWS Lambda.</p>
+        <p>FaaS are small pieces of code that live on ephemeral containers and
+        are usually written by the person or organization deploying them.
+        AWS supports FaaS with AWS Lambda.</p>
 
         <blockquote>
           <p>I want to write code that accomplishes a small task and can be run
@@ -176,16 +183,16 @@
 
         <p>AWS provides a veritable litany of cloud based services; however, we
         designed BAM! to interact with four in particular: AWS Lambda,
-        API Gateway, IAM, and DynamoDB.</p>
+        Amazon API Gateway, AWS IAM, and Amazon DynamoDB.</p>
 
         <h4>2.4.1 AWS Lambda</h4>
 
         <p>Introduced in November 2014, AWS Lambda is Amazon’s take on FaaS
-        solutions, providing an event-driven, serverless computing platform
+        solutions, providing an event-driven, serverless computing platform,
         which runs functions in response to events while automatically handling
         the provisioning of required resources<sup><a
         href="#footnote-2">2</a></sup>. To accomplish this, AWS will spin up a
-        new server instance within a new container as it is needed, and tear
+        new server instance within a container as needed, and tear
         down idle instances after a period of inactivity to avoid waste.</p>
 
         <p>Using AWS Lambda, it is possible to code some small piece of
@@ -379,7 +386,8 @@
 
         <p>Claudia.js is a serverless deployment tool, which was made
         specifically to help JavaScript developers create AWS serverless
-        applications easily and independently from AWS CloudFormation.</p>
+        applications easily and independently from AWS CloudFormation, Amazon's
+        service for provisioning resources.</p>
 
         <p>Pros:</p>
         <ul>
@@ -411,7 +419,6 @@
         <ul>
           <li>uses prompts instead of configuration files</li>
           <li>can deploy multiple lambas at one time</li>
-          <li>can upload the difference between Lambda function files</li>
         </ul>
 
         <p>Cons:</p>
@@ -455,13 +462,13 @@
         </ul>
 
         <p>As an example of what BAM! can do, the GIF below shows the
-        single BAM! command (<code>bam deploy [myLambda]</code>) to deploy a
+        single BAM! command (<code>bam deploy myLambda</code>) to deploy a
         lambda with an integrated endpoint:</p>
 
         <img src="https://s3.amazonaws.com/bam-lambda/images/bam_deploy.gif" alt="animation of bam deploy
         command" id="bam-deploy"/>
 
-        <h2 id="bam-framework-design">4 BAM! Framework Design</h2>
+        <h2 id="bam-design">4 BAM! Design</h2>
 
         <p>BAM! is designed to be human-friendly. We spent considerable time
         deciding which AWS services to integrate with Lambda and how to make
@@ -473,10 +480,10 @@
         process is deceptively complex. We aimed to simplify common scenarios
         for developers using these services.</p>
 
-        <p>Our objective was utilize an architecture that allows the developer
-        to get up and running quickly. BAM! has flexible commands, requires no
-        configuration, supplies instructional templates, and adapts to the
-        developer’s local lambda file organization.</p>
+        <p>Our objective was to utilize an architecture that allows the
+        developer to get up and running quickly. BAM! has flexible commands,
+        requires no configuration, supplies instructional templates, and adapts
+        to the developer’s local lambda file organization.</p>
 
         <h3>4.1 Architecture</h3>
 
@@ -485,25 +492,18 @@
         <code>package.json</code> file creation, dependency installments, file
         compression, and lambda deployment. Additionally, this directory
         contains a number of JSON files, which keep track of the resources
-        deployed using the BAM!  framework.  This data can later be logged using
-        the <code>bam list</code> command.</p>
+        deployed using the BAM!  framework.</p>
 
         <img src="https://s3.amazonaws.com/bam-lambda/images/bam_infrastructure.png" alt="local file
         organization"/>
 
-        <p>Suppose a developer creates a Node.js file for a lambda function they
-        are deploying, which requires the <code>fs</code> native Node module and
-        the <code>uuid</code> npm package. After copying the lambda file or
-        directory to the staging area, BAM! parses the require statements within
-        the file, determines which dependencies are native to Node (in this case
-        <code>fs),</code> creates a <code>package.json</code> file, adds only
-        the non-native dependencies to it (in this case <code>uuid),</code>
-        installs modules, zips all the files together, and deploys the lambda to
-        AWS.</p>
+        <p>If you've used BAM! to deploy the lambda together with an API Gateway
+        (to provide data for your co-worker, for example) the following topology
+        will be generated to process an HTTP <code>GET</code> request sent to
+        the endpoint.</p>
 
-        <p>If you've used BAM! to deploy the lambda together with an API gateway
-        to provide data for your co-worker, the following topology will be
-        generated to process the HTTP GET request to the endpoint.</p>
+        <img src="https://s3.amazonaws.com/bam-lambda/images/user_sequence.png" alt="co-worker visits
+        endpoint"/>
 
         <p>There are several types of endpoints, and in most cases, the best is
         an Edge-optimized endpoint because AWS routes the user’s request through
@@ -511,33 +511,31 @@
         endpoint can be called from locations around the world with better
         performance.</p>
 
-        <img src="https://s3.amazonaws.com/bam-lambda/images/user_sequence.png" alt="co-worker visits
-        endpoint"/>
-
-        <p>After Cloudfront routes the user's request to Amazon API Gateway, API
-        Gateway checks the IAM role and associated policies to confirm the path
-        resource has permission to invoke the lambda. If API Gateway receives a
+        <p>Cloudfront will route the user's request to Amazon API Gateway, which
+        checks the IAM role and associated policies to confirm the path resource
+        has permission to invoke the lambda. If API Gateway receives a
         successful response from IAM, the lambda will be invoked to perform some
         processing. This could involve interacting with other services such as a
-        database or even another lambda. In the case of the endpoint for our
-        co-worker who needs a sales report, a query is made for last month’s
+        database or even another lambda. In this example, the lamdba should
+        produce a sales report, so a database query is made for last month’s
         total sales.</p>
 
         <p>Then, the data is sent back to AWS Lambda for further processing,
-        metadata can be persisted to a DynamoDB table, and the response is returned
-        to API Gateway. With Lambda Proxy integrations, the lambda must return a
-        JSON formatted response which the gateway can transform into an HTTP
-        response. Finally, API Gateway routes the response back to the Edge
+        metadata can be persisted to a DynamoDB table, and the response is
+        returned to API Gateway. With Lambda Proxy integrations, the lambda must
+        return a JSON formatted response which the gateway can transform into an
+        HTTP response. Finally, API Gateway routes the response back to the Edge
         location and to your co-worker, who can view the sales report in their
         browser.</p>
 
         <h4>4.1.1 A Note About Security</h4>
 
-        <p>Edge-optimized endpoints created by AWS are public by default. Of course, if
-        BAM! is being used to host a public webpage, this is not a concern,
-        since the API Gateway should obviously be public. We built BAM! assuming
-        the developer or developer’s company will take appropriate measures to
-        secure their AWS resources.</p>
+        <p>Edge-optimized endpoints created by AWS are public by default. Of
+        course, if BAM! is being used to host a public webpage, this is not a
+        concern, since the API Gateway should obviously be public. We built BAM!
+        assuming the developer or developer’s company will take appropriate
+        measures to secure their AWS resources in the way that best serves their
+        needs.</p>
 
         <h3>4.2 Commands</h3>
 
@@ -590,10 +588,10 @@
         comments.</p>
 
         <code class="command">bam list</code>
-        <p>The <code>list</code> command logs existing lambdas and
-        DynamoDB tables, allowing quick visibility to resources in the cloud
-        including existing endpoint urls associated with each lambda (see
-        below).</p>
+        <p>The <code>list</code> command uses data from the aforementioned
+        hidden JSON files and AWS to log existing lambdas, associated endpoints,
+        and DynamoDB tables, allowing quick visibility to resources in the cloud
+        (see below).</p>
 
         <p>The <code>--dbtables</code> and <code>--lambdas</code> flags can be
         used to log only resources for those respective services.</p>
@@ -642,11 +640,6 @@ Other lambdas on AWS
         <p>The <code>config</code> command prompts the user to update the
         account number and default role.</p>
 
-        <p>Keeping in mind the guiding principles of speed and convenience, BAM!
-        does not require any configuration, extensive AWS knowledge, or specific
-        local file organization. In order to achieve these features, the
-        framework handles a number of items behind the scenes.</p>
-
         <h3>4.3 Automatic Configuration</h3>
 
         <p>BAM! is an opinionated framework that allows for deployment of AWS
@@ -680,9 +673,10 @@ Other lambdas on AWS
         <p>The BAM! framework includes six templates to help a developer get
         going quickly. These templates ensure lambda functions will be
         compatible with both the AWS Lambda programming pattern for Node.js and
-        Lambda Proxy integration. Templates can be created with or without
-        instructional comments, and although useful, these templates are not a
-        requirement for deploying a lambda with the BAM! framework.</p>
+        Lambda Proxy integration with API Gateway. Templates can be created with
+        or without instructional comments, and although useful, these templates
+        are not a requirement for deploying a lambda with the BAM!
+        framework.</p>
 
         <p>The first is a basic template, which is created by default when
         <code>bam create</code> is run without any flags. This template shows
@@ -696,7 +690,7 @@ Other lambdas on AWS
         CSS that can be accessed from the lambda. The next template is a
         combination of the invoker and HTML templates and is created simply by
         using the <code>--invoker</code> and <code>--html</code> flags together
-        with the create command. The database template includes the
+        with the <code>create</code> command. The database template includes the
         <code>SCAN</code>, <code>PUT</code>, <code>GET</code>, and
         <code>DELETE</code> methods and parameters for querying a DynamoDB
         table. Note: to use this template properly, the lambda also needs the
@@ -793,6 +787,16 @@ exports.handler = async (event) => {
         any way. For example, all lambda files could exist within one directory
         or could be organized into specific project directories. Because of the
         way BAM! is designed, the framework can handle either scenario.</p>
+
+        <p>Suppose a developer is deploying a lambda function they have written
+        in Node.js, which requires the <code>fs</code> native Node module and
+        the <code>uuid</code> npm package. After copying the lambda file or
+        directory to the staging area, BAM! parses the require statements within
+        the file, determines which dependencies are native to Node (in this case
+        <code>fs</code>), creates a <code>package.json</code> file, adds only
+        the non-native dependencies to it (in this case <code>uuid</code>),
+        installs modules, zips all the files together, and deploys the lambda to
+        AWS.</p>
 
         <p>The advantages of designing the BAM! framework this way are:</p>
         <ul>
@@ -945,7 +949,7 @@ exports.handler = async (event) => {
 
         <h3>5.3 Timing</h3>
 
-        <p>We encountered another interesting group of challenges related to
+        <p>Finally, we encountered an interesting pair of challenges related to
         timing, specifically an issue with latency within Amazon’s systems as
         well as a challenge with working around Amazon's own rate limits.</p>
 
@@ -1070,7 +1074,7 @@ const bamBam = async (asyncFunc, {
         <p><code>bamBam</code> was designed to anticipate the type of exceptions
         that are raised upon encountering one of the two problems described
         above; respectively, we found the SDK throws an
-        <code>InvalidParameterValueException</code> in the case of the
+         <code>InvalidParameterValueException</code> in the case of the
         aforementioned latency issue, and a
         <code>TooManyRequestsException</code> when AWS is throttling
         requests.</p>
@@ -1114,7 +1118,7 @@ const bamBam = async (asyncFunc, {
         <h3>6.2 AWS S3</h3>
 
         <p>AWS S3 is Amazon’s Simple Storage Service. Since we anticipate BAM!
-        being used often to deploy web pages, we would like to add support for
+        being used often to deploy webpages, we would like to add support for
         uploading assets to an S3 bucket for use within lambda code.</p>
 
         <h3>6.3 Additional Runtimes</h3>
